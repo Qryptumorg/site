@@ -49,4 +49,6 @@ VITE_SHIELD_FACTORY_LOCAL=0x5FbDB2315678afecb367f032d93F642f64180aa3
 
 ## License
 
-MIT
+[![License: MIT](https://img.shields.io/badge/License-MIT-white.svg)](LICENSE)
+
+Copyright (c) 2026 [wei-zuan](https://github.com/wei-zuan). See [LICENSE](LICENSE) for full terms.
