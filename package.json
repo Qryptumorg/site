@@ -70,6 +70,7 @@
     "zod": "^3.25.76"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.15",
     "ethers": "^6.16.0",
     "viem": "^2.47.10",
     "wagmi": "^3.6.0"
