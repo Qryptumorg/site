@@ -51,7 +51,8 @@ function HexRainCanvas() {
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
-        const ctx = canvas.getContext("2d")!;
+        const el: HTMLCanvasElement = canvas;
+        const ctx = el.getContext("2d")!;
 
         const CELL = 28;
         let cols: number, rows: number;
@@ -59,10 +60,10 @@ function HexRainCanvas() {
         let grid: Cell[][] = [];
 
         function resize() {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-            cols = Math.ceil(canvas.width / CELL);
-            rows = Math.ceil(canvas.height / CELL);
+            el.width = el.offsetWidth;
+            el.height = el.offsetHeight;
+            cols = Math.ceil(el.width / CELL);
+            rows = Math.ceil(el.height / CELL);
             grid = Array.from({ length: rows }, () =>
                 Array.from({ length: cols }, () => ({
                     char: HEX_CHARS[Math.floor(Math.random() * 16)],
@@ -74,7 +75,7 @@ function HexRainCanvas() {
         }
         resize();
         const ro = new ResizeObserver(resize);
-        ro.observe(canvas);
+        ro.observe(el);
 
         let frame = 0;
         let raf: number;
@@ -86,7 +87,7 @@ function HexRainCanvas() {
             last = ts;
             frame++;
 
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, el.width, el.height);
             ctx.font = `${CELL - 8}px monospace`;
 
             for (let r = 0; r < rows; r++) {
