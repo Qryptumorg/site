@@ -11,7 +11,7 @@ export default function BurnOnUnshieldPage() {
             primaryColor="#EF4444"
             secondaryColor="#F97316"
             heroButtons={[
-                { label: "Exiting QRYPTANK", href: "/exiting-qryptank", primary: true },
+                { label: "Exiting Qrypt-Safe", href: "/exiting-qrypt-safe", primary: true },
                 { label: "1:1 Backing", href: "/one-to-one-backing" },
             ]}
             stats={[
@@ -48,7 +48,7 @@ export default function BurnOnUnshieldPage() {
                     img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format",
                     color: "#B91C1C",
                     title: "Vault Proof Required",
-                    body: "Unshield requires a valid vault proof. Only the QRYPTANK owner with the correct proof can trigger the burn and receive their tokens back.",
+                    body: "Unshield requires a valid vault proof. Only the Qrypt-Safe owner with the correct proof can trigger the burn and receive their tokens back.",
                     link: { text: "Vault proof security", href: "/vault-proof-security" },
                 },
             ]}
@@ -64,7 +64,7 @@ export default function BurnOnUnshieldPage() {
                 ],
             }}
             relatedLinks={[
-                { label: "Exiting QRYPTANK", href: "/exiting-qryptank", color: "#EF4444" },
+                { label: "Exiting Qrypt-Safe", href: "/exiting-qrypt-safe", color: "#EF4444" },
                 { label: "Receive Original Tokens", href: "/receive-original-tokens", color: "#F97316" },
                 { label: "1:1 Backing", href: "/one-to-one-backing", color: "#DC2626" },
             ]}
