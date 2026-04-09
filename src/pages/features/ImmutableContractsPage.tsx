@@ -29,7 +29,7 @@ export default function ImmutableContractsPage() {
                     img: "https://images.unsplash.com/photo-1516245834210-c4c142787335?w=800&auto=format",
                     color: "#8B5CF6",
                     title: "No Proxy Pattern",
-                    body: "ShieldFactory and PersonalQRYPTANK are not deployed behind a transparent proxy, UUPS proxy, or beacon proxy. The address you interact with is the implementation address.",
+                    body: "ShieldFactory and PersonalQrypt-Safe are not deployed behind a transparent proxy, UUPS proxy, or beacon proxy. The address you interact with is the implementation address.",
                     link: { text: "ShieldFactory", href: "/shield-factory" },
                 },
                 {
@@ -50,7 +50,7 @@ export default function ImmutableContractsPage() {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
                     color: "#DB2777",
                     title: "Future-Proof Security",
-                    body: "Immutability means the security properties of your QRYPTANK cannot be degraded by a future protocol update. What you audit today is what protects you forever.",
+                    body: "Immutability means the security properties of your Qrypt-Safe cannot be degraded by a future protocol update. What you audit today is what protects you forever.",
                     link: { text: "Vault proof security", href: "/vault-proof-security" },
                 },
             ]}
