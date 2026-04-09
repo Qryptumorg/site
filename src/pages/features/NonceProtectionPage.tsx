@@ -36,7 +36,7 @@ export default function NonceProtectionPage() {
                     img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format",
                     color: "#6366F1",
                     title: "On-Chain Registry",
-                    body: "Every nonce used in a successful commitment is stored in a mapping on the PersonalQRYPTANK contract. This mapping is permanent and never cleared.",
+                    body: "Every nonce used in a successful commitment is stored in a mapping on the PersonalQrypt-Safe contract. This mapping is permanent and never cleared.",
                 },
                 {
                     img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format",
