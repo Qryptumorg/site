@@ -12,7 +12,7 @@ export default function ConnectWalletPage() {
             secondaryColor="#EF4444"
             heroButtons={[
                 { label: "Launch App", href: "/app", primary: true },
-                { label: "Create QRYPTANK", href: "/create-qryptank" },
+                { label: "Create Qrypt-Safe", href: "/create-qrypt-safe" },
             ]}
             stats={[
                 { value: "MetaMask", label: "Native support", note: "No extension config needed" },
@@ -22,7 +22,7 @@ export default function ConnectWalletPage() {
             ]}
             sectionBadge="WALLET CONNECTION"
             sectionHeading="Your Wallet Is Your Account"
-            sectionBody="There is no Qryptum account. No password. No username. Your Ethereum wallet address is your identity on the protocol. Connect once and your QRYPTANK is immediately accessible."
+            sectionBody="There is no Qryptum account. No password. No username. Your Ethereum wallet address is your identity on the protocol. Connect once and your Qrypt-Safe is immediately accessible."
             sectionColor="#F59E0B"
             cards={[
                 {
@@ -53,7 +53,7 @@ export default function ConnectWalletPage() {
                 },
             ]}
             relatedLinks={[
-                { label: "Create QRYPTANK", href: "/create-qryptank", color: "#F59E0B" },
+                { label: "Create Qrypt-Safe", href: "/create-qrypt-safe", color: "#F59E0B" },
                 { label: "Quick Start Guide", href: "/quick-start-guide", color: "#EF4444" },
                 { label: "Getting Shielded", href: "/getting-shielded", color: "#D97706" },
             ]}
