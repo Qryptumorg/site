@@ -11,14 +11,14 @@ export default function BurnQtokensPage() {
             primaryColor="#F97316"
             secondaryColor="#EF4444"
             heroButtons={[
-                { label: "Exit QRYPTANK", href: "/app", primary: true },
+                { label: "Exit Qrypt-Safe", href: "/app", primary: true },
                 { label: "Receive Original Tokens", href: "/receive-original-tokens" },
             ]}
             stats={[
                 { value: "1 tx", label: "To unshield", note: "Burn and return in one call" },
                 { value: "Atomic", label: "Burn and receive", note: "No gap between steps" },
                 { value: "Instant", label: "Token return", note: "Same block as burn" },
-                { value: "Vault proof", label: "Required", note: "Proves QRYPTANK ownership" },
+                { value: "Vault proof", label: "Required", note: "Proves Qrypt-Safe ownership" },
             ]}
             sectionBadge="BURN PROCESS"
             sectionHeading="What Happens When You Call unshield()"
@@ -43,14 +43,14 @@ export default function BurnQtokensPage() {
                     img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format",
                     color: "#DC2626",
                     title: "ERC-20 Transfer Out",
-                    body: "After the burn succeeds, the original ERC-20 tokens are transferred from the QRYPTANK to your wallet address. If the burn failed, the transfer does not happen.",
+                    body: "After the burn succeeds, the original ERC-20 tokens are transferred from the Qrypt-Safe to your wallet address. If the burn failed, the transfer does not happen.",
                 },
                 {
                     img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format",
                     color: "#B45309",
                     title: "Partial Unshield Supported",
                     body: "You can unshield any amount up to your total balance. You do not have to exit the full position at once.",
-                    link: { text: "Exiting QRYPTANK", href: "/exiting-qryptank" },
+                    link: { text: "Exiting Qrypt-Safe", href: "/exiting-qrypt-safe" },
                 },
             ]}
             techNote={{
@@ -64,7 +64,7 @@ export default function BurnQtokensPage() {
                 ],
             }}
             relatedLinks={[
-                { label: "Exiting QRYPTANK", href: "/exiting-qryptank", color: "#F97316" },
+                { label: "Exiting Qrypt-Safe", href: "/exiting-qrypt-safe", color: "#F97316" },
                 { label: "Receive Original Tokens", href: "/receive-original-tokens", color: "#EF4444" },
                 { label: "Burn on Unshield", href: "/burn-on-unshield", color: "#DC2626" },
             ]}
