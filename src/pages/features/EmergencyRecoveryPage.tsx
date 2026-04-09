@@ -7,7 +7,7 @@ export default function EmergencyRecoveryPage() {
             badge="EMERGENCY"
             heroTitle="Recovery After"
             heroHighlight="180 Days Inactive"
-            heroSubtitle="If your QRYPTANK has had zero activity for 180 consecutive days and vault proof access is lost, an emergency withdrawal path unlocks to let you recover your underlying assets."
+            heroSubtitle="If your Qrypt-Safe has had zero activity for 180 consecutive days and vault proof access is lost, an emergency withdrawal path unlocks to let you recover your underlying assets."
             primaryColor="#EF4444"
             secondaryColor="#F97316"
             heroButtons={[
@@ -22,7 +22,7 @@ export default function EmergencyRecoveryPage() {
             ]}
             sectionBadge="RECOVERY MECHANISM"
             sectionHeading="A Last Resort With No Third-Party Involvement"
-            sectionBody="The emergency path is a trustless, permissionless function on the PersonalQRYPTANK contract. It checks on-chain timestamps only. No admin, no multisig, and no Qryptum team action is required to trigger it."
+            sectionBody="The emergency path is a trustless, permissionless function on the PersonalQrypt-Safe contract. It checks on-chain timestamps only. No admin, no multisig, and no Qryptum team action is required to trigger it."
             sectionColor="#EF4444"
             cards={[
                 {
@@ -49,13 +49,13 @@ export default function EmergencyRecoveryPage() {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
                     color: "#B45309",
                     title: "Full Token Retrieval",
-                    body: "The emergency withdrawal returns all shielded ERC-20 tokens across all token types held by the QRYPTANK to the owner wallet address.",
+                    body: "The emergency withdrawal returns all shielded ERC-20 tokens across all token types held by the Qrypt-Safe to the owner wallet address.",
                 },
             ]}
             relatedLinks={[
                 { label: "180-Day Inactivity Rule", href: "/180-day-inactivity", color: "#EF4444" },
                 { label: "No Admin Keys", href: "/no-admin-keys", color: "#F97316" },
-                { label: "Exiting QRYPTANK", href: "/exiting-qryptank", color: "#DC2626" },
+                { label: "Exiting Qrypt-Safe", href: "/exiting-qrypt-safe", color: "#DC2626" },
             ]}
         />
     );
