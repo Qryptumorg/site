@@ -16,13 +16,13 @@ export default function TransferShieldPage() {
             stats={[
                 { value: "Disabled", label: "Direct transfers", note: "transfer() always reverts" },
                 { value: "Bytecode", label: "Enforcement level", note: "Not just UI restriction" },
-                { value: "Vault only", label: "Movement path", note: "Must go through QRYPTANK" },
+                { value: "Vault only", label: "Movement path", note: "Must go through Qrypt-Safe" },
                 { value: "Zero", label: "Admin override", note: "No emergency bypass exists" },
             ]}
             sectionBadge="How Transfer Shield Works"
             sectionColor="#f59e0b"
             sectionHeading="Unauthorized Movement Is Impossible"
-            sectionBody="Standard ERC-20 tokens can be sent by anyone who holds them. qTokens cannot. The contract overrides the transfer function at the bytecode level and rejects all calls that do not originate from the QRYPTANK vault."
+            sectionBody="Standard ERC-20 tokens can be sent by anyone who holds them. qTokens cannot. The contract overrides the transfer function at the bytecode level and rejects all calls that do not originate from the Qrypt-Safe vault."
             cards={[
                 {
                     img: "/images/card-erc20-shield.png",
@@ -68,7 +68,7 @@ export default function TransferShieldPage() {
             relatedLinks={[
                 { label: "qToken System", href: "/qtoken-system", color: "#f59e0b" },
                 { label: "Vault Proof Security", href: "/vault-proof-security", color: "#7c3aed" },
-                { label: "Create QRYPTANK", href: "/create-personal-qryptank", color: "#06b6d4" },
+                { label: "Create Qrypt-Safe", href: "/create-personal-qrypt-safe", color: "#06b6d4" },
             ]}
         />
     );
