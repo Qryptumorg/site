@@ -28,7 +28,7 @@ export default function VaultProofSecurityPage() {
                     img: "/images/sec-hash.png",
                     color: "#7c3aed",
                     title: "keccak256 On-Chain Hash",
-                    body: "When you deploy a QRYPTANK, only the keccak256 hash of your vault proof is stored in contract state. The plaintext is mathematically irreversible from the hash.",
+                    body: "When you deploy a Qrypt-Safe, only the keccak256 hash of your vault proof is stored in contract state. The plaintext is mathematically irreversible from the hash.",
                     link: { text: "Technical spec", href: "/docs/introduction/overview" },
                 },
                 {
