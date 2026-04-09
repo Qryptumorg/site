@@ -23,7 +23,7 @@ export default function TransferEnginePage() {
             sectionBadge="Protocol Design"
             sectionColor="#10b981"
             sectionHeading="How the Transfer Engine Works"
-            sectionBody="Every QRYPTANK transfer uses a two-step commit-reveal scheme. The commit phase submits a hash. The reveal phase unlocks it. Mempool bots see only a hash."
+            sectionBody="Every Qrypt-Safe transfer uses a two-step commit-reveal scheme. The commit phase submits a hash. The reveal phase unlocks it. Mempool bots see only a hash."
             cards={[
                 {
                     img: "/images/transfer-commit.png",
@@ -54,7 +54,7 @@ export default function TransferEnginePage() {
             ]}
             steps={[
                 { n: "01", color: "#10b981", title: "Enter Transfer Details", desc: "Choose the recipient address, token, and amount inside the app. Your vault proof is hashed locally.", detail: "hash = keccak256(abi.encodePacked(vaultProof, recipient, amount, nonce))" },
-                { n: "02", color: "#7c3aed", title: "Submit Commit Transaction", desc: "Send the hash to the QRYPTANK contract. The transaction reveals nothing about the transfer to mempool observers.", detail: "personalVault.commitTransfer(bytes32 commitHash)" },
+                { n: "02", color: "#7c3aed", title: "Submit Commit Transaction", desc: "Send the hash to the Qrypt-Safe contract. The transaction reveals nothing about the transfer to mempool observers.", detail: "personalVault.commitTransfer(bytes32 commitHash)" },
                 { n: "03", color: "#06b6d4", title: "Wait for Commit to Mine", desc: "The commit transaction is included in a block. Once mined, the 10-minute reveal window opens.", detail: "Block confirms. commitTimestamp stored on-chain." },
                 { n: "04", color: "#f59e0b", title: "Submit Reveal Transaction", desc: "Reveal the plaintext inputs. Contract verifies, executes the transfer, and marks the nonce as spent.", detail: "personalVault.revealTransfer(vaultProof, recipient, amount, nonce)" },
             ]}
