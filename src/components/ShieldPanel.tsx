@@ -22,7 +22,7 @@ export default function ShieldPanel({ vaultAddress, walletAddress, chainId }: Sh
     const [amount, setAmount] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const [step, setStep] = useState<"input" | "approve" | "shield">("input");
+    const [_step, setStep] = useState<"input" | "approve" | "shield">("input");
 
     const isValidToken = tokenAddress.startsWith("0x") && tokenAddress.length === 42;
 
@@ -55,7 +55,7 @@ export default function ShieldPanel({ vaultAddress, walletAddress, chainId }: Sh
         query: { enabled: isValidToken },
     });
 
-    const { data: allowance, refetch: refetchAllowance } = useReadContract({
+    const { data: allowance } = useReadContract({
         address: isValidToken ? tokenAddress as `0x${string}` : undefined,
         abi: ERC20_ABI,
         functionName: "allowance",
@@ -101,7 +101,7 @@ export default function ShieldPanel({ vaultAddress, walletAddress, chainId }: Sh
             args: [tokenAddress as `0x${string}`, parsedAmount, password],
         }, {
             onSuccess: async (hash) => {
-                toast({ title: "Shield submitted", description: "Shielding tokens into your QRYPTANK..." });
+                toast({ title: "Shield submitted", description: "Shielding tokens into your Qrypt-Safe..." });
                 setStep("shield");
                 try {
                     await recordTransaction({
@@ -129,7 +129,7 @@ export default function ShieldPanel({ vaultAddress, walletAddress, chainId }: Sh
                     <ShieldIcon className="w-16 h-16 text-green-400 mx-auto mb-4 shield-glow" />
                     <h3 className="text-xl font-bold text-foreground mb-2">Tokens Shielded</h3>
                     <p className="text-muted-foreground mb-2">
-                        {amount} {tokenSymbol} shielded in your QRYPTANK.
+                        {amount} {tokenSymbol} shielded in your Qrypt-Safe.
                     </p>
                     <p className="text-muted-foreground text-sm mb-6">
                         You now hold q{tokenSymbol} in your MetaMask wallet.
@@ -146,7 +146,7 @@ export default function ShieldPanel({ vaultAddress, walletAddress, chainId }: Sh
         <div className="space-y-6">
             <SectionHeader icon={<ShieldIcon className="w-6 h-6 text-primary" />} title="Shield Tokens" />
             <p className="text-muted-foreground text-sm">
-                Shield ERC-20 tokens into your QRYPTANK. You will receive q{tokenSymbol || "TOKEN"} in your MetaMask wallet.
+                Shield ERC-20 tokens into your Qrypt-Safe. You will receive q{tokenSymbol || "TOKEN"} in your MetaMask wallet.
             </p>
 
             <div className="glass rounded-2xl p-6 space-y-5">
