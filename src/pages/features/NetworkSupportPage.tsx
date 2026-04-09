@@ -29,7 +29,7 @@ export default function NetworkSupportPage() {
                     img: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&auto=format",
                     color: "#6366F1",
                     title: "Ethereum Mainnet",
-                    body: "All production QRYPTANK deployments and shielding operations run on Ethereum Mainnet (Chain ID 1). Real ETH is required for gas. Contracts are verified on Etherscan.",
+                    body: "All production Qrypt-Safe deployments and shielding operations run on Ethereum Mainnet (Chain ID 1). Real ETH is required for gas. Contracts are verified on Etherscan.",
                     link: { text: "ABI and addresses", href: "/abi-and-addresses" },
                 },
                 {
