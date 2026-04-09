@@ -7,7 +7,7 @@ export default function FaqPage() {
             badge="DOCS"
             heroTitle="Common Questions"
             heroHighlight="Answered"
-            heroSubtitle="Answers to frequently asked questions about QRYPTANKs, vault proofs, qTokens, gas costs, and how to use Qryptum safely and effectively on Ethereum L1."
+            heroSubtitle="Answers to frequently asked questions about Qrypt-Safes, vault proofs, qTokens, gas costs, and how to use Qryptum safely and effectively on Ethereum L1."
             primaryColor="#0EA5E9"
             secondaryColor="#6366F1"
             heroButtons={[
@@ -28,14 +28,14 @@ export default function FaqPage() {
                     img: "https://images.unsplash.com/photo-1509869175650-a1d97972541a?w=800&auto=format",
                     color: "#0EA5E9",
                     title: "What if I forget my vault proof?",
-                    body: "If you lose your vault proof and your QRYPTANK has been inactive for 180 days, you can use the emergency withdrawal function to recover your tokens without the proof.",
+                    body: "If you lose your vault proof and your Qrypt-Safe has been inactive for 180 days, you can use the emergency withdrawal function to recover your tokens without the proof.",
                     link: { text: "180-day inactivity rule", href: "/180-day-inactivity" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
                     color: "#6366F1",
                     title: "Can Qryptum access my tokens?",
-                    body: "No. The PersonalQRYPTANK contract has no admin function. Qryptum cannot freeze, pause, redirect, or withdraw your tokens under any circumstance.",
+                    body: "No. The PersonalQrypt-Safe contract has no admin function. Qryptum cannot freeze, pause, redirect, or withdraw your tokens under any circumstance.",
                     link: { text: "No admin keys", href: "/no-admin-keys" },
                 },
                 {
