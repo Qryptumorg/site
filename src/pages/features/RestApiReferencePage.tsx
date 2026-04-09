@@ -7,7 +7,7 @@ export default function RestApiReferencePage() {
             badge="INTEGRATION GUIDE"
             heroTitle="Backend API"
             heroHighlight="for Developers"
-            heroSubtitle="The Qryptum REST API provides endpoints for indexing QRYPTANK events, querying vault states, and retrieving transaction history: without requiring direct Ethereum RPC calls."
+            heroSubtitle="The Qryptum REST API provides endpoints for indexing Qrypt-Safe events, querying vault states, and retrieving transaction history: without requiring direct Ethereum RPC calls."
             primaryColor="#F59E0B"
             secondaryColor="#EF4444"
             heroButtons={[
@@ -22,20 +22,20 @@ export default function RestApiReferencePage() {
             ]}
             sectionBadge="API ENDPOINTS"
             sectionHeading="What the API Provides and What It Does Not"
-            sectionBody="The API indexes Ethereum events from ShieldFactory and PersonalQRYPTANK contracts. It provides read-only data for the UI: QRYPTANK addresses, token balances, and transaction history. It never holds vault proofs or private data."
+            sectionBody="The API indexes Ethereum events from ShieldFactory and PersonalQrypt-Safe contracts. It provides read-only data for the UI: Qrypt-Safe addresses, token balances, and transaction history. It never holds vault proofs or private data."
             sectionColor="#F59E0B"
             cards={[
                 {
                     img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format",
                     color: "#F59E0B",
                     title: "GET /vault/:address",
-                    body: "Returns the QRYPTANK contract address for a given wallet, along with shielded token balances indexed from on-chain events.",
+                    body: "Returns the Qrypt-Safe contract address for a given wallet, along with shielded token balances indexed from on-chain events.",
                 },
                 {
                     img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format",
                     color: "#EF4444",
                     title: "GET /transactions/:vault",
-                    body: "Returns paginated transaction history for a QRYPTANK: shield events, transfer commits, reveals, and unshield events indexed from Ethereum logs.",
+                    body: "Returns paginated transaction history for a Qrypt-Safe: shield events, transfer commits, reveals, and unshield events indexed from Ethereum logs.",
                 },
                 {
                     img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format",
@@ -54,7 +54,7 @@ export default function RestApiReferencePage() {
             techNote={{
                 label: "API: example requests",
                 lines: [
-                    "// Get QRYPTANK for a wallet",
+                    "// Get Qrypt-Safe for a wallet",
                     "GET /api/vault/0xYourWalletAddress",
                     "",
                     "// Get transaction history",
