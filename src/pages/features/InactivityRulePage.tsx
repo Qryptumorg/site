@@ -7,7 +7,7 @@ export default function InactivityRulePage() {
             badge="EMERGENCY RECOVERY"
             heroTitle="Emergency Unlock"
             heroHighlight="After 180 Days"
-            heroSubtitle="A QRYPTANK that has had zero on-chain activity for 180 consecutive days can trigger an emergency withdrawal. Designed for worst-case vault proof loss: no admin required."
+            heroSubtitle="A Qrypt-Safe that has had zero on-chain activity for 180 consecutive days can trigger an emergency withdrawal. Designed for worst-case vault proof loss: no admin required."
             primaryColor="#EF4444"
             secondaryColor="#F97316"
             heroButtons={[
@@ -22,7 +22,7 @@ export default function InactivityRulePage() {
             ]}
             sectionBadge="INACTIVITY RULE"
             sectionHeading="How the 180-Day Clock Works"
-            sectionBody="Every shield(), transfer(), and unshield() call updates the lastActivity timestamp in the QRYPTANK contract. If 180 days pass without any of these calls, the emergencyWithdraw() function becomes callable by the wallet owner."
+            sectionBody="Every shield(), transfer(), and unshield() call updates the lastActivity timestamp in the Qrypt-Safe contract. If 180 days pass without any of these calls, the emergencyWithdraw() function becomes callable by the wallet owner."
             sectionColor="#EF4444"
             cards={[
                 {
@@ -42,14 +42,14 @@ export default function InactivityRulePage() {
                     img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format",
                     color: "#DC2626",
                     title: "Permissionless Function",
-                    body: "emergencyWithdraw() is publicly callable by the QRYPTANK owner after the inactivity period. No whitelist, no admin approval, no Qryptum team involvement.",
+                    body: "emergencyWithdraw() is publicly callable by the Qrypt-Safe owner after the inactivity period. No whitelist, no admin approval, no Qryptum team involvement.",
                     link: { text: "No admin keys", href: "/no-admin-keys" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format",
                     color: "#B45309",
                     title: "Full Token Recovery",
-                    body: "The emergency function transfers all ERC-20 tokens held by the QRYPTANK to the owner address and burns all remaining qTokens in one transaction.",
+                    body: "The emergency function transfers all ERC-20 tokens held by the Qrypt-Safe to the owner address and burns all remaining qTokens in one transaction.",
                 },
             ]}
             techNote={{
@@ -67,7 +67,7 @@ export default function InactivityRulePage() {
             relatedLinks={[
                 { label: "Emergency Recovery", href: "/emergency-recovery", color: "#EF4444" },
                 { label: "No Admin Keys", href: "/no-admin-keys", color: "#F97316" },
-                { label: "Exiting QRYPTANK", href: "/exiting-qryptank", color: "#DC2626" },
+                { label: "Exiting Qrypt-Safe", href: "/exiting-qrypt-safe", color: "#DC2626" },
             ]}
         />
     );
