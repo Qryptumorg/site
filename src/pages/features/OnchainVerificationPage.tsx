@@ -22,7 +22,7 @@ export default function OnchainVerificationPage() {
             ]}
             sectionBadge="VERIFICATION DESIGN"
             sectionHeading="Why On-Chain Verification Cannot Be Tampered With"
-            sectionBody="The PersonalQRYPTANK contract contains the full verification logic in bytecode. It is deployed without an upgrade proxy. The verification cannot be modified by anyone including the Qryptum team: not now, not ever."
+            sectionBody="The PersonalQrypt-Safe contract contains the full verification logic in bytecode. It is deployed without an upgrade proxy. The verification cannot be modified by anyone including the Qryptum team: not now, not ever."
             sectionColor="#F59E0B"
             cards={[
                 {
