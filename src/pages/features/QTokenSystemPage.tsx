@@ -22,13 +22,13 @@ export default function QTokenSystemPage() {
             sectionBadge="Token Architecture"
             sectionColor="#7c3aed"
             sectionHeading="How qTokens Track Your Position"
-            sectionBody="qTokens are ERC-20 tokens with a critical restriction: direct wallet-to-wallet transfers are disabled. They can only move through your QRYPTANK, making theft impossible without your vault proof."
+            sectionBody="qTokens are ERC-20 tokens with a critical restriction: direct wallet-to-wallet transfers are disabled. They can only move through your Qrypt-Safe, making theft impossible without your vault proof."
             cards={[
                 {
                     img: "/images/qtoken-mint.png",
                     color: "#7c3aed",
                     title: "Minted on Shield",
-                    body: "The moment you shield an ERC-20, the QRYPTANK calls mint() on the corresponding qToken contract. You receive the exact same amount in your wallet.",
+                    body: "The moment you shield an ERC-20, the Qrypt-Safe calls mint() on the corresponding qToken contract. You receive the exact same amount in your wallet.",
                     link: { text: "Shield flow", href: "/shield-erc20-tokens" },
                 },
                 {
@@ -41,14 +41,14 @@ export default function QTokenSystemPage() {
                     img: "/images/qtoken-nontransfer.png",
                     color: "#10b981",
                     title: "Transfer Locked at Bytecode",
-                    body: "The qToken contract overrides ERC-20 transfer() and transferFrom(). Any call from outside the QRYPTANK reverts. Your balance cannot be moved by anyone else.",
+                    body: "The qToken contract overrides ERC-20 transfer() and transferFrom(). Any call from outside the Qrypt-Safe reverts. Your balance cannot be moved by anyone else.",
                 },
                 {
                     img: "/images/qtoken-burn.png",
                     color: "#f59e0b",
                     title: "Burned on Unshield",
-                    body: "When you call unshield(), the QRYPTANK burns your qTokens and releases the original ERC-20 back to your wallet. Mint and burn happen in the same atomic transaction.",
-                    link: { text: "Exiting your QRYPTANK", href: "/exiting-qryptank" },
+                    body: "When you call unshield(), the Qrypt-Safe burns your qTokens and releases the original ERC-20 back to your wallet. Mint and burn happen in the same atomic transaction.",
+                    link: { text: "Exiting your Qrypt-Safe", href: "/exiting-qrypt-safe" },
                 },
             ]}
             techNote={{
@@ -60,14 +60,14 @@ export default function QTokenSystemPage() {
                     "    return super.transfer(to, amount);",
                     "}",
                     "",
-                    "// Only QRYPTANK can mint or burn",
+                    "// Only Qrypt-Safe can mint or burn",
                     "modifier onlyVault() { require(msg.sender == vault); _; }",
                 ],
             }}
             relatedLinks={[
                 { label: "Shield ERC-20 Tokens", href: "/shield-erc20-tokens", color: "#06b6d4" },
                 { label: "Transfer Shield", href: "/transfer-shield", color: "#7c3aed" },
-                { label: "Exiting QRYPTANK", href: "/exiting-qryptank", color: "#10b981" },
+                { label: "Exiting Qrypt-Safe", href: "/exiting-qrypt-safe", color: "#10b981" },
             ]}
         />
     );
