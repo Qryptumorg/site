@@ -36,13 +36,13 @@ export default function VaultProofHashingPage() {
                     img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format",
                     color: "#8B5CF6",
                     title: "Only Hash Stored On-Chain",
-                    body: "The PersonalQRYPTANK contract stores only the keccak256 digest of your vault proof. No plaintext, no hint, no salt stored alongside it.",
+                    body: "The PersonalQrypt-Safe contract stores only the keccak256 digest of your vault proof. No plaintext, no hint, no salt stored alongside it.",
                 },
                 {
                     img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format",
                     color: "#4F46E5",
                     title: "Brute-Force Cost Analysis",
-                    body: "At 0.5 gwei and $2,500/ETH, a full 256-bit brute force costs approximately $528,000. This is the economic floor for attacking any QRYPTANK vault proof.",
+                    body: "At 0.5 gwei and $2,500/ETH, a full 256-bit brute force costs approximately $528,000. This is the economic floor for attacking any Qrypt-Safe vault proof.",
                 },
                 {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
