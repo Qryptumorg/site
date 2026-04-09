@@ -22,7 +22,7 @@ export default function NoServerStoragePage() {
             ]}
             sectionBadge="ZERO-SERVER DESIGN"
             sectionHeading="How the Backend Is Involved (and What It Never Sees)"
-            sectionBody="The Qryptum API server handles QRYPTANK indexing, transaction history, and price feeds. It never receives a vault proof, private key, or any secret. Vault proof hashing happens entirely in the browser before any network call is made."
+            sectionBody="The Qryptum API server handles Qrypt-Safe indexing, transaction history, and price feeds. It never receives a vault proof, private key, or any secret. Vault proof hashing happens entirely in the browser before any network call is made."
             sectionColor="#0EA5E9"
             cards={[
                 {
@@ -49,7 +49,7 @@ export default function NoServerStoragePage() {
                     img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format",
                     color: "#4338CA",
                     title: "On-Chain Is the Source of Truth",
-                    body: "The only vault proof hash that matters is the one stored in your PersonalQRYPTANK contract on Ethereum. The backend has no authority over it.",
+                    body: "The only vault proof hash that matters is the one stored in your PersonalQrypt-Safe contract on Ethereum. The backend has no authority over it.",
                     link: { text: "Onchain verification", href: "/onchain-verification" },
                 },
             ]}
