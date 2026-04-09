@@ -59,9 +59,9 @@ export default function CommitTransferPage() {
                 lines: [
                     "// Step 1: submit commitment hash",
                     "bytes32 commitment = keccak256(abi.encode(vaultProof, recipient, amount, nonce));",
-                    "await personalQRYPTANK.commitTransfer(commitment);",
+                    "await personalQrypt-Safe.commitTransfer(commitment);",
                     "// Step 2: reveal within 10 minutes",
-                    "await personalQRYPTANK.revealTransfer(vaultProof, recipient, amount, nonce);",
+                    "await personalQrypt-Safe.revealTransfer(vaultProof, recipient, amount, nonce);",
                 ],
             }}
             relatedLinks={[
