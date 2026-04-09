@@ -49,7 +49,7 @@ export default function EnterVaultProofPage() {
                     img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format",
                     color: "#DB2777",
                     title: "Onchain Hash Only",
-                    body: "The Ethereum contract stores only the keccak256 hash set during QRYPTANK deployment. No plaintext is ever written to contract storage.",
+                    body: "The Ethereum contract stores only the keccak256 hash set during Qrypt-Safe deployment. No plaintext is ever written to contract storage.",
                     link: { text: "Onchain verification", href: "/onchain-verification" },
                 },
             ]}
@@ -60,7 +60,7 @@ export default function EnterVaultProofPage() {
                     "import { ethers } from 'ethers';",
                     "const hash = ethers.keccak256(ethers.toUtf8Bytes(vaultProof));",
                     "// Only 'hash' is passed to the contract: plaintext is discarded",
-                    "await qryptank.shield(token, amount, hash);",
+                    "await qrypt-safe.shield(token, amount, hash);",
                 ],
             }}
             relatedLinks={[
