@@ -7,7 +7,7 @@ export default function OneToOneBackingPage() {
             badge="QTOKEN SYSTEM"
             heroTitle="Every qToken"
             heroHighlight="Fully Backed Always"
-            heroSubtitle="No fractional reserve. Every qToken minted is backed 1:1 by the original ERC-20 asset locked inside your QRYPTANK. No exceptions, no partial collateral."
+            heroSubtitle="No fractional reserve. Every qToken minted is backed 1:1 by the original ERC-20 asset locked inside your Qrypt-Safe. No exceptions, no partial collateral."
             primaryColor="#7C3AED"
             secondaryColor="#4F46E5"
             heroButtons={[
@@ -36,13 +36,13 @@ export default function OneToOneBackingPage() {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
                     color: "#4F46E5",
                     title: "No Surplus Minting",
-                    body: "The contract tracks exact balances per token per QRYPTANK. It is not possible to mint qTokens above the deposited amount under any condition.",
+                    body: "The contract tracks exact balances per token per Qrypt-Safe. It is not possible to mint qTokens above the deposited amount under any condition.",
                 },
                 {
                     img: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&auto=format",
                     color: "#8B5CF6",
                     title: "Collateral Always On-Chain",
-                    body: "The original ERC-20 tokens are held inside your PersonalQRYPTANK contract on Ethereum L1. No off-chain custodian holds your collateral.",
+                    body: "The original ERC-20 tokens are held inside your PersonalQrypt-Safe contract on Ethereum L1. No off-chain custodian holds your collateral.",
                 },
                 {
                     img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format",
