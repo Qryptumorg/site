@@ -12,7 +12,7 @@ export default function ReceiveOriginalTokensPage() {
             secondaryColor="#10B981"
             heroButtons={[
                 { label: "Burn qTokens", href: "/burn-qtokens", primary: false },
-                { label: "Exiting QRYPTANK", href: "/exiting-qryptank", primary: false },
+                { label: "Exiting Qrypt-Safe", href: "/exiting-qrypt-safe", primary: false },
             ]}
             stats={[
                 { value: "Same tx", label: "As burn", note: "No separate claim needed" },
@@ -22,7 +22,7 @@ export default function ReceiveOriginalTokensPage() {
             ]}
             sectionBadge="TOKEN RETURN"
             sectionHeading="Direct to Your Wallet, No Intermediary"
-            sectionBody="unshield() transfers the original ERC-20 tokens from your QRYPTANK contract directly to msg.sender: your wallet address. No escrow, no delay, no third-party step."
+            sectionBody="unshield() transfers the original ERC-20 tokens from your Qrypt-Safe contract directly to msg.sender: your wallet address. No escrow, no delay, no third-party step."
             sectionColor="#22C55E"
             cards={[
                 {
@@ -36,7 +36,7 @@ export default function ReceiveOriginalTokensPage() {
                     img: "https://images.unsplash.com/photo-1503551723145-6c040742065b?w=800&auto=format",
                     color: "#10B981",
                     title: "No Custody Gap",
-                    body: "The QRYPTANK holds the tokens until unshield() is called. The moment unshield() runs, the tokens move directly to your wallet. No intermediate custodian.",
+                    body: "The Qrypt-Safe holds the tokens until unshield() is called. The moment unshield() runs, the tokens move directly to your wallet. No intermediate custodian.",
                 },
                 {
                     img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format",
@@ -49,12 +49,12 @@ export default function ReceiveOriginalTokensPage() {
                     img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format",
                     color: "#059669",
                     title: "Your Address Only",
-                    body: "Tokens can only be returned to the wallet address that owns the QRYPTANK (msg.sender). There is no mechanism to redirect the return to another address.",
+                    body: "Tokens can only be returned to the wallet address that owns the Qrypt-Safe (msg.sender). There is no mechanism to redirect the return to another address.",
                 },
             ]}
             relatedLinks={[
                 { label: "Burn qTokens", href: "/burn-qtokens", color: "#22C55E" },
-                { label: "Exiting QRYPTANK", href: "/exiting-qryptank", color: "#10B981" },
+                { label: "Exiting Qrypt-Safe", href: "/exiting-qrypt-safe", color: "#10B981" },
                 { label: "1:1 Backing", href: "/one-to-one-backing", color: "#16A34A" },
             ]}
         />
