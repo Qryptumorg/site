@@ -1,35 +1,21 @@
 import { useState, useRef, useEffect } from "react";
 import { useLocation } from "wouter";
 import FluidShape from "@/components/FluidShape";
-import { translations, type Language } from "@/lib/translations";
 import SharedNavBar from "@/components/SharedNavBar";
-
-const LANG_KEY = "qryptum_lang";
-function getSavedLang(): Language {
-    try {
-        const s = localStorage.getItem(LANG_KEY);
-        if (s === "en" || s === "ru" || s === "zh") return s;
-    } catch {}
-    return "en";
-}
+import HeroCardRow from "@/components/HeroCardRow";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function LandingPage() {
     const [, navigate] = useLocation();
     const isConnecting = false;
-    const [lang, setLang] = useState<Language>(getSavedLang);
-    const t = translations[lang];
 
-    const handleSetLang = (l: Language) => {
-        setLang(l);
-        try { localStorage.setItem(LANG_KEY, l); } catch {}
-    };
     const handleConnect = () => {
         navigate("/app");
     };
 
     return (
         <div className="min-h-screen text-white flex flex-col overflow-x-hidden" style={{ background: "#000000" }}>
-            <SharedNavBar lang={lang} setLang={handleSetLang} onConnect={handleConnect} isConnecting={isConnecting} />
+            <SharedNavBar onConnect={handleConnect} isConnecting={isConnecting} />
             <HeroSection onConnect={handleConnect} isConnecting={isConnecting} />
             <LogosStrip />
             <StatsSplit />
@@ -133,57 +119,45 @@ function HexRainCanvas() {
     );
 }
 
-const STEPS = [
-    {
-        num: "01",
-        title: "Shield",
-        desc: "Shield your ERC-20 tokens into the QRYPTANK. The contract anchors a cryptographic vault proof onchain. Without it, no transaction can ever leave.",
-        snippet: [
-            { dim: true,  text: "// lock USDC with vault proof" },
-            { dim: false, text: "vault.shield({" },
-            { dim: false, text: '  token:  "USDC",' },
-            { dim: false, text: "  amount: 1000," },
-            { dim: false, text: "  proof:  vaultProof(***)" },
-            { dim: false, text: "})" },
-            { dim: true,  text: "" },
-            { dim: true,  text: "vault_id: 0x7f3a2b...d91a" },
-        ],
-    },
-    {
-        num: "02",
-        title: "Authorize",
-        desc: "To send, you supply a cryptographic vault proof on every transfer. A stolen private key alone is not enough. No proof, no movement.",
-        snippet: [
-            { dim: true,  text: "// attacker has privkey, no proof" },
-            { dim: true,  text: "vault.transfer('0x7f3a...', to)" },
-            { dim: true,  text: "  revert: InvalidVaultProof" },
-            { dim: true,  text: "" },
-            { dim: true,  text: "// owner: key + vault proof" },
-            { dim: false, text: "vault.transfer({" },
-            { dim: false, text: "  vault_id: '0x7f3a...'," },
-            { dim: false, text: "  to:       '0xB4c2...'," },
-            { dim: false, text: "  proof:    vaultProof(***)" },
-            { dim: false, text: "})" },
-        ],
-    },
-    {
-        num: "03",
-        title: "Transfer",
-        desc: "The contract verifies the cryptographic vault proof onchain. Both the signer and the proof must match. Fail either, the transaction reverts instantly.",
-        snippet: [
-            { dim: true,  text: "// onchain verification" },
-            { dim: false, text: "require(" },
-            { dim: false, text: "  verifyVaultProof(proof)" },
-            { dim: false, text: "  == vault.anchor," },
-            { dim: false, text: "  'InvalidVaultProof'" },
-            { dim: false, text: ")" },
-            { dim: true,  text: "" },
-            { dim: true,  text: "tokens released to 0xB4c2... ✓" },
-        ],
-    },
+const STEP_NUMS = ["01", "02", "03"];
+const STEP_SNIPPETS = [
+    [
+        { dim: true,  text: "// lock USDC with vault proof" },
+        { dim: false, text: "vault.shield({" },
+        { dim: false, text: '  token:  "USDC",' },
+        { dim: false, text: "  amount: 1000," },
+        { dim: false, text: "  proof:  vaultProof(***)" },
+        { dim: false, text: "})" },
+        { dim: true,  text: "" },
+        { dim: true,  text: "vault_id: 0x7f3a2b...d91a" },
+    ],
+    [
+        { dim: true,  text: "// attacker has privkey, no proof" },
+        { dim: true,  text: "vault.transfer('0x7f3a...', to)" },
+        { dim: true,  text: "  revert: InvalidVaultProof" },
+        { dim: true,  text: "" },
+        { dim: true,  text: "// owner: key + vault proof" },
+        { dim: false, text: "vault.transfer({" },
+        { dim: false, text: "  vault_id: '0x7f3a...'," },
+        { dim: false, text: "  to:       '0xB4c2...'," },
+        { dim: false, text: "  proof:    vaultProof(***)" },
+        { dim: false, text: "})" },
+    ],
+    [
+        { dim: true,  text: "// onchain verification" },
+        { dim: false, text: "require(" },
+        { dim: false, text: "  verifyVaultProof(proof)" },
+        { dim: false, text: "  == vault.anchor," },
+        { dim: false, text: "  'InvalidVaultProof'" },
+        { dim: false, text: ")" },
+        { dim: true,  text: "" },
+        { dim: true,  text: "tokens released to 0xB4c2... ✓" },
+    ],
 ];
 
 function HowItWorks() {
+    const { t } = useLanguage();
+    const L = t.landing;
     const [isMobile, setIsMobile] = useState(() =>
         typeof window !== "undefined" ? window.innerWidth < 768 : false
     );
@@ -215,7 +189,7 @@ function HowItWorks() {
                         color: "rgba(255,255,255,0.28)",
                         textTransform: "uppercase",
                         marginBottom: 16,
-                    }}>How It Works</p>
+                    }}>{L.howItWorksLabel}</p>
                     <h2 style={{
                         fontFamily: "'Inter', sans-serif",
                         fontSize: isMobile ? 30 : 46,
@@ -224,7 +198,7 @@ function HowItWorks() {
                         color: "#fff",
                         letterSpacing: "-0.02em",
                     }}>
-                        Three steps, one QRYPTANK.
+                        {L.howItWorksHeading}
                     </h2>
                 </div>
 
@@ -255,7 +229,7 @@ function HowItWorks() {
                         </div>
                     )}
 
-                    {STEPS.map((step, i) => (
+                    {L.howItWorksSteps.map((step, i) => (
                         <div
                             key={i}
                             style={{
@@ -291,7 +265,7 @@ function HowItWorks() {
                                         fontWeight: 700,
                                         color: "rgba(255,255,255,0.4)",
                                         letterSpacing: "0.05em",
-                                    }}>{step.num}</span>
+                                    }}>{STEP_NUMS[i]}</span>
                                 </div>
                                 <span style={{
                                     fontFamily: "'Inter', sans-serif",
@@ -326,7 +300,7 @@ function HowItWorks() {
                                         <div key={j} style={{ width: 10, height: 10, borderRadius: "50%", background: c }} />
                                     ))}
                                 </div>
-                                {step.snippet.map((line, j) => (
+                                {STEP_SNIPPETS[i].map((line, j) => (
                                     <div key={j} style={{
                                         color: line.dim ? "rgba(255,255,255,0.28)" : "rgba(255,255,255,0.62)",
                                         whiteSpace: "pre",
@@ -356,6 +330,8 @@ function HowItWorks() {
 /* ─── FinalCTA ───────────────────────────────────────────────────────── */
 
 function FinalCTA({ onConnect, isConnecting }: { onConnect: () => void; isConnecting: boolean }) {
+    const { t } = useLanguage();
+    const L = t.landing;
     const [isMobile, setIsMobile] = useState(() =>
         typeof window !== "undefined" ? window.innerWidth < 768 : false
     );
@@ -439,7 +415,7 @@ function FinalCTA({ onConnect, isConnecting }: { onConnect: () => void; isConnec
                 color: "rgba(255,255,255,0.28)",
                 textTransform: "uppercase",
                 marginBottom: 20,
-            }}>Get Started</p>
+            }}>{L.ctaLabel}</p>
 
             <h2 style={{
                 fontFamily: "'Inter', sans-serif",
@@ -451,7 +427,7 @@ function FinalCTA({ onConnect, isConnecting }: { onConnect: () => void; isConnec
                 marginBottom: 20,
                 maxWidth: 700,
             }}>
-                Secure your tokens today.
+                {L.ctaTitle}
             </h2>
 
             <p style={{
@@ -462,7 +438,7 @@ function FinalCTA({ onConnect, isConnecting }: { onConnect: () => void; isConnec
                 maxWidth: 480,
                 marginBottom: 44,
             }}>
-                Qryptum is live on Ethereum mainnet. Non-custodial. Every transfer requires a cryptographic vault proof only you can generate.
+                {L.ctaBody}
             </p>
 
             <div style={{
@@ -495,7 +471,7 @@ function FinalCTA({ onConnect, isConnecting }: { onConnect: () => void; isConnec
                     onMouseEnter={e => (e.currentTarget.style.opacity = "0.88")}
                     onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
                 >
-                    {isConnecting ? "Connecting..." : "Launch App"}
+                    {isConnecting ? "Connecting..." : L.ctaBtn}
                     {!isConnecting && (
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                             <path d="M5 12h14M12 5l7 7-7 7" />
@@ -534,7 +510,7 @@ function FinalCTA({ onConnect, isConnecting }: { onConnect: () => void; isConnec
                         e.currentTarget.style.color = "rgba(255,255,255,0.7)";
                     }}
                 >
-                    View Contract on Etherscan
+                    {L.ctaEtherscanBtn}
                 </a>
             </div>
         </section>
@@ -544,6 +520,8 @@ function FinalCTA({ onConnect, isConnecting }: { onConnect: () => void; isConnec
 /* ─── Footer ─────────────────────────────────────────────────────────── */
 
 function Footer() {
+    const { t } = useLanguage();
+    const L = t.landing;
     const [isMobile, setIsMobile] = useState(() =>
         typeof window !== "undefined" ? window.innerWidth < 768 : false
     );
@@ -553,18 +531,28 @@ function Footer() {
         return () => window.removeEventListener("resize", check);
     }, []);
 
-    const cols = [
+    const cols: { heading: string; links: { label: string; href: string; external?: boolean }[] }[] = [
         {
-            heading: "Product",
-            links: ["Launch App", "View Contract", "Changelog"],
+            heading: L.footerColProduct,
+            links: [
+                { label: L.footerLinkLaunchApp, href: "/app" },
+                { label: L.footerLinkTestnet, href: "https://sepolia.etherscan.io/address/0x0c060e880A405B1231Ce1263c6a52a272cC1cE05", external: true },
+                { label: L.footerLinkMainnet, href: "https://etherscan.io", external: true },
+            ],
         },
         {
-            heading: "Developers",
-            links: ["Documentation", "GitHub", "SDK", "Bug Bounty"],
+            heading: L.footerColDevelopers,
+            links: [
+                { label: L.footerLinkDocumentation, href: "/docs/introduction/overview", external: true },
+                { label: L.footerLinkGitHub, href: "https://github.com/Qryptumorg", external: true },
+            ],
         },
         {
-            heading: "Community",
-            links: ["Discord", "Twitter / X", "Blog", "Brand Kit"],
+            heading: L.footerColCommunity,
+            links: [
+                { label: L.footerLinkTwitter, href: "https://x.com/qryptumorg", external: true },
+                { label: L.footerLinkTelegram, href: "https://t.me/qryptumorg", external: true },
+            ],
         },
     ];
 
@@ -609,7 +597,7 @@ function Footer() {
                         <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 800, color: "#fff", letterSpacing: "-0.01em", marginLeft: -4 }}>QRYPTUM</span>
                     </a>
                     <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.35)", maxWidth: 260 }}>
-                        The second layer of protection for your ERC-20 tokens. Built on Ethereum L1.
+                        {L.footerTagline}
                     </p>
                 </div>
 
@@ -633,13 +621,14 @@ function Footer() {
                             }}>{col.heading}</p>
                             {col.links.map((link) => (
                                 <a
-                                    key={link}
-                                    href="#"
+                                    key={link.label}
+                                    href={link.href}
+                                    {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                                     style={linkStyle}
                                     onMouseEnter={e => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
                                     onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.38)")}
                                 >
-                                    {link}
+                                    {link.label}
                                 </a>
                             ))}
                         </div>
@@ -658,22 +647,22 @@ function Footer() {
                 gap: 16,
             }}>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.22)" }}>
-                    2025 Qryptum. All rights reserved.
+                    {L.footerCopy}
                 </p>
                 <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
-                    {["Privacy", "Terms"].map(item => (
+                    {[{ label: L.footerPrivacy, href: "/privacy" }, { label: L.footerTerms, href: "/terms" }].map(item => (
                         <a
-                            key={item}
-                            href="#"
+                            key={item.label}
+                            href={item.href}
                             style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.22)", textDecoration: "none", transition: "color 0.15s" }}
                             onMouseEnter={e => (e.currentTarget.style.color = "rgba(255,255,255,0.6)")}
                             onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.22)")}
                         >
-                            {item}
+                            {item.label}
                         </a>
                     ))}
                     {/* X/Twitter */}
-                    <a href="#" style={{ color: "rgba(255,255,255,0.22)", transition: "color 0.15s", display: "flex" }}
+                    <a href="https://x.com/qryptumorg" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(255,255,255,0.22)", transition: "color 0.15s", display: "flex" }}
                         onMouseEnter={e => (e.currentTarget.style.color = "rgba(255,255,255,0.6)")}
                         onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.22)")}>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -681,7 +670,7 @@ function Footer() {
                         </svg>
                     </a>
                     {/* GitHub */}
-                    <a href="#" style={{ color: "rgba(255,255,255,0.22)", transition: "color 0.15s", display: "flex" }}
+                    <a href="https://github.com/Qryptumorg" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(255,255,255,0.22)", transition: "color 0.15s", display: "flex" }}
                         onMouseEnter={e => (e.currentTarget.style.color = "rgba(255,255,255,0.6)")}
                         onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.22)")}>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -697,6 +686,8 @@ function Footer() {
 /* ─── UseCases ───────────────────────────────────────────────────────── */
 
 function UseCases() {
+    const { t } = useLanguage();
+    const L = t.landing;
     const [isMobile, setIsMobile] = useState(() =>
         typeof window !== "undefined" ? window.innerWidth < 768 : false
     );
@@ -706,35 +697,15 @@ function UseCases() {
         return () => window.removeEventListener("resize", check);
     }, []);
 
-    const cards = [
-        {
-            img: "/usecase-shield.png",
-            bg: "rgba(20,24,60,0.9)",
-            border: "rgba(98,126,234,0.15)",
-            title: "SIM swap & phishing proof",
-            desc: "Even if attackers have your private key, your QRYPTANK needs a second proof they'll never have. No tool, no script, no exploit bypasses the vault proof layer.",
-            cta: "How shielding works",
-        },
-        {
-            img: "/usecase-inheritance.png",
-            bg: "rgba(35,18,55,0.9)",
-            border: "rgba(150,80,220,0.15)",
-            title: "Inheritance-safe transfers",
-            desc: "Set QRYPTANK access terms for your loved ones. Your funds are shielded until the right vault proof is revealed. No lawyer, no intermediary needed.",
-            cta: "Explore QRYPTANK access",
-        },
-        {
-            img: "/usecase-coldwallet.png",
-            bg: "rgba(12,32,24,0.9)",
-            border: "rgba(30,180,100,0.15)",
-            title: "Software cold wallet",
-            desc: "No hardware device required. Qryptum turns any browser into a cold-storage-grade QRYPTANK. Shield your tokens on-chain and access them anywhere.",
-            cta: "Try it yourself",
-        },
+    const cardMeta = [
+        { img: "/usecase-shield.png",      bg: "rgba(20,24,60,0.9)",  border: "rgba(98,126,234,0.15)"  },
+        { img: "/usecase-inheritance.png", bg: "rgba(35,18,55,0.9)",  border: "rgba(150,80,220,0.15)"  },
+        { img: "/usecase-coldwallet.png",  bg: "rgba(12,32,24,0.9)",  border: "rgba(30,180,100,0.15)"  },
     ];
+    const cards = L.useCasesCards.map((c, i) => ({ ...cardMeta[i], ...c }));
 
     return (
-        <section style={{
+        <section id="use-cases" style={{
             background: "#000",
             borderTop: "1px solid rgba(255,255,255,0.07)",
             padding: isMobile ? "72px 28px" : "100px 48px",
@@ -749,7 +720,7 @@ function UseCases() {
                     color: "rgba(255,255,255,0.28)",
                     textTransform: "uppercase",
                     marginBottom: 16,
-                }}>Use Cases</p>
+                }}>{L.useCasesLabel}</p>
                 <h2 style={{
                     fontFamily: "'Inter', sans-serif",
                     fontSize: isMobile ? 32 : 46,
@@ -758,14 +729,32 @@ function UseCases() {
                     color: "#fff",
                     letterSpacing: "-0.02em",
                     maxWidth: 520,
+                    whiteSpace: "pre-line",
                 }}>
-                    A new way to protect<br />your onchain wealth.
+                    {L.useCasesHeading}
                 </h2>
             </div>
 
             {/* Bento grid */}
             {isMobile ? (
                 <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                    {/* Quantum Design card - mobile first */}
+                    <a href="/quantum-design" style={{ textDecoration: "none", display: "block", position: "relative", borderRadius: 20, overflow: "hidden", minHeight: 220, border: "1px solid rgba(79,70,229,0.25)" }}>
+                        <img src="/images/quantum-design-hero.png" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.4 }} />
+                        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(79,70,229,0.55) 0%, rgba(0,0,0,0.75) 100%)" }} />
+                        <div style={{ position: "relative", padding: "32px 28px" }}>
+                            <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(79,70,229,0.18)", border: "1px solid rgba(79,70,229,0.35)", borderRadius: 14, padding: "3px 12px", marginBottom: 16 }}>
+                                <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#06b6d4" }} />
+                                <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 10, fontWeight: 700, color: "#06b6d4", letterSpacing: "0.1em", textTransform: "uppercase" }}>Post-Quantum</span>
+                            </div>
+                            <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 22, fontWeight: 800, color: "#fff", marginBottom: 10, letterSpacing: "-0.015em", lineHeight: 1.15 }}>{L.useCasesQuantumTitle}</h3>
+                            <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, lineHeight: 1.6, color: "rgba(255,255,255,0.55)", marginBottom: 20 }}>{L.useCasesQuantumDesc}</p>
+                            <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 600, color: "#06b6d4", display: "inline-flex", alignItems: "center", gap: 6 }}>
+                                {L.useCasesQuantumCta}
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                            </span>
+                        </div>
+                    </a>
                     {cards.map((card, i) => (
                         <div key={i} style={{
                             background: card.bg,
@@ -787,50 +776,88 @@ function UseCases() {
                 </div>
             ) : (
                 <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                    {/* Row 1: card[0] full width */}
-                    <div style={{
-                        background: cards[0].bg,
-                        border: `1px solid ${cards[0].border}`,
-                        borderRadius: 20,
-                        overflow: "hidden",
-                        display: "flex",
-                        flexDirection: "row",
-                        minHeight: 280,
+                    {/* Row 1: Quantum Design - full width featured card */}
+                    <a href="/quantum-design" style={{
+                        textDecoration: "none", display: "block", position: "relative",
+                        borderRadius: 20, overflow: "hidden", minHeight: 280,
+                        border: "1px solid rgba(79,70,229,0.22)",
                     }}>
-                        <div style={{ flex: 1, padding: "48px 48px" }}>
-                            <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 26, fontWeight: 800, color: "#fff", marginBottom: 14, letterSpacing: "-0.01em", lineHeight: 1.2 }}>{cards[0].title}</h3>
-                            <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 15, lineHeight: 1.7, color: "rgba(255,255,255,0.48)", maxWidth: 380, marginBottom: 28 }}>{cards[0].desc}</p>
-                            <a href="#" style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.6)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: 2 }}>
-                                {cards[0].cta}
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-                            </a>
-                        </div>
-                        <div style={{ width: 420, flexShrink: 0, overflow: "hidden" }}>
-                            <img src={cards[0].img} alt={cards[0].title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
-                        </div>
-                    </div>
-
-                    {/* Row 2: card[1] + card[2] side by side */}
-                    <div style={{ display: "flex", gap: 16 }}>
-                        {cards.slice(1).map((card, i) => (
-                            <div key={i} style={{
-                                flex: 1,
-                                background: card.bg,
-                                border: `1px solid ${card.border}`,
-                                borderRadius: 20,
-                                overflow: "hidden",
-                            }}>
-                                <img src={card.img} alt={card.title} style={{ width: "100%", height: 220, objectFit: "cover", objectPosition: "center top" }} />
-                                <div style={{ padding: "28px 32px 36px" }}>
-                                    <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 22, fontWeight: 800, color: "#fff", marginBottom: 12, letterSpacing: "-0.01em", lineHeight: 1.2 }}>{card.title}</h3>
-                                    <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.48)", marginBottom: 24 }}>{card.desc}</p>
-                                    <a href="#" style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.6)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: 2 }}>
-                                        {card.cta}
-                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-                                    </a>
+                        <img src="/images/quantum-design-hero.png" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.35 }} />
+                        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(79,70,229,0.5) 0%, rgba(124,58,237,0.25) 50%, rgba(0,0,0,0.7) 100%)" }} />
+                        <div style={{ position: "relative", padding: "52px 56px", display: "flex", alignItems: "center", gap: 60 }}>
+                            <div style={{ flex: 1 }}>
+                                <div style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "rgba(6,182,212,0.1)", border: "1px solid rgba(6,182,212,0.28)", borderRadius: 16, padding: "4px 14px", marginBottom: 20 }}>
+                                    <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#06b6d4", boxShadow: "0 0 8px #06b6d4" }} />
+                                    <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 10, fontWeight: 700, color: "#06b6d4", letterSpacing: "0.12em", textTransform: "uppercase" }}>Post-Quantum Security</span>
                                 </div>
+                                <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 32, fontWeight: 900, color: "#fff", marginBottom: 16, letterSpacing: "-0.025em", lineHeight: 1.1 }}>{L.useCasesQuantumTitle}</h3>
+                                <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 16, lineHeight: 1.7, color: "rgba(255,255,255,0.52)", maxWidth: 480, marginBottom: 28 }}>{L.useCasesQuantumDesc}</p>
+                                <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 14, fontWeight: 600, color: "#06b6d4", display: "inline-flex", alignItems: "center", gap: 7 }}>
+                                    {L.useCasesQuantumCta}
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                                </span>
                             </div>
-                        ))}
+                            <div style={{ display: "flex", flexDirection: "column", gap: 12, flexShrink: 0 }}>
+                                {["256-bit keccak256", "2\u00B9\u00B2\u2078 collision resistance", "0 elliptic curve deps"].map(stat => (
+                                    <div key={stat} style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "10px 18px", fontFamily: "monospace", fontSize: 13, color: "rgba(255,255,255,0.65)", letterSpacing: "-0.01em" }}>
+                                        {stat}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </a>
+
+                    {/* Row 2: LEFT = card[0] (SIM swap, tall), RIGHT = card[1] + card[2] stacked */}
+                    <div style={{ display: "flex", gap: 16, alignItems: "stretch" }}>
+                        {/* LEFT: SIM swap - text-heavy, full height */}
+                        <div style={{
+                            flex: "0 0 46%",
+                            background: cards[0].bg,
+                            border: `1px solid ${cards[0].border}`,
+                            borderRadius: 20,
+                            overflow: "hidden",
+                            display: "flex",
+                            flexDirection: "row",
+                        }}>
+                            <div style={{ flex: 1, padding: "42px 40px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                                <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 22, fontWeight: 800, color: "#fff", marginBottom: 14, letterSpacing: "-0.01em", lineHeight: 1.2 }}>{cards[0].title}</h3>
+                                <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.48)", marginBottom: 28, flex: 1 }}>{cards[0].desc}</p>
+                                <a href="#" style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.6)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: 2, alignSelf: "flex-start" }}>
+                                    {cards[0].cta}
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                                </a>
+                            </div>
+                            <div style={{ width: 180, flexShrink: 0, overflow: "hidden" }}>
+                                <img src={cards[0].img} alt={cards[0].title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+                            </div>
+                        </div>
+
+                        {/* RIGHT: card[1] + card[2] stacked */}
+                        <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 16 }}>
+                            {cards.slice(1).map((card, i) => (
+                                <div key={i} style={{
+                                    flex: 1,
+                                    background: card.bg,
+                                    border: `1px solid ${card.border}`,
+                                    borderRadius: 20,
+                                    overflow: "hidden",
+                                    display: "flex",
+                                    flexDirection: "row",
+                                }}>
+                                    <div style={{ flex: 1, padding: "28px 32px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                                        <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 19, fontWeight: 800, color: "#fff", marginBottom: 10, letterSpacing: "-0.01em", lineHeight: 1.2 }}>{card.title}</h3>
+                                        <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 13.5, lineHeight: 1.65, color: "rgba(255,255,255,0.46)", marginBottom: 18, flex: 1 }}>{card.desc}</p>
+                                        <a href="#" style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.6)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: 2, alignSelf: "flex-start" }}>
+                                            {card.cta}
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                                        </a>
+                                    </div>
+                                    <div style={{ width: 160, flexShrink: 0, overflow: "hidden" }}>
+                                        <img src={card.img} alt={card.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }} />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             )}
@@ -841,6 +868,8 @@ function UseCases() {
 /* ─── StatsSplit ─────────────────────────────────────────────────────── */
 
 function StatsSplit() {
+    const { t } = useLanguage();
+    const L = t.landing;
     const [isMobile, setIsMobile] = useState(() =>
         typeof window !== "undefined" ? window.innerWidth < 768 : false
     );
@@ -890,9 +919,7 @@ function StatsSplit() {
                         letterSpacing: "-0.02em",
                         marginBottom: isMobile ? 16 : 24,
                     }}>
-                        {isMobile
-                            ? "Deploy your own personal shield."
-                            : "Deploy your own personal shield directly on Ethereum L1 and take full control of every transfer."}
+                        {isMobile ? L.statsHeadingMobile : L.statsHeading}
                     </h2>
                     <p style={{
                         fontFamily: "'Inter', sans-serif",
@@ -901,7 +928,7 @@ function StatsSplit() {
                         color: "rgba(255,255,255,0.5)",
                         maxWidth: isMobile ? "100%" : 560,
                     }}>
-                        Even a compromised private key cannot move your tokens. Qryptum requires a cryptographic vault proof on every transaction, independent of your wallet key.
+                        {L.statsBody}
                     </p>
                 </div>
 
@@ -931,7 +958,7 @@ function StatsSplit() {
                             color: "rgba(255,255,255,0.28)",
                             textTransform: "uppercase",
                             marginBottom: 24,
-                        }}>How it works</p>
+                        }}>{L.statsCardTitle}</p>
 
                         {[
                             {
@@ -940,8 +967,8 @@ function StatsSplit() {
                                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                                     </svg>
                                 ),
-                                step: "Shield",
-                                desc: "Shield any ERC-20 token into your personal QRYPTANK on-chain",
+                                step: L.statsCardSteps[0].step,
+                                desc: L.statsCardSteps[0].desc,
                             },
                             {
                                 icon: (
@@ -949,8 +976,8 @@ function StatsSplit() {
                                         <rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
                                     </svg>
                                 ),
-                                step: "Commit",
-                                desc: "Submit a cryptographic hash of your vault proof",
+                                step: L.statsCardSteps[1].step,
+                                desc: L.statsCardSteps[1].desc,
                             },
                             {
                                 icon: (
@@ -958,8 +985,8 @@ function StatsSplit() {
                                         <path d="M5 12h14M12 5l7 7-7 7" />
                                     </svg>
                                 ),
-                                step: "Transfer",
-                                desc: "Reveal your vault proof on-chain to authorize the transaction",
+                                step: L.statsCardSteps[2].step,
+                                desc: L.statsCardSteps[2].desc,
                             },
                         ].map((item, i, arr) => (
                             <div key={i}>
@@ -1029,6 +1056,8 @@ const TOKENS = [
 ];
 
 function LogosStrip() {
+    const { t } = useLanguage();
+    const L = t.landing;
     const doubled = [...TOKENS, ...TOKENS];
     return (
         <section style={{
@@ -1047,7 +1076,7 @@ function LogosStrip() {
                 textTransform: "uppercase",
                 marginBottom: 36,
             }}>
-                Shield any ERC-20 token
+                {L.logosLabel}
             </p>
 
             <div style={{ overflow: "hidden", width: "100%", position: "relative" }}>
@@ -1117,6 +1146,8 @@ function LogosStrip() {
 const FULL_PRIVKEY = "0xac09b3b2c7d8e5f14a236d908bf041c53e7d2a1b9f4c82e05d6713a8b0ef7e3";
 
 function HeroSection({ onConnect, isConnecting }: { onConnect: () => void; isConnecting: boolean }) {
+    const { t } = useLanguage();
+    const L = t.landing;
     const [isMobile, setIsMobile] = useState(() =>
         typeof window !== "undefined" ? window.innerWidth < 768 : false
     );
@@ -1131,10 +1162,11 @@ function HeroSection({ onConnect, isConnecting }: { onConnect: () => void; isCon
             style={{
                 minHeight: "100vh",
                 display: "flex",
-                alignItems: "center",
+                alignItems: "flex-end",
                 position: "relative",
-                overflow: "hidden",
+                overflowX: "hidden",
                 paddingTop: 64,
+                paddingBottom: isMobile ? 48 : 0,
             }}
         >
             {/* Fluid shape: right side, no hard mask seam */}
@@ -1178,7 +1210,7 @@ function HeroSection({ onConnect, isConnecting }: { onConnect: () => void; isCon
                     <div style={{ display: "contents" }}>
 
                     {/* Headline */}
-                    <h1
+                    <h1 
                         style={{
                             fontFamily: "'Inter', sans-serif",
                             fontWeight: 800,
@@ -1190,9 +1222,9 @@ function HeroSection({ onConnect, isConnecting }: { onConnect: () => void; isCon
                         }}
                     >
                         {isMobile ? (
-                            <>The second layer<br />beyond your<br />private key.</>
+                            <span dangerouslySetInnerHTML={{ __html: L.heroHeadlineMobile.replace(/\n/g, "<br />") }} />
                         ) : (
-                            <>The second layer<br />beyond your private key.</>
+                            <span dangerouslySetInnerHTML={{ __html: L.heroHeadline.replace(/\n/g, "<br />") }} />
                         )}
                     </h1>
 
@@ -1207,7 +1239,7 @@ function HeroSection({ onConnect, isConnecting }: { onConnect: () => void; isCon
                             maxWidth: 700,
                         }}
                     >
-                        Your onchain wealth deserves more than a private key. Qryptum gives your ERC-20 tokens a second layer of protection built for the post-quantum era. Deploy your own personal shield directly on Ethereum L1 and take full control of every transfer.
+                        {L.heroBody}
                     </p>
 
                     {/* CTA */}
@@ -1246,154 +1278,19 @@ function HeroSection({ onConnect, isConnecting }: { onConnect: () => void; isCon
                                 <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
                                 <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
                             </svg>
-                            View Contract on Etherscan
+                            {L.heroEtherscanBtn}
                         </a>
                     </div>
 
                     </div>{/* end display:contents */}
 
-                    {/* Challenge card: ethereum.org style */}
-                    <div style={{ width: "100%", maxWidth: 480, position: "relative", paddingTop: isMobile ? 50 : 0 }}>
+                </div>{/* end maxWidth:860 */}
 
-                        {/* Illustration: floating-center on mobile, top-right corner on desktop */}
-                        <div style={{
-                            position: "absolute",
-                            top: isMobile ? 0 : 14,
-                            left: isMobile ? "50%" : undefined,
-                            right: isMobile ? undefined : 16,
-                            transform: isMobile ? "translateX(-50%)" : undefined,
-                            zIndex: 2,
-                            width: isMobile ? 90 : 80, height: isMobile ? 90 : 80,
-                            filter: "drop-shadow(0 8px 40px rgba(98,126,234,0.55))",
-                        }}>
-                            <img
-                                src="/hacker-challenge-small.png"
-                                alt="Hacker challenge"
-                                style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%" }}
-                            />
-                        </div>
-
-                        {/* Card body */}
-                        <div style={{
-                            background: "linear-gradient(160deg, rgba(30,22,60,0.96) 0%, rgba(8,10,28,0.98) 100%)",
-                            borderRadius: 20,
-                            padding: isMobile ? "60px 22px 22px" : "22px 110px 22px 28px",
-                            backdropFilter: "blur(10px)",
-                            WebkitBackdropFilter: "blur(10px)",
-                            border: "1px solid rgba(98,126,234,0.18)",
-                            position: "relative",
-                            zIndex: 1,
-                        }}>
-                            {/* Live badge */}
-                            <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 10 }}>
-                                <div style={{ position: "relative", width: 7, height: 7, flexShrink: 0 }}>
-                                    <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#F59E0B", position: "absolute" }} />
-                                    <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#F59E0B", position: "absolute", animation: "ping 1.5s cubic-bezier(0,0,0.2,1) infinite", opacity: 0.5 }} />
-                                </div>
-                                <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: "#F59E0B", textTransform: "uppercase" }}>
-                                    Live Challenge
-                                </span>
-                            </div>
-
-                            {/* Headline */}
-                            <h3 style={{
-                                margin: "0 0 8px",
-                                fontFamily: "'Inter', sans-serif",
-                                fontWeight: 800,
-                                fontSize: isMobile ? 24 : 24,
-                                color: "#fff",
-                                letterSpacing: "-0.03em",
-                                lineHeight: 1.1,
-                            }}>
-                                Crack the QRYPTANK.
-                            </h3>
-
-                            {/* Body */}
-                            <p style={{
-                                margin: "0 0 16px",
-                                fontFamily: "'Inter', sans-serif",
-                                fontSize: 14,
-                                color: "rgba(255,255,255,0.55)",
-                                lineHeight: 1.55,
-                            }}>
-                                We published the private key. qETH is shielded inside the QRYPTANK. Every tool is in your hands. Transfer out if you can.
-                            </p>
-                            {/* Bottom: privkey + button in one row */}
-                            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
-                                {/* Copyable privkey */}
-                                <div
-                                    onClick={() => {
-                                        navigator.clipboard.writeText(FULL_PRIVKEY).then(() => {
-                                            setPrivkeyCopied(true);
-                                            setTimeout(() => setPrivkeyCopied(false), 2000);
-                                        });
-                                    }}
-                                    style={{
-                                        display: "flex", alignItems: "center", gap: 8,
-                                        cursor: "pointer", flex: 1,
-                                        background: "rgba(255,255,255,0.05)",
-                                        border: "1px solid rgba(255,255,255,0.08)",
-                                        borderRadius: 8,
-                                        padding: "7px 12px",
-                                        transition: "background 0.15s, border-color 0.15s",
-                                        boxSizing: "border-box",
-                                        minWidth: 0,
-                                    }}
-                                    onMouseEnter={(e) => {
-                                        (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.09)";
-                                        (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.15)";
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.05)";
-                                        (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.08)";
-                                    }}
-                                >
-                                    <code style={{
-                                        fontFamily: "'Courier New', monospace", fontSize: 11,
-                                        color: "rgba(255,255,255,0.38)", letterSpacing: "0.04em",
-                                        overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
-                                        flex: 1, minWidth: 0,
-                                    }}>
-                                        0xac09b3b2...8b0ef7e3
-                                    </code>
-                                    <span style={{ flexShrink: 0 }}>
-                                        {privkeyCopied ? (
-                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="2.5">
-                                                <path d="M20 6L9 17l-5-5" />
-                                            </svg>
-                                        ) : (
-                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="2">
-                                                <rect x="9" y="9" width="13" height="13" rx="2" />
-                                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
-                                            </svg>
-                                        )}
-                                    </span>
-                                    {privkeyCopied && (
-                                        <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 11, color: "#22C55E", fontWeight: 600, flexShrink: 0 }}>Copied!</span>
-                                    )}
-                                </div>
-
-                                {/* CTA button */}
-                                <a href="#"
-                                    style={{
-                                        display: "inline-flex", alignItems: "center",
-                                        flexShrink: 0,
-                                        background: "#627EEA", color: "#fff",
-                                        fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: 14,
-                                        padding: "12px 22px", borderRadius: 10,
-                                        textDecoration: "none",
-                                        transition: "background 0.15s",
-                                    }}
-                                    onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#4f6bd4"; }}
-                                    onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#627EEA"; }}
-                                >
-                                    Try to drain it
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
+                {/* Cards row: full-width, outside the 860px text constraint */}
+                <div style={{ width: "100%", marginTop: isMobile ? 16 : 40 }}>
+                    <HeroCardRow isMobile={isMobile} />
                 </div>
+
             </div>
         </section>
     );
