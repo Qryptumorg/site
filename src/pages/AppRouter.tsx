@@ -1,7 +1,8 @@
 import { Switch, Route } from "wouter";
+import { LanguageProvider } from "@/lib/LanguageContext";
 import LandingPage from "./LandingPage";
 import DashboardPage from "./DashboardPage";
-import CreateQryptankPage from "./CreateQryptankPage";
+import CreateQryptSafePage from "./CreateQryptSafePage";
 import NotFound from "./not-found";
 
 // ─── Existing feature pages (kept at their slugs) ─────────────────────
@@ -11,7 +12,7 @@ import QTokenSystemPage from "./features/QTokenSystemPage";
 import TransferEnginePage from "./features/TransferEnginePage";
 import GettingShieldedPage from "./features/GettingShieldedPage";
 import MakingTransfersPage from "./features/MakingTransfersPage";
-import ExitingQryptankPage from "./features/ExitingQryptankPage";
+import ExitingQryptSafePage from "./features/ExitingQryptSafePage";
 import VaultProofSecurityPage from "./features/VaultProofSecurityPage";
 import MevProtectionPage from "./features/MevProtectionPage";
 
@@ -23,7 +24,7 @@ import RevealPhasePage from "./features/RevealPhasePage";
 
 // ─── How It Works: new pages ──────────────────────────────────────────
 import ConnectWalletPage from "./features/ConnectWalletPage";
-import CreateQryptankGuidePage from "./features/CreateQryptankGuidePage";
+import CreateQryptSafeGuidePage from "./features/CreateQryptSafeGuidePage";
 import ShieldTokensPage from "./features/ShieldTokensPage";
 import EnterVaultProofPage from "./features/EnterVaultProofPage";
 import CommitTransferPage from "./features/CommitTransferPage";
@@ -31,6 +32,9 @@ import RevealAndExecutePage from "./features/RevealAndExecutePage";
 import BurnQtokensPage from "./features/BurnQtokensPage";
 import ReceiveOriginalTokensPage from "./features/ReceiveOriginalTokensPage";
 import EmergencyRecoveryPage from "./features/EmergencyRecoveryPage";
+
+// ─── Quantum Design ───────────────────────────────────────────────────
+import QuantumDesignPage from "./QuantumDesignPage";
 
 // ─── Security: new pages ──────────────────────────────────────────────
 import VaultProofHashingPage from "./features/VaultProofHashingPage";
@@ -48,21 +52,28 @@ import QuickStartGuidePage from "./features/QuickStartGuidePage";
 import SupportedTokensPage from "./features/SupportedTokensPage";
 import NetworkSupportPage from "./features/NetworkSupportPage";
 import ShieldFactoryPage from "./features/ShieldFactoryPage";
-import PersonalQryptankContractPage from "./features/PersonalQryptankContractPage";
+import PersonalQryptSafeContractPage from "./features/PersonalQryptSafeContractPage";
 import ShieldTokenContractPage from "./features/ShieldTokenContractPage";
 import RestApiReferencePage from "./features/RestApiReferencePage";
 import AbiAndAddressesPage from "./features/AbiAndAddressesPage";
 import FaqPage from "./features/FaqPage";
+import SepoliaVerifiedPage from "./SepoliaVerifiedPage";
+import PrivacyPage from "./PrivacyPage";
+import TermsPage from "./TermsPage";
 
 export default function AppRouter() {
     return (
+        <LanguageProvider>
         <Switch>
             {/* Core */}
             <Route path="/" component={LandingPage} />
             <Route path="/app" component={DashboardPage} />
+            <Route path="/sepolia-verified" component={SepoliaVerifiedPage} />
+            <Route path="/privacy" component={PrivacyPage} />
+            <Route path="/terms" component={TermsPage} />
 
             {/* Features: Shield Protocol */}
-            <Route path="/create-personal-qryptank" component={CreateQryptankPage} />
+            <Route path="/create-personal-qrypt-safe" component={CreateQryptSafePage} />
             <Route path="/shield-erc20-tokens" component={ShieldErc20Page} />
             <Route path="/transfer-shield" component={TransferShieldPage} />
 
@@ -80,7 +91,7 @@ export default function AppRouter() {
             {/* How It Works: Getting Shielded */}
             <Route path="/getting-shielded" component={GettingShieldedPage} />
             <Route path="/connect-wallet" component={ConnectWalletPage} />
-            <Route path="/create-qryptank" component={CreateQryptankGuidePage} />
+            <Route path="/create-qrypt-safe" component={CreateQryptSafeGuidePage} />
             <Route path="/shield-tokens" component={ShieldTokensPage} />
 
             {/* How It Works: Making Transfers */}
@@ -90,10 +101,13 @@ export default function AppRouter() {
             <Route path="/reveal-and-execute" component={RevealAndExecutePage} />
 
             {/* How It Works: Exiting */}
-            <Route path="/exiting-qryptank" component={ExitingQryptankPage} />
+            <Route path="/exiting-qrypt-safe" component={ExitingQryptSafePage} />
             <Route path="/burn-qtokens" component={BurnQtokensPage} />
             <Route path="/receive-original-tokens" component={ReceiveOriginalTokensPage} />
             <Route path="/emergency-recovery" component={EmergencyRecoveryPage} />
+
+            {/* Quantum Design */}
+            <Route path="/quantum-design" component={QuantumDesignPage} />
 
             {/* Security: Cryptographic Design */}
             <Route path="/vault-proof-security" component={VaultProofSecurityPage} />
@@ -118,7 +132,7 @@ export default function AppRouter() {
 
             {/* Docs: Smart Contracts */}
             <Route path="/shield-factory" component={ShieldFactoryPage} />
-            <Route path="/personal-qryptank" component={PersonalQryptankContractPage} />
+            <Route path="/personal-qrypt-safe" component={PersonalQryptSafeContractPage} />
             <Route path="/shield-token" component={ShieldTokenContractPage} />
 
             {/* Docs: Integration Guide */}
@@ -128,5 +142,6 @@ export default function AppRouter() {
 
             <Route component={NotFound} />
         </Switch>
+        </LanguageProvider>
     );
 }
