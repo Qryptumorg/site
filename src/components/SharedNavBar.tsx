@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import type { Language } from "@/lib/translations";
+import { useLanguage } from "@/lib/LanguageContext";
 
 /* ─── Nav data ───────────────────────────────────────────────────────── */
 
@@ -9,10 +10,10 @@ export const NAV_MENUS = [
         categories: [
             {
                 title: "Shield Protocol",
-                desc: "Personal QRYPTANK infrastructure on Ethereum L1",
+                desc: "Personal Qrypt-Safe infrastructure on Ethereum L1",
                 items: [
-                    { title: "Create Personal QRYPTANK", desc: "One QRYPTANK per wallet, deployed directly on-chain in one click", href: "/create-personal-qryptank" },
-                    { title: "Shield ERC-20 Tokens", desc: "Any ERC-20 token can be shielded inside your QRYPTANK instantly", href: "/shield-erc20-tokens" },
+                    { title: "Create Personal Qrypt-Safe", desc: "One Qrypt-Safe per wallet, deployed directly on-chain in one click", href: "/create-personal-qrypt-safe" },
+                    { title: "Shield ERC-20 Tokens", desc: "Any ERC-20 token can be shielded inside your Qrypt-Safe instantly", href: "/shield-erc20-tokens" },
                     { title: "Transfer Shield", desc: "Contract blocks all unauthorized token moves at bytecode level", href: "/transfer-shield" },
                 ],
             },
@@ -22,7 +23,7 @@ export const NAV_MENUS = [
                 items: [
                     { title: "qETH and qUSDT", desc: "Shielded tokens appear in MetaMask with the q prefix", href: "/qtoken-system" },
                     { title: "1:1 Backing", desc: "Every qToken is fully backed by the original shielded asset", href: "/one-to-one-backing" },
-                    { title: "Burn on Unshield", desc: "qTokens are burned automatically when you exit your QRYPTANK", href: "/burn-on-unshield" },
+                    { title: "Burn on Unshield", desc: "qTokens are burned automatically when you exit your Qrypt-Safe", href: "/burn-on-unshield" },
                 ],
             },
             {
@@ -44,7 +45,7 @@ export const NAV_MENUS = [
                 desc: "From wallet connect to first shielded token",
                 items: [
                     { title: "Connect Wallet", desc: "Use MetaMask or WalletConnect to connect your Ethereum wallet", href: "/connect-wallet" },
-                    { title: "Create QRYPTANK", desc: "Deploy your personal QRYPTANK contract on Ethereum L1", href: "/create-qryptank" },
+                    { title: "Create Qrypt-Safe", desc: "Deploy your personal Qrypt-Safe contract on Ethereum L1", href: "/create-qrypt-safe" },
                     { title: "Shield Tokens", desc: "Deposit ERC-20 tokens and receive qTokens in return", href: "/shield-tokens" },
                 ],
             },
@@ -58,10 +59,10 @@ export const NAV_MENUS = [
                 ],
             },
             {
-                title: "Exiting the QRYPTANK",
+                title: "Exiting the Qrypt-Safe",
                 desc: "How to unshield tokens back to your wallet",
                 items: [
-                    { title: "Burn qTokens", desc: "Initiate an unshield to burn your qTokens from your QRYPTANK", href: "/burn-qtokens" },
+                    { title: "Burn qTokens", desc: "Initiate an unshield to burn your qTokens from your Qrypt-Safe", href: "/burn-qtokens" },
                     { title: "Receive Original Tokens", desc: "Original ERC-20 tokens are returned to your wallet address", href: "/receive-original-tokens" },
                     { title: "Emergency Recovery", desc: "Recover funds after 180 days of verified inactivity", href: "/emergency-recovery" },
                 ],
@@ -75,6 +76,7 @@ export const NAV_MENUS = [
                 title: "Cryptographic Design",
                 desc: "How vault proofs and hashes keep you safe",
                 items: [
+                    { title: "Quantum-Resistant Design", desc: "keccak256 vault proofs stay secure even against quantum computing attacks", href: "/quantum-design" },
                     { title: "Vault Proof Hashing", desc: "keccak256 hash stored on-chain, plaintext never leaves your browser", href: "/vault-proof-hashing" },
                     { title: "No Server Storage", desc: "Qryptum never stores vault proofs or private keys on any server", href: "/no-server-storage" },
                     { title: "Onchain Verification", desc: "Every transfer is verified by the smart contract, not the UI", href: "/onchain-verification" },
@@ -93,8 +95,8 @@ export const NAV_MENUS = [
                 title: "Emergency Recovery",
                 desc: "How to recover funds in edge cases",
                 items: [
-                    { title: "180-Day Inactivity Rule", desc: "Emergency withdrawal unlocks after prolonged QRYPTANK inactivity", href: "/180-day-inactivity" },
-                    { title: "No Admin Keys", desc: "No multisig or admin can touch your QRYPTANK funds at any time", href: "/no-admin-keys" },
+                    { title: "180-Day Inactivity Rule", desc: "Emergency withdrawal unlocks after prolonged Qrypt-Safe inactivity", href: "/180-day-inactivity" },
+                    { title: "No Admin Keys", desc: "No multisig or admin can touch your Qrypt-Safe funds at any time", href: "/no-admin-keys" },
                     { title: "Immutable Contracts", desc: "No upgrade proxy, no admin role: bytecode is final on deployment", href: "/immutable-contracts" },
                 ],
             },
@@ -107,8 +109,8 @@ export const NAV_MENUS = [
                 title: "Getting Started",
                 desc: "First steps with Qryptum",
                 items: [
-                    { title: "Quick Start Guide", desc: "Create your QRYPTANK and shield your first token in under 5 minutes", href: "/quick-start-guide" },
-                    { title: "Supported Tokens", desc: "Full list of ERC-20 tokens compatible with Qryptum QRYPTANKs", href: "/supported-tokens" },
+                    { title: "Quick Start Guide", desc: "Create your Qrypt-Safe and shield your first token in under 5 minutes", href: "/quick-start-guide" },
+                    { title: "Supported Tokens", desc: "Full list of ERC-20 tokens compatible with Qryptum Qrypt-Safes", href: "/supported-tokens" },
                     { title: "Network Support", desc: "Ethereum L1, Sepolia testnet, and local Hardhat for developers", href: "/network-support" },
                 ],
             },
@@ -117,15 +119,15 @@ export const NAV_MENUS = [
                 desc: "Technical contract documentation",
                 items: [
                     { title: "ShieldFactory", desc: "Factory contract that deploys PersonalVault clones via EIP-1167", href: "/shield-factory" },
-                    { title: "PersonalQRYPTANK", desc: "Per-user QRYPTANK with shield, transfer, and unshield functions", href: "/personal-qryptank" },
-                    { title: "ShieldToken (qToken)", desc: "ERC-20 token with transfers disabled except through the QRYPTANK", href: "/shield-token" },
+                    { title: "PersonalQrypt-Safe", desc: "Per-user Qrypt-Safe with shield, transfer, and unshield functions", href: "/personal-qrypt-safe" },
+                    { title: "ShieldToken (qToken)", desc: "ERC-20 token with transfers disabled except through the Qrypt-Safe", href: "/shield-token" },
                 ],
             },
             {
                 title: "Integration Guide",
                 desc: "APIs and references for developers",
                 items: [
-                    { title: "REST API Reference", desc: "Backend endpoints for QRYPTANK creation and transaction indexing", href: "/rest-api-reference" },
+                    { title: "REST API Reference", desc: "Backend endpoints for Qrypt-Safe creation and transaction indexing", href: "/rest-api-reference" },
                     { title: "ABI and Addresses", desc: "Contract ABIs and deployed addresses for all networks", href: "/abi-and-addresses" },
                     { title: "FAQ", desc: "Common questions about qTokens, vault proofs, and onchain transfers", href: "/faq" },
                 ],
@@ -140,19 +142,23 @@ const LANGS: { code: Language; label: string }[] = [
     { code: "zh", label: "ZH" },
 ];
 
+/* ─── Nav label translations ─────────────────────────────────────────── */
+
+const NAV_LABEL_MAP: Record<Language, Record<string, string>> = {
+    en: { Features: "Features", "How It Works": "How It Works", Security: "Security", Docs: "Docs" },
+    ru: { Features: "Функции", "How It Works": "Как это работает", Security: "Безопасность", Docs: "Документация" },
+    zh: { Features: "功能特性", "How It Works": "工作原理", Security: "安全机制", Docs: "文档" },
+};
+
 /* ─── SharedNavBar ───────────────────────────────────────────────────── */
 
 interface SharedNavBarProps {
     onConnect?: () => void;
     isConnecting?: boolean;
-    lang?: Language;
-    setLang?: (l: Language) => void;
 }
 
-export default function SharedNavBar({ onConnect, isConnecting = false, lang: externalLang, setLang: externalSetLang }: SharedNavBarProps) {
-    const [internalLang, setInternalLang] = useState<Language>("en");
-    const lang = externalLang ?? internalLang;
-    const setLang = externalSetLang ?? setInternalLang;
+export default function SharedNavBar({ onConnect, isConnecting = false }: SharedNavBarProps) {
+    const { lang, setLang, t } = useLanguage();
 
     const [activeMenu, setActiveMenu] = useState<number | null>(null);
     const [activeCategory, setActiveCategory] = useState<number>(0);
@@ -260,7 +266,7 @@ export default function SharedNavBar({ onConnect, isConnecting = false, lang: ex
                                             transition: "color 0.15s, background 0.15s",
                                         }}
                                     >
-                                        {menu.label}
+                                        {NAV_LABEL_MAP[lang][menu.label] ?? menu.label}
                                         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
                                             style={{ transform: activeMenu === i ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s" }}>
                                             <path d="M6 9l6 6 6-6" />
@@ -319,7 +325,7 @@ export default function SharedNavBar({ onConnect, isConnecting = false, lang: ex
                                         onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#ddd"; }}
                                         onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#fff"; }}
                                     >
-                                        {isConnecting ? "Connecting..." : "Launch App"}
+                                        {isConnecting ? "Connecting..." : t.nav.launchApp}
                                         {!isConnecting && (
                                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                                                 <path d="M5 12h14M12 5l7 7-7 7" />
@@ -337,7 +343,7 @@ export default function SharedNavBar({ onConnect, isConnecting = false, lang: ex
                                         onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#ddd"; }}
                                         onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#fff"; }}
                                     >
-                                        Launch App
+                                        {t.nav.launchApp}
                                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                                             <path d="M5 12h14M12 5l7 7-7 7" />
                                         </svg>
@@ -387,7 +393,7 @@ export default function SharedNavBar({ onConnect, isConnecting = false, lang: ex
                                         borderBottom: "1px solid rgba(255,255,255,0.06)",
                                     }}
                                 >
-                                    <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: 17, color: "#fff" }}>{menu.label}</span>
+                                    <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: 17, color: "#fff" }}>{NAV_LABEL_MAP[lang][menu.label] ?? menu.label}</span>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                                         stroke="rgba(255,255,255,0.45)" strokeWidth="2"
                                         style={{ transform: mobileExpanded === i ? "rotate(180deg)" : "none", transition: "transform 0.2s", flexShrink: 0 }}>
@@ -448,14 +454,14 @@ export default function SharedNavBar({ onConnect, isConnecting = false, lang: ex
                                         cursor: isConnecting ? "not-allowed" : "pointer",
                                         opacity: isConnecting ? 0.6 : 1,
                                     }}
-                                >{isConnecting ? "Connecting..." : "Launch App"}</button>
+                                >{isConnecting ? "Connecting..." : t.nav.launchApp}</button>
                             ) : (
                                 <a href="/app" style={{
                                     display: "block", width: "100%", padding: "15px", textAlign: "center",
                                     background: "#fff", color: "#000", textDecoration: "none",
                                     borderRadius: 14, fontFamily: "'Inter',sans-serif",
                                     fontWeight: 700, fontSize: 15, boxSizing: "border-box",
-                                }}>Launch App</a>
+                                }}>{t.nav.launchApp}</a>
                             )}
                         </div>
                     </div>
