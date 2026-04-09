@@ -7,7 +7,7 @@ export default function NoAdminKeysPage() {
             badge="EMERGENCY RECOVERY"
             heroTitle="No Multisig,"
             heroHighlight="No Admin Override"
-            heroSubtitle="No key holder, multisig, DAO, or protocol team can access your QRYPTANK. This is enforced at the bytecode level: there is no admin function in the contract to call."
+            heroSubtitle="No key holder, multisig, DAO, or protocol team can access your Qrypt-Safe. This is enforced at the bytecode level: there is no admin function in the contract to call."
             primaryColor="#22C55E"
             secondaryColor="#10B981"
             heroButtons={[
@@ -22,7 +22,7 @@ export default function NoAdminKeysPage() {
             ]}
             sectionBadge="NON-CUSTODIAL DESIGN"
             sectionHeading="How the Contract Enforces Non-Custody"
-            sectionBody="The PersonalQRYPTANK contract contains no onlyOwner admin function with privileged access to user funds. The only address that can trigger shield, transfer, or unshield is the wallet that deployed the vault."
+            sectionBody="The PersonalQrypt-Safe contract contains no onlyOwner admin function with privileged access to user funds. The only address that can trigger shield, transfer, or unshield is the wallet that deployed the vault."
             sectionColor="#22C55E"
             cards={[
                 {
@@ -43,7 +43,7 @@ export default function NoAdminKeysPage() {
                     img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format",
                     color: "#16A34A",
                     title: "Wallet Owner is the Only Authority",
-                    body: "Every function on PersonalQRYPTANK that moves tokens requires msg.sender to be the owner wallet and the vault proof to be valid. No override path exists.",
+                    body: "Every function on PersonalQrypt-Safe that moves tokens requires msg.sender to be the owner wallet and the vault proof to be valid. No override path exists.",
                 },
                 {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
