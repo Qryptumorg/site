@@ -1366,7 +1366,7 @@ export const translations = {
                       { title: "factory getVault returns non-zero address for vault owner", desc: "factory.getVault(owner.address) returns the vault clone address. Non-zero confirms vault was created and mapped correctly." },
                       { title: "unshields partial balance correctly", desc: "Shield 100 USDC, unshield 40 USDC. getShieldedBalance returns 60 USDC. SafeERC20 and balance check both pass for partial amounts." },
                   ],
-              },,
+              },
             v1: {
                 heroBadge: "v1 Historical",
                 heroTitle: "QryptSafe V1 Record",
@@ -2775,7 +2775,7 @@ export const translations = {
                       { title: "factory getVault возвращает ненулевой адрес для владельца хранилища", desc: "factory.getVault(owner.address) возвращает адрес клона хранилища. Ненулевой подтверждает, что хранилище создано и сопоставлено корректно." },
                       { title: "Корректно снимает частичный баланс защиты", desc: "Shield 100 USDC, unshield 40 USDC. getShieldedBalance возвращает 60 USDC. SafeERC20 и проверка баланса оба проходят для частичных сумм." },
                   ],
-              },,
+              },
             v1: {
                 heroBadge: "v1 Исторический",
                 heroTitle: "Запись QryptSafe V1",
@@ -4184,7 +4184,7 @@ export const translations = {
                       { title: "factory getVault 为保险库所有者返回非零地址", desc: "factory.getVault(owner.address) 返回保险库克隆地址。非零确认保险库已创建并正确映射。" },
                       { title: "正确解除部分余额保护", desc: "保护 100 USDC，解除保护 40 USDC。getShieldedBalance 返回 60 USDC。SafeERC20 和余额检查均通过部分金额。" },
                   ],
-              },,
+              },
             v1: {
                 heroBadge: "v1 历史版本",
                 heroTitle: "QryptSafe V1 记录",
