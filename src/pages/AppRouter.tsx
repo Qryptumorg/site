@@ -1,78 +1,116 @@
+import { Suspense, lazy, useState, useEffect } from "react";
 import { Switch, Route } from "wouter";
 import { LanguageProvider } from "@/lib/LanguageContext";
+import PageLoader from "@/components/PageLoader";
 import LandingPage from "./LandingPage";
-import DashboardPage from "./DashboardPage";
-import CreateQryptSafePage from "./CreateQryptSafePage";
-import NotFound from "./not-found";
 
-// ─── Existing feature pages (kept at their slugs) ─────────────────────
-import ShieldErc20Page from "./features/ShieldErc20Page";
-import TransferShieldPage from "./features/TransferShieldPage";
-import QTokenSystemPage from "./features/QTokenSystemPage";
-import TransferEnginePage from "./features/TransferEnginePage";
-import GettingShieldedPage from "./features/GettingShieldedPage";
-import MakingTransfersPage from "./features/MakingTransfersPage";
-import ExitingQryptSafePage from "./features/ExitingQryptSafePage";
-import VaultProofSecurityPage from "./features/VaultProofSecurityPage";
-import MevProtectionPage from "./features/MevProtectionPage";
+const DashboardPage = lazy(() => import("./DashboardPage"));
+const CreateQryptSafePage = lazy(() => import("./CreateQryptSafePage"));
+const NotFound = lazy(() => import("./not-found"));
+const SepoliaVerifiedPage = lazy(() => import("./SepoliaVerifiedPage"));
+const SepoliaVerifiedV3Page = lazy(() => import("./SepoliaVerifiedV3Page"));
+const SepoliaVerifiedV4Page = lazy(() => import("./SepoliaVerifiedV4Page"));
+const SepoliaVerifiedV5Page = lazy(() => import("./SepoliaVerifiedV5Page"));
+const SepoliaVerifiedV6Page = lazy(() => import("./SepoliaVerifiedV6Page"));
+const SepoliaVerifiedV1Page = lazy(() => import("./SepoliaVerifiedV1Page"));
+const SepoliaVerifiedV2Page = lazy(() => import("./SepoliaVerifiedV2Page"));
+const PrivacyPage = lazy(() => import("./PrivacyPage"));
+const TermsPage = lazy(() => import("./TermsPage"));
+const QuantumDesignPage = lazy(() => import("./QuantumDesignPage"));
 
-// ─── Features: new pages ──────────────────────────────────────────────
-import OneToOneBackingPage from "./features/OneToOneBackingPage";
-import BurnOnUnshieldPage from "./features/BurnOnUnshieldPage";
-import CommitPhasePage from "./features/CommitPhasePage";
-import RevealPhasePage from "./features/RevealPhasePage";
+const ShieldErc20Page = lazy(() => import("./features/ShieldErc20Page"));
+const TransferShieldPage = lazy(() => import("./features/TransferShieldPage"));
+const QTokenSystemPage = lazy(() => import("./features/QTokenSystemPage"));
+const TransferEnginePage = lazy(() => import("./features/TransferEnginePage"));
+const GettingShieldedPage = lazy(() => import("./features/GettingShieldedPage"));
+const MakingTransfersPage = lazy(() => import("./features/MakingTransfersPage"));
+const ExitingQryptSafePage = lazy(() => import("./features/ExitingQryptSafePage"));
+const VaultProofSecurityPage = lazy(() => import("./features/VaultProofSecurityPage"));
+const MevProtectionPage = lazy(() => import("./features/MevProtectionPage"));
+const QryptShieldPage = lazy(() => import("./features/QryptShieldPage"));
+const QryptAirPage = lazy(() => import("./features/QryptAirPage"));
+const OneToOneBackingPage = lazy(() => import("./features/OneToOneBackingPage"));
+const BurnOnUnshieldPage = lazy(() => import("./features/BurnOnUnshieldPage"));
+const CommitPhasePage = lazy(() => import("./features/CommitPhasePage"));
+const RevealPhasePage = lazy(() => import("./features/RevealPhasePage"));
+const ConnectWalletPage = lazy(() => import("./features/ConnectWalletPage"));
+const CreateQryptSafeGuidePage = lazy(() => import("./features/CreateQryptSafeGuidePage"));
+const ShieldTokensPage = lazy(() => import("./features/ShieldTokensPage"));
+const EnterVaultProofPage = lazy(() => import("./features/EnterVaultProofPage"));
+const CommitTransferPage = lazy(() => import("./features/CommitTransferPage"));
+const RevealAndExecutePage = lazy(() => import("./features/RevealAndExecutePage"));
+const BurnQtokensPage = lazy(() => import("./features/BurnQtokensPage"));
+const ReceiveOriginalTokensPage = lazy(() => import("./features/ReceiveOriginalTokensPage"));
+const EmergencyRecoveryPage = lazy(() => import("./features/EmergencyRecoveryPage"));
+const VaultProofHashingPage = lazy(() => import("./features/VaultProofHashingPage"));
+const NoServerStoragePage = lazy(() => import("./features/NoServerStoragePage"));
+const OnchainVerificationPage = lazy(() => import("./features/OnchainVerificationPage"));
+const CommitRevealSchemePage = lazy(() => import("./features/CommitRevealSchemePage"));
+const NonceProtectionPage = lazy(() => import("./features/NonceProtectionPage"));
+const TimeLockedRevealsPage = lazy(() => import("./features/TimeLockedRevealsPage"));
+const InactivityRulePage = lazy(() => import("./features/InactivityRulePage"));
+const NoAdminKeysPage = lazy(() => import("./features/NoAdminKeysPage"));
+const ImmutableContractsPage = lazy(() => import("./features/ImmutableContractsPage"));
+const QuickStartGuidePage = lazy(() => import("./features/QuickStartGuidePage"));
+const SupportedTokensPage = lazy(() => import("./features/SupportedTokensPage"));
+const NetworkSupportPage = lazy(() => import("./features/NetworkSupportPage"));
+const ShieldFactoryPage = lazy(() => import("./features/ShieldFactoryPage"));
+const PersonalQryptSafeContractPage = lazy(() => import("./features/PersonalQryptSafeContractPage"));
+const ShieldTokenContractPage = lazy(() => import("./features/ShieldTokenContractPage"));
+const RestApiReferencePage = lazy(() => import("./features/RestApiReferencePage"));
+const AbiAndAddressesPage = lazy(() => import("./features/AbiAndAddressesPage"));
+const FaqPage = lazy(() => import("./features/FaqPage"));
 
-// ─── How It Works: new pages ──────────────────────────────────────────
-import ConnectWalletPage from "./features/ConnectWalletPage";
-import CreateQryptSafeGuidePage from "./features/CreateQryptSafeGuidePage";
-import ShieldTokensPage from "./features/ShieldTokensPage";
-import EnterVaultProofPage from "./features/EnterVaultProofPage";
-import CommitTransferPage from "./features/CommitTransferPage";
-import RevealAndExecutePage from "./features/RevealAndExecutePage";
-import BurnQtokensPage from "./features/BurnQtokensPage";
-import ReceiveOriginalTokensPage from "./features/ReceiveOriginalTokensPage";
-import EmergencyRecoveryPage from "./features/EmergencyRecoveryPage";
+// Renders DashboardPage with a hard 7-second cap on the loading spinner.
+// After 7s, forces the dashboard to appear regardless of what's still loading.
+// Any background processes (railgun, RPC calls) continue after render.
+function DashboardRoute() {
+    const [Component, setComponent] = useState<React.ComponentType | null>(null);
+    const [forceShow, setForceShow] = useState(false);
 
-// ─── Quantum Design ───────────────────────────────────────────────────
-import QuantumDesignPage from "./QuantumDesignPage";
+    useEffect(() => {
+        const timer = setTimeout(() => setForceShow(true), 7000);
 
-// ─── Security: new pages ──────────────────────────────────────────────
-import VaultProofHashingPage from "./features/VaultProofHashingPage";
-import NoServerStoragePage from "./features/NoServerStoragePage";
-import OnchainVerificationPage from "./features/OnchainVerificationPage";
-import CommitRevealSchemePage from "./features/CommitRevealSchemePage";
-import NonceProtectionPage from "./features/NonceProtectionPage";
-import TimeLockedRevealsPage from "./features/TimeLockedRevealsPage";
-import InactivityRulePage from "./features/InactivityRulePage";
-import NoAdminKeysPage from "./features/NoAdminKeysPage";
-import ImmutableContractsPage from "./features/ImmutableContractsPage";
+        import("./DashboardPage")
+            .then(m => {
+                clearTimeout(timer);
+                setComponent(() => m.default as React.ComponentType);
+            })
+            .catch(() => {
+                clearTimeout(timer);
+                setForceShow(true);
+            });
 
-// ─── Docs: new pages ──────────────────────────────────────────────────
-import QuickStartGuidePage from "./features/QuickStartGuidePage";
-import SupportedTokensPage from "./features/SupportedTokensPage";
-import NetworkSupportPage from "./features/NetworkSupportPage";
-import ShieldFactoryPage from "./features/ShieldFactoryPage";
-import PersonalQryptSafeContractPage from "./features/PersonalQryptSafeContractPage";
-import ShieldTokenContractPage from "./features/ShieldTokenContractPage";
-import RestApiReferencePage from "./features/RestApiReferencePage";
-import AbiAndAddressesPage from "./features/AbiAndAddressesPage";
-import FaqPage from "./features/FaqPage";
-import SepoliaVerifiedPage from "./SepoliaVerifiedPage";
-  import SepoliaVerifiedV1Page from "./SepoliaVerifiedV1Page";
-  import SepoliaVerifiedV2Page from "./SepoliaVerifiedV2Page";
-import PrivacyPage from "./PrivacyPage";
-import TermsPage from "./TermsPage";
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (Component) return <Component />;
+    if (forceShow) {
+        // 7s elapsed — render via Suspense without timeout (will show once module arrives)
+        return (
+            <Suspense fallback={<PageLoader />}>
+                <DashboardPage />
+            </Suspense>
+        );
+    }
+    return <PageLoader />;
+}
 
 export default function AppRouter() {
     return (
         <LanguageProvider>
+        <Suspense fallback={null}>
         <Switch>
             {/* Core */}
             <Route path="/" component={LandingPage} />
-            <Route path="/app" component={DashboardPage} />
+            <Route path="/app" component={DashboardRoute} />
             <Route path="/sepolia-verified" component={SepoliaVerifiedPage} />
-              <Route path="/sepolia-verified-v1" component={SepoliaVerifiedV1Page} />
-              <Route path="/sepolia-verified-v2" component={SepoliaVerifiedV2Page} />
+            <Route path="/sepolia-verified-v1" component={SepoliaVerifiedV1Page} />
+            <Route path="/sepolia-verified-v2" component={SepoliaVerifiedV2Page} />
+            <Route path="/sepolia-verified-v3" component={SepoliaVerifiedV3Page} />
+            <Route path="/sepolia-verified-v4" component={SepoliaVerifiedV4Page} />
+            <Route path="/sepolia-verified-v5" component={SepoliaVerifiedV5Page} />
+            <Route path="/sepolia-verified-v6" component={SepoliaVerifiedV6Page} />
             <Route path="/privacy" component={PrivacyPage} />
             <Route path="/terms" component={TermsPage} />
 
@@ -91,6 +129,8 @@ export default function AppRouter() {
             <Route path="/commit-phase" component={CommitPhasePage} />
             <Route path="/reveal-phase" component={RevealPhasePage} />
             <Route path="/mev-protection" component={MevProtectionPage} />
+            <Route path="/qrypt-shield" component={QryptShieldPage} />
+            <Route path="/qrypt-air" component={QryptAirPage} />
 
             {/* How It Works: Getting Shielded */}
             <Route path="/getting-shielded" component={GettingShieldedPage} />
@@ -146,6 +186,7 @@ export default function AppRouter() {
 
             <Route component={NotFound} />
         </Switch>
+        </Suspense>
         </LanguageProvider>
     );
 }
