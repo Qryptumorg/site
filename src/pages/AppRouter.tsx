@@ -58,6 +58,8 @@ import RestApiReferencePage from "./features/RestApiReferencePage";
 import AbiAndAddressesPage from "./features/AbiAndAddressesPage";
 import FaqPage from "./features/FaqPage";
 import SepoliaVerifiedPage from "./SepoliaVerifiedPage";
+  import SepoliaVerifiedV1Page from "./SepoliaVerifiedV1Page";
+  import SepoliaVerifiedV2Page from "./SepoliaVerifiedV2Page";
 import PrivacyPage from "./PrivacyPage";
 import TermsPage from "./TermsPage";
 
@@ -69,6 +71,8 @@ export default function AppRouter() {
             <Route path="/" component={LandingPage} />
             <Route path="/app" component={DashboardPage} />
             <Route path="/sepolia-verified" component={SepoliaVerifiedPage} />
+              <Route path="/sepolia-verified-v1" component={SepoliaVerifiedV1Page} />
+              <Route path="/sepolia-verified-v2" component={SepoliaVerifiedV2Page} />
             <Route path="/privacy" component={PrivacyPage} />
             <Route path="/terms" component={TermsPage} />
 
