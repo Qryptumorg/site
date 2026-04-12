@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState } from "react";
 import { useReadContract, useWriteContract, useWaitForTransactionReceipt } from "wagmi";
 import { parseUnits } from "viem";

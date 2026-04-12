@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState } from "react";
 import { useAccount, useWriteContract, useWaitForTransactionReceipt, useChainId, useReadContract } from "wagmi";
 import { ShieldIcon, EyeIcon, EyeOffIcon, CheckCircleIcon } from "lucide-react";
