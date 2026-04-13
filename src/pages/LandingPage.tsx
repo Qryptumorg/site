@@ -593,7 +593,7 @@ function Footer() {
                 {/* Brand */}
                 <div style={{ flex: 1.4, paddingRight: isMobile ? 0 : 48 }}>
                     <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 0, marginBottom: 16 }}>
-                        <img src="/qryptum-logo.png" alt="Qryptum" style={{ height: 36, width: 36, objectFit: "contain", display: "block" }} />
+                        <img src={`${import.meta.env.BASE_URL}qryptum-logo.png`} alt="Qryptum" style={{ height: 36, width: 36, objectFit: "contain", display: "block" }} />
                         <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 800, color: "#fff", letterSpacing: "-0.01em", marginLeft: -4 }}>QRYPTUM</span>
                     </a>
                     <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.35)", maxWidth: 260 }}>
@@ -740,7 +740,7 @@ function UseCases() {
                 <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                     {/* Quantum Design card - mobile first */}
                     <a href="/quantum-design" style={{ textDecoration: "none", display: "block", position: "relative", borderRadius: 20, overflow: "hidden", minHeight: 220, border: "1px solid rgba(79,70,229,0.25)" }}>
-                        <img src="/images/quantum-design-hero.png" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.4 }} />
+                        <img src={`${import.meta.env.BASE_URL}images/quantum-design-hero.png`} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.4 }} />
                         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(79,70,229,0.55) 0%, rgba(0,0,0,0.75) 100%)" }} />
                         <div style={{ position: "relative", padding: "32px 28px" }}>
                             <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(79,70,229,0.18)", border: "1px solid rgba(79,70,229,0.35)", borderRadius: 14, padding: "3px 12px", marginBottom: 16 }}>
@@ -782,7 +782,7 @@ function UseCases() {
                         borderRadius: 20, overflow: "hidden", minHeight: 280,
                         border: "1px solid rgba(79,70,229,0.22)",
                     }}>
-                        <img src="/images/quantum-design-hero.png" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.35 }} />
+                        <img src={`${import.meta.env.BASE_URL}images/quantum-design-hero.png`} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.35 }} />
                         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(79,70,229,0.5) 0%, rgba(124,58,237,0.25) 50%, rgba(0,0,0,0.7) 100%)" }} />
                         <div style={{ position: "relative", padding: "52px 56px", display: "flex", alignItems: "center", gap: 60 }}>
                             <div style={{ flex: 1 }}>

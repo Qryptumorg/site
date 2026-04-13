@@ -223,7 +223,7 @@ export default function SepoliaVerifiedV3Page() {
             {/* ═══ HERO ═══════════════════════════════════════════ */}
             <div style={{ position: "relative", overflow: "hidden" }}>
                 <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-                    <img src="/images/sepolia-v3-hero.jpg" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", filter: "brightness(0.22) saturate(1.4)" }} />
+                    <img src={`${import.meta.env.BASE_URL}images/sepolia-v3-hero.jpg`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", filter: "brightness(0.22) saturate(1.4)" }} />
                     <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(5,7,16,0.1) 0%, rgba(5,7,16,0.65) 70%, #050710 100%)" }} />
                 </div>
 
@@ -260,7 +260,7 @@ export default function SepoliaVerifiedV3Page() {
                             {/* right */}
                             {!isMobile && (
                                 <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 32px 80px rgba(0,0,0,0.7)" }}>
-                                    <img src="/images/sepolia-v3-hero.jpg" alt="Vault visualization" style={{ width: "100%", display: "block", aspectRatio: "16/9", objectFit: "cover" }} />
+                                    <img src={`${import.meta.env.BASE_URL}images/sepolia-v3-hero.jpg`} alt="Vault visualization" style={{ width: "100%", display: "block", aspectRatio: "16/9", objectFit: "cover" }} />
                                 </div>
                             )}
                         </div>
@@ -310,7 +310,7 @@ export default function SepoliaVerifiedV3Page() {
                         </div>
                         {!isMobile && (
                             <div style={{ position: "relative", minHeight: 280 }}>
-                                <img src="/images/sepolia-v3-contracts.jpg" alt="Contract architecture" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.75) saturate(1.2)" }} />
+                                <img src={`${import.meta.env.BASE_URL}images/sepolia-v3-contracts.jpg`} alt="Contract architecture" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.75) saturate(1.2)" }} />
                                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(5,7,16,0.6) 0%, transparent 50%)" }} />
                             </div>
                         )}
@@ -361,7 +361,7 @@ export default function SepoliaVerifiedV3Page() {
                     <div style={{ display: isMobile ? "block" : "grid", gridTemplateColumns: "340px 1fr" }}>
                         {!isMobile && (
                             <div style={{ position: "relative", minHeight: 320 }}>
-                                <img src="/images/sepolia-v3-tests.jpg" alt="Test results" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.7) saturate(1.3)" }} />
+                                <img src={`${import.meta.env.BASE_URL}images/sepolia-v3-tests.jpg`} alt="Test results" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.7) saturate(1.3)" }} />
                                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to left, rgba(5,7,16,0.1) 0%, transparent 50%)" }} />
                             </div>
                         )}

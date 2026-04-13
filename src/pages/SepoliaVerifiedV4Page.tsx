@@ -197,7 +197,7 @@ export default function SepoliaVerifiedV4Page() {
             {/* ═══ HERO ═══════════════════════════════════════════ */}
             <div style={{ position: "relative", overflow: "hidden" }}>
                 <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-                    <img src="/images/sepolia-v4-hero.jpg" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 35%", filter: "brightness(0.20) saturate(1.3)" }} />
+                    <img src={`${import.meta.env.BASE_URL}images/sepolia-v4-hero.jpg`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 35%", filter: "brightness(0.20) saturate(1.3)" }} />
                     <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(5,7,16,0.1) 0%, rgba(5,7,16,0.65) 70%, #050710 100%)" }} />
                 </div>
                 <div style={{ position: "relative", zIndex: 1, maxWidth: W, margin: "0 auto", padding: pad }}>
@@ -230,7 +230,7 @@ export default function SepoliaVerifiedV4Page() {
                             </div>
                             {!isMobile && (
                                 <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 32px 80px rgba(0,0,0,0.7)" }}>
-                                    <img src="/images/sepolia-v4-right.jpg" alt="Analytics crystal dashboard" style={{ width: "100%", display: "block", aspectRatio: "4/3", objectFit: "cover" }} />
+                                    <img src={`${import.meta.env.BASE_URL}images/sepolia-v4-right.jpg`} alt="Analytics crystal dashboard" style={{ width: "100%", display: "block", aspectRatio: "4/3", objectFit: "cover" }} />
                                 </div>
                             )}
                         </div>
@@ -281,7 +281,7 @@ export default function SepoliaVerifiedV4Page() {
                         </div>
                         {!isMobile && (
                             <div style={{ position: "relative", minHeight: 260 }}>
-                                <img src="/images/sepolia-v4-hero.jpg" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.55) saturate(1.2)" }} />
+                                <img src={`${import.meta.env.BASE_URL}images/sepolia-v4-hero.jpg`} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.55) saturate(1.2)" }} />
                                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(5,7,16,0.7) 0%, transparent 60%)" }} />
                             </div>
                         )}
@@ -472,7 +472,7 @@ function unshield(
                     <div style={{ paddingTop: 28, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
                         <GroupDivider label="Factory & Vault" />
                         <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", marginBottom: 24 }}>
-                            <img src="/images/v4-test-factory.jpg" alt="Permissionless factory architecture" style={{ width: "100%", display: "block", height: 240, objectFit: "cover", objectPosition: "center" }} />
+                            <img src={`${import.meta.env.BASE_URL}images/v4-test-factory.jpg`} alt="Permissionless factory architecture" style={{ width: "100%", display: "block", height: 240, objectFit: "cover", objectPosition: "center" }} />
                         </div>
                         <TestRow pass n={1} title="factory has no owner or pause" desc="QryptSafeV4.owner is undefined in the ABI. No Ownable inherited, no pause function, no privileged factory control. Vault creation is permissionless from block zero." />
                         <TestRow pass n={2} title="factory stores createdAt block" desc="After createVault(), factory.vaultCreatedAt(owner) returns the block number of deployment. Stored in a mapping(address => uint256) at factory level. Readable without events." />
@@ -489,7 +489,7 @@ function unshield(
                         <div style={{ display: isMobile ? "block" : "grid", gridTemplateColumns: "32% 1fr", gap: 32, alignItems: "stretch" }}>
                             {!isMobile && (
                                 <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", minHeight: 300 }}>
-                                    <img src="/images/v4-test-shield.jpg" alt="Token shielding and unshielding" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }} />
+                                    <img src={`${import.meta.env.BASE_URL}images/v4-test-shield.jpg`} alt="Token shielding and unshielding" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }} />
                                 </div>
                             )}
                             <div>
@@ -506,7 +506,7 @@ function unshield(
                             </div>
                             {isMobile && (
                                 <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", marginTop: 20 }}>
-                                    <img src="/images/v4-test-shield.jpg" alt="Token shielding and unshielding" style={{ width: "100%", display: "block", aspectRatio: "1/1", objectFit: "cover" }} />
+                                    <img src={`${import.meta.env.BASE_URL}images/v4-test-shield.jpg`} alt="Token shielding and unshielding" style={{ width: "100%", display: "block", aspectRatio: "1/1", objectFit: "cover" }} />
                                 </div>
                             )}
                         </div>
@@ -529,7 +529,7 @@ function unshield(
                                 <TestRow pass n={27} title="activityCount increments on reveal" desc="reveal() increments activityCount and updates lastActivityBlock. The commit step does not count as a separate activity in this test; only the reveal is measured." />
                             </div>
                             <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", marginTop: isMobile ? 20 : 0, minHeight: 300 }}>
-                                <img src="/images/v4-test-commitreveal.jpg" alt="Proof rotation and commit-reveal" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }} />
+                                <img src={`${import.meta.env.BASE_URL}images/v4-test-commitreveal.jpg`} alt="Proof rotation and commit-reveal" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }} />
                             </div>
                         </div>
                     </div>
@@ -538,7 +538,7 @@ function unshield(
                     <div style={{ paddingTop: 28, marginTop: 28, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
                         <GroupDivider label="metaTransfer, Multi-token & qToken" />
                         <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", marginBottom: 24 }}>
-                            <img src="/images/v4-test-metatransfer.jpg" alt="ECDSA meta-transfer and multi-token" style={{ width: "100%", display: "block", height: 240, objectFit: "cover", objectPosition: "center" }} />
+                            <img src={`${import.meta.env.BASE_URL}images/v4-test-metatransfer.jpg`} alt="ECDSA meta-transfer and multi-token" style={{ width: "100%", display: "block", height: 240, objectFit: "cover", objectPosition: "center" }} />
                         </div>
                         <TestRow pass n={28} title="metaTransfer with valid signature" desc="Owner signs a hash of (token, to, amount, deadline, sigNonce) off-chain. A third-party relayer submits the signature. qToken burned, ERC-20 sent to recipient. Relayer pays gas, owner signs only." />
                         <TestRow pass n={29} title="metaTransfer expired deadline" note="revert SignatureExpired()" desc="block.timestamp > deadline reverts with SignatureExpired before any signature validation. Deadline check is first to avoid unnecessary ECDSA computation." revertOnly />
@@ -557,7 +557,7 @@ function unshield(
                         <div style={{ display: isMobile ? "block" : "grid", gridTemplateColumns: "32% 1fr", gap: 32, alignItems: "stretch" }}>
                             {!isMobile && (
                                 <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", minHeight: 300 }}>
-                                    <img src="/images/v4-test-emergency.jpg" alt="Emergency and edge cases" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }} />
+                                    <img src={`${import.meta.env.BASE_URL}images/v4-test-emergency.jpg`} alt="Emergency and edge cases" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }} />
                                 </div>
                             )}
                             <div>
@@ -575,7 +575,7 @@ function unshield(
                             </div>
                             {isMobile && (
                                 <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", marginTop: 20 }}>
-                                    <img src="/images/v4-test-emergency.jpg" alt="Emergency and edge cases" style={{ width: "100%", display: "block", aspectRatio: "1/1", objectFit: "cover" }} />
+                                    <img src={`${import.meta.env.BASE_URL}images/v4-test-emergency.jpg`} alt="Emergency and edge cases" style={{ width: "100%", display: "block", aspectRatio: "1/1", objectFit: "cover" }} />
                                 </div>
                             )}
                         </div>

@@ -245,7 +245,7 @@ export default function SepoliaVerifiedV6Page() {
                 {/* Background graphic layer */}
                 <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
                     <img
-                        src="/images/v6-hero-bg.png"
+                        src={`${import.meta.env.BASE_URL}images/v6-hero-bg.png`}
                         alt=""
                         style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%", filter: "brightness(0.42) saturate(1.2)", transform: "scale(1.04)" }}
                     />
@@ -390,7 +390,7 @@ export default function SepoliaVerifiedV6Page() {
 
                     {/* Group 1: Infrastructure */}
                     {bentoRow(true,
-                        <img src="/images/v6-bento-infra.png" alt="Infrastructure" style={imgStyle} />,
+                        <img src={`${import.meta.env.BASE_URL}images/v6-bento-infra.png`} alt="Infrastructure" style={imgStyle} />,
                         <>
                             <SectionHead text={sr.groupLabels[0]} color="rgba(255,255,255,0.4)" />
                             <TestRow n={1} title="Factory v6 has on-chain bytecode" desc={`QryptSafeV6 Factory at ${FACTORY_V6}: bytecode confirmed on Sepolia. MIT-licensed and Etherscan-verified.`} readOnly />
@@ -402,7 +402,7 @@ export default function SepoliaVerifiedV6Page() {
 
                     {/* Group 2: Setup */}
                     {bentoRow(false,
-                        <img src="/images/v6-bento-setup.png" alt="Setup" style={imgStyle} />,
+                        <img src={`${import.meta.env.BASE_URL}images/v6-bento-setup.png`} alt="Setup" style={imgStyle} />,
                         <>
                             <SectionHead text={sr.groupLabels[1]} color="rgba(255,255,255,0.4)" />
                             <TestRow n={4} title="Create Vault A via factory" desc={`Factory cloneAndInit() deployed EIP-1167 proxy for Wallet A. 45-byte minimal proxy. Vault A address deterministic from factory salt.`} />
@@ -416,7 +416,7 @@ export default function SepoliaVerifiedV6Page() {
 
                     {/* Group 3: QryptSafe OTP Chain */}
                     {bentoRow(true,
-                        <img src="/images/v6-bento-otp.png" alt="QryptSafe OTP Chain" style={imgStyle} />,
+                        <img src={`${import.meta.env.BASE_URL}images/v6-bento-otp.png`} alt="QryptSafe OTP Chain" style={imgStyle} />,
                         <>
                             <SectionHead text={sr.groupLabels[2]} color="#22C55E" />
                             <TestRow n={9} title="shield() 1 USDC with valid OTP H99" desc="1 USDC shielded. 1 qUSDC minted. chainHead advances H100 to H99. Contract verifies keccak256(H99)==H100. qUSDC ShieldToken auto-deployed on first shield. Event TokenShielded emitted." tx="" />
@@ -438,7 +438,7 @@ export default function SepoliaVerifiedV6Page() {
 
                     {/* Group 4: QryptAir EIP-712 + air bags */}
                     {bentoRow(false,
-                        <img src="/images/v6-bento-airbags.png" alt="QryptAir air bags" style={imgStyle} />,
+                        <img src={`${import.meta.env.BASE_URL}images/v6-bento-airbags.png`} alt="QryptAir air bags" style={imgStyle} />,
                         <>
                             <SectionHead text={sr.groupLabels[3]} color="#F59E0B" />
                             <TestRow n={22} title="Create EIP-712 QryptAir voucher: offline" desc="Wallet A signs Voucher struct off-chain. Domain: {name:'QryptAir', version:'1', chainId:11155111}. VOUCHER_TYPEHASH includes transferCodeHash. Local ECDSA verify confirmed. No TX." readOnly />
@@ -455,7 +455,7 @@ export default function SepoliaVerifiedV6Page() {
 
                     {/* Group 5: QryptShield Railgun */}
                     {bentoRow(true,
-                        <img src="/images/v6-bento-shield.png" alt="QryptShield" style={imgStyle} />,
+                        <img src={`${import.meta.env.BASE_URL}images/v6-bento-shield.png`} alt="QryptShield" style={imgStyle} />,
                         <>
                             <SectionHead text={sr.groupLabels[4]} color="#8B5CF6" />
                             <TestRow n={30} title="unshieldToRailgun() wrong OTP: revert" desc="Wrong OTP reverts 'Invalid OTP proof'. Password protection enforced on atomic bridge function. OTP check runs before any state change." revertOnly />
@@ -469,7 +469,7 @@ export default function SepoliaVerifiedV6Page() {
 
                     {/* Group 6: OTP Chain Security */}
                     {bentoRow(false,
-                        <img src="/images/v6-bento-otpsec.png" alt="OTP Security" style={imgStyle} />,
+                        <img src={`${import.meta.env.BASE_URL}images/v6-bento-otpsec.png`} alt="OTP Security" style={imgStyle} />,
                         <>
                             <SectionHead text={sr.groupLabels[5]} color="rgba(255,255,255,0.4)" />
                             <TestRow n={35} title="Pre-image resistance: H96 unknown from H97" desc="Attacker observes H97 in calldata. Cannot compute H96 because keccak256 is one-way (pre-image resistance). Attack computationally infeasible." readOnly />
@@ -486,7 +486,7 @@ export default function SepoliaVerifiedV6Page() {
 
                     {/* Group 7: air bags Security */}
                     {bentoRow(true,
-                        <img src="/images/v6-bento-airsec.png" alt="air bags Security" style={imgStyle} />,
+                        <img src={`${import.meta.env.BASE_URL}images/v6-bento-airsec.png`} alt="air bags Security" style={imgStyle} />,
                         <>
                             <SectionHead text={sr.groupLabels[6]} color="rgba(255,255,255,0.4)" />
                             <TestRow n={43} title="redeemAirVoucher() pulls only from air bags" desc="When air bags fully covers voucher amount: shieldedBalance is unchanged. Balance isolation confirmed. No cross-bucket withdrawal possible." readOnly />
@@ -500,7 +500,7 @@ export default function SepoliaVerifiedV6Page() {
 
                     {/* Group 8: Invariants */}
                     {bentoRow(false,
-                        <img src="/images/v6-bento-invariants.png" alt="Invariants" style={imgStyle} />,
+                        <img src={`${import.meta.env.BASE_URL}images/v6-bento-invariants.png`} alt="Invariants" style={imgStyle} />,
                         <>
                             <SectionHead text={sr.groupLabels[7]} color="rgba(255,255,255,0.4)" />
                             <TestRow n={48} title="Re-initialize already-initialized vault: revert" desc="initialize() on an existing vault reverts 'Already initialized'. notInitialized modifier prevents storage clobber on an active vault." revertOnly />

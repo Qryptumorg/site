@@ -358,7 +358,7 @@ export default function SepoliaVerifiedV5Page() {
             {/* ═══ HERO ═══════════════════════════════════════════ */}
             <div style={{ position: "relative", overflow: "hidden" }}>
                 <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-                    <img src="/sepolia-vault-hero.jpg" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", filter: "brightness(0.18) saturate(1.2)" }} />
+                    <img src={`${import.meta.env.BASE_URL}sepolia-vault-hero.jpg`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", filter: "brightness(0.18) saturate(1.2)" }} />
                     <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 70%, #000000 100%)" }} />
                 </div>
 
@@ -392,7 +392,7 @@ export default function SepoliaVerifiedV5Page() {
                             </div>
                             {!isMobile && (
                                 <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 32px 80px rgba(0,0,0,0.7)" }}>
-                                    <img src="/sepolia-vault-hero.jpg" alt="Vault visualization" style={{ width: "100%", display: "block", aspectRatio: "16/9", objectFit: "cover" }} />
+                                    <img src={`${import.meta.env.BASE_URL}sepolia-vault-hero.jpg`} alt="Vault visualization" style={{ width: "100%", display: "block", aspectRatio: "16/9", objectFit: "cover" }} />
                                 </div>
                             )}
                         </div>
@@ -495,12 +495,12 @@ export default function SepoliaVerifiedV5Page() {
                         );
 
                         const imgStyle: React.CSSProperties = { width: "100%", height: "100%", minHeight: 180, objectFit: "cover", display: "block" };
-                        const g1chart = <img src="/images/bento-infra.jpg" alt="Infrastructure" style={imgStyle} />;
-                        const g2chart = <img src="/images/bento-setup.jpg" alt="Setup" style={imgStyle} />;
-                        const g3chart = <img src="/images/bento-safe.jpg" alt="QryptSafe" style={imgStyle} />;
-                        const g4chart = <img src="/images/bento-air.jpg" alt="QryptAir" style={imgStyle} />;
-                        const g5chart = <img src="/images/bento-shield.jpg" alt="QryptShield" style={imgStyle} />;
-                        const g6chart = <img src="/images/bento-security.jpg" alt="Security" style={imgStyle} />;
+                        const g1chart = <img src={`${import.meta.env.BASE_URL}images/bento-infra.jpg`} alt="Infrastructure" style={imgStyle} />;
+                        const g2chart = <img src={`${import.meta.env.BASE_URL}images/bento-setup.jpg`} alt="Setup" style={imgStyle} />;
+                        const g3chart = <img src={`${import.meta.env.BASE_URL}images/bento-safe.jpg`} alt="QryptSafe" style={imgStyle} />;
+                        const g4chart = <img src={`${import.meta.env.BASE_URL}images/bento-air.jpg`} alt="QryptAir" style={imgStyle} />;
+                        const g5chart = <img src={`${import.meta.env.BASE_URL}images/bento-shield.jpg`} alt="QryptShield" style={imgStyle} />;
+                        const g6chart = <img src={`${import.meta.env.BASE_URL}images/bento-security.jpg`} alt="Security" style={imgStyle} />;
 
                         return (
                             <>
@@ -560,7 +560,7 @@ export default function SepoliaVerifiedV5Page() {
                                     <TestRow n={32} title="Any vault function from non-owner: revert expected" desc="Wallet B cannot call QryptSafe A's onlyOwner functions. Reverts 'Not QryptSafe owner'. Access control confirmed on all protected functions." revertOnly /></>,
                                     "rgba(255,255,255,0.07)"
                                 )}
-                                {bentoRow(false, <img src="/images/bento-registry.jpg" alt="Vault Registry" style={{ width: "100%", height: "100%", minHeight: 180, objectFit: "cover", display: "block" }} />,
+                                {bentoRow(false, <img src={`${import.meta.env.BASE_URL}images/bento-registry.jpg`} alt="Vault Registry" style={{ width: "100%", height: "100%", minHeight: 180, objectFit: "cover", display: "block" }} />,
                                     <><SectionHead text={sr.groupLabels[6]} color="rgba(255,255,255,0.4)" />
                                     <TestRow n={33} title="factory.hasQryptSafe() returns true for both wallets" desc="hasQryptSafe(A)=true, hasQryptSafe(B)=true. Factory registry maps every wallet to its deployed clone." />
                                     <TestRow n={34} title="vault.initialized is true after createQryptSafe" desc="initialized() = true. notInitialized modifier prevents double-init." />
@@ -576,7 +576,7 @@ export default function SepoliaVerifiedV5Page() {
                                     <TestRow n={44} title="claimAirVoucher() emits AirVoucherClaimed event" desc="Receipt confirmed 3 logs. AirVoucherClaimed event emitted. Full event-driven redemption auditable." tx={TX_T44} /></>,
                                     "rgba(255,255,255,0.07)"
                                 )}
-                                {bentoRow(true, <img src="/images/bento-isolation.jpg" alt="qToken Isolation" style={{ width: "100%", height: "100%", minHeight: 180, objectFit: "cover", display: "block" }} />,
+                                {bentoRow(true, <img src={`${import.meta.env.BASE_URL}images/bento-isolation.jpg`} alt="qToken Isolation" style={{ width: "100%", height: "100%", minHeight: 180, objectFit: "cover", display: "block" }} />,
                                     <><SectionHead text={sr.groupLabels[7]} color="rgba(255,255,255,0.4)" />
                                     <TestRow n={45} title="qToken is non-transferable between users" desc="ShieldToken.transfer() to external address reverts. Soulbound to vault: cannot be sold, bridged, or delegated." revertOnly />
                                     <TestRow n={46} title="two QryptSafes are independent — Vault B owner and state" desc={`Vault B owner=${short(WALLET_B)}, initialized=true. Each wallet gets isolated EIP-1167 clone with independent storage.`} />

@@ -141,7 +141,7 @@ export default function SepoliaVerifiedV1Page() {
                 {/* bg image */}
                 <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
                     <img
-                        src="/images/v1-hero-bg.png"
+                        src={`${import.meta.env.BASE_URL}images/v1-hero-bg.png`}
                         alt=""
                         style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%", filter: "brightness(0.35) saturate(1.2)" }}
                     />
@@ -186,7 +186,7 @@ export default function SepoliaVerifiedV1Page() {
                             {/* Right image */}
                             {!isMobile && (
                                 <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 32px 80px rgba(0,0,0,0.7)" }}>
-                                    <img src="/images/v1-hero-right.png" alt="V1 EIP-1167 clone visualization" style={{ width: "100%", display: "block", aspectRatio: "4/3", objectFit: "cover" }} />
+                                    <img src={`${import.meta.env.BASE_URL}images/v1-hero-right.png`} alt="V1 EIP-1167 clone visualization" style={{ width: "100%", display: "block", aspectRatio: "4/3", objectFit: "cover" }} />
                                 </div>
                             )}
                         </div>

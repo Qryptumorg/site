@@ -41,7 +41,7 @@ export default function QuantumDesignPage() {
             <section style={{ position: "relative", minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
                 <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
                     <img
-                        src="/images/quantum-design-hero.jpg"
+                        src={`${import.meta.env.BASE_URL}images/quantum-design-hero.jpg`}
                         alt=""
                         style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", opacity: 0.38 }}
                     />
@@ -132,7 +132,7 @@ export default function QuantumDesignPage() {
 
                     <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", border: "1px solid rgba(239,68,68,0.18)" }}>
                         <img
-                            src="/images/quantum-threat.jpg"
+                            src={`${import.meta.env.BASE_URL}images/quantum-threat.jpg`}
                             alt="Quantum threat visualization"
                             style={{ width: "100%", display: "block", aspectRatio: "4/3", objectFit: "cover" }}
                         />
@@ -165,7 +165,7 @@ export default function QuantumDesignPage() {
 
                     <div style={{ display: isMobile ? "flex" : "grid", flexDirection: "column", gridTemplateColumns: "1fr 1fr", gap: isMobile ? 24 : 40, alignItems: "start" }}>
                         <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid rgba(6,182,212,0.18)" }}>
-                            <img src="/images/quantum-keccak.jpg" alt="keccak256 avalanche" style={{ width: "100%", display: "block", aspectRatio: "4/3", objectFit: "cover" }} />
+                            <img src={`${import.meta.env.BASE_URL}images/quantum-keccak.jpg`} alt="keccak256 avalanche" style={{ width: "100%", display: "block", aspectRatio: "4/3", objectFit: "cover" }} />
                         </div>
 
                         <div>
@@ -225,7 +225,7 @@ export default function QuantumDesignPage() {
                         borderRadius: 20, overflow: "hidden",
                     }}>
                         <div style={{ position: "relative", minHeight: isMobile ? 200 : 280, flexShrink: 0 }}>
-                            <img src="/images/quantum-brute-force.jpg" alt="Brute force resistance" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+                            <img src={`${import.meta.env.BASE_URL}images/quantum-brute-force.jpg`} alt="Brute force resistance" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
                             <div style={{ position: "absolute", inset: 0, background: isMobile ? "linear-gradient(to bottom, transparent 60%, rgba(3,5,8,0.97) 100%)" : "linear-gradient(to right, transparent 60%, rgba(3,5,8,0.97) 100%)" }} />
                         </div>
                         <div style={{ padding: isMobile ? "24px 20px 28px" : "40px 40px 40px 32px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
@@ -265,7 +265,7 @@ export default function QuantumDesignPage() {
                             }}>{L.pillar2Highlight}</div>
                         </div>
                         <div style={{ position: "relative", minHeight: isMobile ? 200 : 280, flexShrink: 0 }}>
-                            <img src="/images/quantum-key-independence.jpg" alt="Key independence" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+                            <img src={`${import.meta.env.BASE_URL}images/quantum-key-independence.jpg`} alt="Key independence" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
                             <div style={{ position: "absolute", inset: 0, background: isMobile ? "linear-gradient(to bottom, transparent 60%, rgba(3,5,8,0.97) 100%)" : "linear-gradient(to left, transparent 60%, rgba(3,5,8,0.97) 100%)" }} />
                         </div>
                     </div>
@@ -276,7 +276,7 @@ export default function QuantumDesignPage() {
                         borderRadius: 20, overflow: "hidden",
                     }}>
                         <div style={{ position: "relative", height: 220 }}>
-                            <img src="/images/quantum-keccak.jpg" alt="On-chain verification" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.6 }} />
+                            <img src={`${import.meta.env.BASE_URL}images/quantum-keccak.jpg`} alt="On-chain verification" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.6 }} />
                             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(3,5,8,0.98) 100%)" }} />
                         </div>
                         <div style={{ padding: isMobile ? "0 20px 28px" : "0 40px 40px", display: isMobile ? "flex" : "grid", flexDirection: "column", gridTemplateColumns: "1fr 1fr", gap: isMobile ? 20 : 40 }}>
@@ -380,7 +380,7 @@ export default function QuantumDesignPage() {
             {/* ══════════ CTA ═══════════════════════════════════════════════ */}
             <section style={{ position: "relative", overflow: "hidden" }}>
                 <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-                    <img src="/images/quantum-cta.jpg" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.3 }} />
+                    <img src={`${import.meta.env.BASE_URL}images/quantum-cta.jpg`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.3 }} />
                     <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(79,70,229,0.18) 0%, rgba(0,0,0,0.85) 60%)" }} />
                 </div>
                 <div style={{ position: "relative", zIndex: 1, padding: "96px 24px", textAlign: "center" }}>
@@ -409,7 +409,7 @@ export default function QuantumDesignPage() {
             {/* ══════════ FOOTER ════════════════════════════════════════════ */}
             <footer style={{ background: "#000", borderTop: "1px solid rgba(255,255,255,0.06)", padding: "28px 24px", textAlign: "center" }}>
                 <a href="/" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 0, marginBottom: 10 }}>
-                    <img src="/qryptum-logo.png" alt="Qryptum" style={{ height: 22, width: 22, objectFit: "contain" }} />
+                    <img src={`${import.meta.env.BASE_URL}qryptum-logo.png`} alt="Qryptum" style={{ height: 22, width: 22, objectFit: "contain" }} />
                     <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 800, fontSize: 11, color: "rgba(255,255,255,0.4)", letterSpacing: "-0.01em", marginLeft: -4 }}>QRYPTUM</span>
                 </a>
                 <div style={{ fontSize: 11, color: "rgba(255,255,255,0.18)" }}>{t.common.footerText}</div>

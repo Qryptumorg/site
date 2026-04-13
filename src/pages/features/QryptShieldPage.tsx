@@ -103,12 +103,12 @@ export default function QryptShieldPage() {
                         </div>
                         <div style={{ display: "flex", flexDirection: "column" as const, gap: 16 }}>
                             <img
-                                src="/images/qs-pool-mix.jpg"
+                                src={`${import.meta.env.BASE_URL}images/qs-pool-mix.jpg`}
                                 alt="Anonymity pool"
                                 style={{ width: "100%", borderRadius: 16, border: "1px solid rgba(139,92,246,0.2)" }}
                             />
                             <img
-                                src="/images/qs-relayer.jpg"
+                                src={`${import.meta.env.BASE_URL}images/qs-relayer.jpg`}
                                 alt="Public relayer"
                                 style={{ width: "100%", borderRadius: 16, border: "1px solid rgba(109,40,217,0.2)" }}
                             />
@@ -133,7 +133,7 @@ export default function QryptShieldPage() {
 
                     <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "2fr 1fr", gap: 16, marginBottom: 16 }}>
                         <div style={{ borderRadius: 20, overflow: "hidden", background: "rgba(139,92,246,0.06)", border: "1px solid rgba(139,92,246,0.15)" }}>
-                            <img src="/images/qs-pool-deposit.jpg" alt="" style={{ width: "100%", height: 220, objectFit: "cover", display: "block" }} />
+                            <img src={`${import.meta.env.BASE_URL}images/qs-pool-deposit.jpg`} alt="" style={{ width: "100%", height: 220, objectFit: "cover", display: "block" }} />
                             <div style={{ padding: "28px 28px 32px" }}>
                                 <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 10 }}>{p.cards[0].title}</div>
                                 <div style={{ fontSize: 14, lineHeight: 1.65, color: "rgba(255,255,255,0.55)" }}>{p.cards[0].body}</div>
@@ -145,7 +145,7 @@ export default function QryptShieldPage() {
                             </div>
                         </div>
                         <div style={{ borderRadius: 20, overflow: "hidden", background: "rgba(139,92,246,0.06)", border: "1px solid rgba(139,92,246,0.15)" }}>
-                            <img src="/images/qs-pool-mix.jpg" alt="" style={{ width: "100%", height: 220, objectFit: "cover", display: "block" }} />
+                            <img src={`${import.meta.env.BASE_URL}images/qs-pool-mix.jpg`} alt="" style={{ width: "100%", height: 220, objectFit: "cover", display: "block" }} />
                             <div style={{ padding: "28px 28px 32px" }}>
                                 <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 10 }}>{p.cards[1].title}</div>
                                 <div style={{ fontSize: 14, lineHeight: 1.65, color: "rgba(255,255,255,0.55)" }}>{p.cards[1].body}</div>
@@ -155,14 +155,14 @@ export default function QryptShieldPage() {
 
                     <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 2fr", gap: 16 }}>
                         <div style={{ borderRadius: 20, overflow: "hidden", background: "rgba(109,40,217,0.06)", border: "1px solid rgba(109,40,217,0.15)" }}>
-                            <img src="/images/qs-relayer.jpg" alt="" style={{ width: "100%", height: 200, objectFit: "cover", display: "block" }} />
+                            <img src={`${import.meta.env.BASE_URL}images/qs-relayer.jpg`} alt="" style={{ width: "100%", height: 200, objectFit: "cover", display: "block" }} />
                             <div style={{ padding: "28px 28px 32px" }}>
                                 <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 10 }}>{p.cards[2].title}</div>
                                 <div style={{ fontSize: 14, lineHeight: 1.65, color: "rgba(255,255,255,0.55)" }}>{p.cards[2].body}</div>
                             </div>
                         </div>
                         <div style={{ borderRadius: 20, overflow: "hidden", background: "rgba(139,92,246,0.06)", border: "1px solid rgba(139,92,246,0.15)" }}>
-                            <img src="/images/qs-recipient.jpg" alt="" style={{ width: "100%", height: 200, objectFit: "cover", display: "block" }} />
+                            <img src={`${import.meta.env.BASE_URL}images/qs-recipient.jpg`} alt="" style={{ width: "100%", height: 200, objectFit: "cover", display: "block" }} />
                             <div style={{ padding: "28px 28px 32px" }}>
                                 <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 10 }}>{p.cards[3].title}</div>
                                 <div style={{ fontSize: 14, lineHeight: 1.65, color: "rgba(255,255,255,0.55)" }}>{p.cards[3].body}</div>

@@ -132,7 +132,7 @@ import { useEffect, useState } from "react";
               <div style={{ position: "relative", overflow: "hidden" }}>
                   <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
                       <img
-                          src="/images/v1-hero-bg.png"
+                          src={`${import.meta.env.BASE_URL}images/v1-hero-bg.png`}
                           alt=""
                           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%", filter: "brightness(0.3) saturate(0.8) hue-rotate(200deg)" }}
                       />

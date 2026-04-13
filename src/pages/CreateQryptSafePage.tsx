@@ -138,7 +138,7 @@ function WhatSection() {
                             </a>
                         </div>
                         <div style={{ flex: 1, position: "relative" }}>
-                            <img src="/images/card-smart-contract.png" alt="Smart Contract" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.75 }} />
+                            <img src={`${import.meta.env.BASE_URL}images/card-smart-contract.png`} alt="Smart Contract" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.75 }} />
                             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, #0a0f1e 0%, transparent 50%)" }} />
                         </div>
                     </div>
@@ -152,7 +152,7 @@ function WhatSection() {
                         display: "flex", flexDirection: "column",
                     }}>
                         <div style={{ position: "relative", flex: 1, minHeight: 150 }}>
-                            <img src="/images/card-dual-factor.png" alt="Dual Factor" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.8 }} />
+                            <img src={`${import.meta.env.BASE_URL}images/card-dual-factor.png`} alt="Dual Factor" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.8 }} />
                             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "60%", background: "linear-gradient(to bottom, transparent, #080b14)" }} />
                         </div>
                         <div style={{ padding: "0 22px 24px" }}>
@@ -171,7 +171,7 @@ function WhatSection() {
                         display: "flex", flexDirection: "column",
                     }}>
                         <div style={{ position: "relative", flex: 1, minHeight: 150 }}>
-                            <img src="/images/card-on-chain.png" alt="On Chain" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.8 }} />
+                            <img src={`${import.meta.env.BASE_URL}images/card-on-chain.png`} alt="On Chain" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.8 }} />
                             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "60%", background: "linear-gradient(to bottom, transparent, #060c10)" }} />
                         </div>
                         <div style={{ padding: "0 22px 24px" }}>
@@ -191,7 +191,7 @@ function WhatSection() {
                         display: "flex", alignItems: "stretch",
                     }}>
                         <div style={{ flex: 1, position: "relative" }}>
-                            <img src="/images/card-non-custodial.png" alt="Non-Custodial" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.75 }} />
+                            <img src={`${import.meta.env.BASE_URL}images/card-non-custodial.png`} alt="Non-Custodial" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.75 }} />
                             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to left, #100a04 0%, transparent 50%)" }} />
                         </div>
                         <div style={{ flex: "0 0 52%", padding: "36px 32px", display: "flex", flexDirection: "column", justifyContent: "center", position: "relative", zIndex: 1 }}>
@@ -457,7 +457,7 @@ function SecuritySection() {
                                 <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", lineHeight: 1.7 }}>Cannot move qTokens. transfer() always reverts without the vault proof present simultaneously.</div>
                             </div>
                             <div style={{ flex: 1, position: "relative" }}>
-                                <img src="/images/card-sec-key-stolen.png" alt="Key Stolen" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.7 }} />
+                                <img src={`${import.meta.env.BASE_URL}images/card-sec-key-stolen.png`} alt="Key Stolen" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.7 }} />
                                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, #10080a 0%, transparent 60%)" }} />
                             </div>
                         </div>
@@ -470,7 +470,7 @@ function SecuritySection() {
                             display: "flex", flexDirection: "column",
                         }}>
                             <div style={{ position: "relative", flex: 1, minHeight: 110 }}>
-                                <img src="/images/card-sec-brute-force.png" alt="Brute Force" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.75 }} />
+                                <img src={`${import.meta.env.BASE_URL}images/card-sec-brute-force.png`} alt="Brute Force" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.75 }} />
                                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "65%", background: "linear-gradient(to bottom, transparent, #080510)" }} />
                                 <div style={{ position: "absolute", top: 10, left: 10, background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.35)", borderRadius: 6, padding: "2px 8px", fontSize: 10, fontWeight: 800, color: GREEN, letterSpacing: "0.08em" }}>BLOCKED</div>
                             </div>
@@ -489,7 +489,7 @@ function SecuritySection() {
                             display: "flex", flexDirection: "column",
                         }}>
                             <div style={{ position: "relative", flex: 1, minHeight: 110 }}>
-                                <img src="/images/card-sec-frontrun.png" alt="Front Run" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.75 }} />
+                                <img src={`${import.meta.env.BASE_URL}images/card-sec-frontrun.png`} alt="Front Run" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.75 }} />
                                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "65%", background: "linear-gradient(to bottom, transparent, #040c0e)" }} />
                                 <div style={{ position: "absolute", top: 10, left: 10, background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.35)", borderRadius: 6, padding: "2px 8px", fontSize: 10, fontWeight: 800, color: GREEN, letterSpacing: "0.08em" }}>BLOCKED</div>
                             </div>
@@ -509,7 +509,7 @@ function SecuritySection() {
                             display: "flex", alignItems: "stretch",
                         }}>
                             <div style={{ flex: 1, position: "relative" }}>
-                                <img src="/images/card-sec-reentrancy.png" alt="Reentrancy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.7 }} />
+                                <img src={`${import.meta.env.BASE_URL}images/card-sec-reentrancy.png`} alt="Reentrancy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.7 }} />
                                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to left, #050e08 0%, transparent 60%)" }} />
                             </div>
                             <div style={{ flex: "0 0 55%", padding: "28px 28px", display: "flex", flexDirection: "column", justifyContent: "center", position: "relative", zIndex: 1 }}>
@@ -622,7 +622,7 @@ function Footer() {
             textAlign: "center",
         }}>
             <a href="/" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 0, marginBottom: 12 }}>
-                <img src="/qryptum-logo.png" alt="Qryptum" style={{ height: 24, width: 24, objectFit: "contain" }} />
+                <img src={`${import.meta.env.BASE_URL}qryptum-logo.png`} alt="Qryptum" style={{ height: 24, width: 24, objectFit: "contain" }} />
                 <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 800, fontSize: 12, color: "rgba(255,255,255,0.5)", letterSpacing: "-0.01em", marginLeft: -4 }}>QRYPTUM</span>
             </a>
             <div style={{ fontSize: 12, color: "rgba(255,255,255,0.2)" }}>Non-custodial. Open source. Ethereum L1.</div>
