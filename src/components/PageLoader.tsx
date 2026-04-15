@@ -9,11 +9,10 @@ export default function PageLoader() {
             justifyContent: "center",
             zIndex: 100,
         }}>
-            {/* outer glow ring */}
             <div style={{
                 position: "relative",
-                width: 140,
-                height: 140,
+                width: 120,
+                height: 120,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -23,12 +22,11 @@ export default function PageLoader() {
                     position: "absolute",
                     inset: 0,
                     borderRadius: "50%",
-                    background: "conic-gradient(from 0deg, transparent 0%, transparent 60%, rgba(139,92,246,0.15) 75%, rgba(139,92,246,0.6) 88%, #a78bfa 95%, #fff 100%)",
+                    background: "conic-gradient(from 0deg, transparent 0%, transparent 60%, rgba(56,189,248,0.15) 75%, rgba(56,189,248,0.6) 88%, #38bdf8 95%, #fff 100%)",
                     animation: "pl-spin 1.1s linear infinite",
-                    filter: "blur(0.5px)",
                 }} />
 
-                {/* inner mask to make it a ring */}
+                {/* inner mask */}
                 <div style={{
                     position: "absolute",
                     inset: 10,
@@ -36,23 +34,23 @@ export default function PageLoader() {
                     background: "#000",
                 }} />
 
-                {/* glow trail */}
+                {/* glow */}
                 <div style={{
                     position: "absolute",
                     inset: -8,
                     borderRadius: "50%",
-                    background: "conic-gradient(from 0deg, transparent 0%, transparent 70%, rgba(139,92,246,0.05) 85%, rgba(139,92,246,0.2) 100%)",
+                    background: "conic-gradient(from 0deg, transparent 0%, transparent 70%, rgba(56,189,248,0.05) 85%, rgba(56,189,248,0.25) 100%)",
                     animation: "pl-spin 1.1s linear infinite",
                     filter: "blur(6px)",
                 }} />
 
                 {/* logo center */}
                 <img
-                    src={`${import.meta.env.BASE_URL}qryptum-logo.png`}
+                    src="/qryptum-logo-new.png"
                     alt=""
-                    width={38}
-                    height={38}
-                    style={{ position: "relative", zIndex: 1, opacity: 0.9 }}
+                    width={48}
+                    height={48}
+                    style={{ position: "relative", zIndex: 1, objectFit: "contain" }}
                 />
             </div>
 

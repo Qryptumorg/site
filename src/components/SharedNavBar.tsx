@@ -2,153 +2,40 @@ import { useState, useRef, useEffect } from "react";
 import type { Language } from "@/lib/translations";
 import { useLanguage } from "@/lib/LanguageContext";
 
-/* ─── Nav data ───────────────────────────────────────────────────────── */
+/* ─── Nav menu keys and href lookup ─────────────────────────────────── */
 
-export const NAV_MENUS = [
-    {
-        label: "Features",
-        categories: [
-            {
-                title: "Shield Protocol",
-                desc: "Personal Qrypt-Safe infrastructure on Ethereum L1",
-                items: [
-                    { title: "Create Personal Qrypt-Safe", desc: "One Qrypt-Safe per wallet, deployed directly on-chain in one click", href: "/create-personal-qrypt-safe" },
-                    { title: "Shield ERC-20 Tokens", desc: "Any ERC-20 token can be shielded inside your Qrypt-Safe instantly", href: "/shield-erc20-tokens" },
-                    { title: "Transfer Shield", desc: "Contract blocks all unauthorized token moves at bytecode level", href: "/transfer-shield" },
-                ],
-            },
-            {
-                title: "qToken System",
-                desc: "Wrapped tokens that mirror your shielded assets",
-                items: [
-                    { title: "qETH and qUSDT", desc: "Shielded tokens appear in MetaMask with the q prefix", href: "/qtoken-system" },
-                    { title: "1:1 Backing", desc: "Every qToken is fully backed by the original shielded asset", href: "/one-to-one-backing" },
-                    { title: "Burn on Unshield", desc: "qTokens are burned automatically when you exit your Qrypt-Safe", href: "/burn-on-unshield" },
-                ],
-            },
-            {
-                title: "Transfer Engine",
-                desc: "Protocol-level transfer verification system",
-                items: [
-                    { title: "Commit Phase", desc: "Submit a hashed commitment before revealing transfer details", href: "/commit-phase" },
-                    { title: "Reveal Phase", desc: "Complete the transfer by revealing vault proof and amount onchain", href: "/reveal-phase" },
-                    { title: "MEV Protection", desc: "Two-phase design prevents front-running from mempool bots", href: "/mev-protection" },
-                ],
-            },
-        ],
-    },
-    {
-        label: "How It Works",
-        categories: [
-            {
-                title: "Getting Shielded",
-                desc: "From wallet connect to first shielded token",
-                items: [
-                    { title: "Connect Wallet", desc: "Use MetaMask or WalletConnect to connect your Ethereum wallet", href: "/connect-wallet" },
-                    { title: "Create Qrypt-Safe", desc: "Deploy your personal Qrypt-Safe contract on Ethereum L1", href: "/create-qrypt-safe" },
-                    { title: "Shield Tokens", desc: "Deposit ERC-20 tokens and receive qTokens in return", href: "/shield-tokens" },
-                ],
-            },
-            {
-                title: "Making Transfers",
-                desc: "Secure two-step onchain transfer flow",
-                items: [
-                    { title: "Enter Vault Proof", desc: "Your vault proof is hashed locally and never sent in plaintext", href: "/enter-vault-proof" },
-                    { title: "Commit Transfer", desc: "Submit the hashed commitment transaction to Ethereum", href: "/commit-transfer" },
-                    { title: "Reveal and Execute", desc: "Finalize the transfer within the 10-minute reveal window", href: "/reveal-and-execute" },
-                ],
-            },
-            {
-                title: "Exiting the Qrypt-Safe",
-                desc: "How to unshield tokens back to your wallet",
-                items: [
-                    { title: "Burn qTokens", desc: "Initiate an unshield to burn your qTokens from your Qrypt-Safe", href: "/burn-qtokens" },
-                    { title: "Receive Original Tokens", desc: "Original ERC-20 tokens are returned to your wallet address", href: "/receive-original-tokens" },
-                    { title: "Emergency Recovery", desc: "Recover funds after 180 days of verified inactivity", href: "/emergency-recovery" },
-                ],
-            },
-        ],
-    },
-    {
-        label: "Security",
-        categories: [
-            {
-                title: "Cryptographic Design",
-                desc: "How vault proofs and hashes keep you safe",
-                items: [
-                    { title: "Quantum-Resistant Design", desc: "keccak256 vault proofs stay secure even against quantum computing attacks", href: "/quantum-design" },
-                    { title: "Vault Proof Hashing", desc: "keccak256 hash stored on-chain, plaintext never leaves your browser", href: "/vault-proof-hashing" },
-                    { title: "No Server Storage", desc: "Qryptum never stores vault proofs or private keys on any server", href: "/no-server-storage" },
-                    { title: "Onchain Verification", desc: "Every transfer is verified by the smart contract, not the UI", href: "/onchain-verification" },
-                ],
-            },
-            {
-                title: "Protocol Architecture",
-                desc: "Commit-reveal and anti-frontrun design",
-                items: [
-                    { title: "Commit-Reveal Scheme", desc: "Two-phase design closes the window for mempool interception", href: "/commit-reveal-scheme" },
-                    { title: "Nonce Protection", desc: "Unique nonces prevent replay attacks on committed transactions", href: "/nonce-protection" },
-                    { title: "Time-Locked Reveals", desc: "Reveal window expires after 10 minutes for added safety", href: "/time-locked-reveals" },
-                ],
-            },
-            {
-                title: "Emergency Recovery",
-                desc: "How to recover funds in edge cases",
-                items: [
-                    { title: "180-Day Inactivity Rule", desc: "Emergency withdrawal unlocks after prolonged Qrypt-Safe inactivity", href: "/180-day-inactivity" },
-                    { title: "No Admin Keys", desc: "No multisig or admin can touch your Qrypt-Safe funds at any time", href: "/no-admin-keys" },
-                    { title: "Immutable Contracts", desc: "No upgrade proxy, no admin role: bytecode is final on deployment", href: "/immutable-contracts" },
-                ],
-            },
-        ],
-    },
-    {
-        label: "Docs",
-        categories: [
-            {
-                title: "Getting Started",
-                desc: "First steps with Qryptum",
-                items: [
-                    { title: "Quick Start Guide", desc: "Create your Qrypt-Safe and shield your first token in under 5 minutes", href: "/quick-start-guide" },
-                    { title: "Supported Tokens", desc: "Full list of ERC-20 tokens compatible with Qryptum Qrypt-Safes", href: "/supported-tokens" },
-                    { title: "Network Support", desc: "Ethereum L1, Sepolia testnet, and local Hardhat for developers", href: "/network-support" },
-                ],
-            },
-            {
-                title: "Smart Contracts",
-                desc: "Technical contract documentation",
-                items: [
-                    { title: "ShieldFactory", desc: "Factory contract that deploys PersonalVault clones via EIP-1167", href: "/shield-factory" },
-                    { title: "PersonalQrypt-Safe", desc: "Per-user Qrypt-Safe with shield, transfer, and unshield functions", href: "/personal-qrypt-safe" },
-                    { title: "ShieldToken (qToken)", desc: "ERC-20 token with transfers disabled except through the Qrypt-Safe", href: "/shield-token" },
-                ],
-            },
-            {
-                title: "Integration Guide",
-                desc: "APIs and references for developers",
-                items: [
-                    { title: "REST API Reference", desc: "Backend endpoints for Qrypt-Safe creation and transaction indexing", href: "/rest-api-reference" },
-                    { title: "ABI and Addresses", desc: "Contract ABIs and deployed addresses for all networks", href: "/abi-and-addresses" },
-                    { title: "FAQ", desc: "Common questions about qTokens, vault proofs, and onchain transfers", href: "/faq" },
-                ],
-            },
-        ],
-    },
-];
+const NAV_MENU_KEYS = ["features", "howItWorks", "security", "docs"] as const;
+type NavMenuKey = typeof NAV_MENU_KEYS[number];
+
+const NAV_HREFS: Record<NavMenuKey, string[][]> = {
+    features: [
+        ["/create-personal-qrypt-safe", "/shield-erc20-tokens", "/transfer-shield"],
+        ["/qtoken-system", "/one-to-one-backing", "/burn-on-unshield"],
+        ["/commit-phase", "/reveal-phase", "/mev-protection"],
+        ["/making-transfers", "/qrypt-shield"],
+    ],
+    howItWorks: [
+        ["/connect-wallet", "/create-qrypt-safe", "/shield-tokens"],
+        ["/enter-vault-proof", "/commit-transfer", "/reveal-and-execute"],
+        ["/burn-qtokens", "/receive-original-tokens", "/emergency-recovery"],
+    ],
+    security: [
+        ["/quantum-design", "/vault-proof-hashing", "/no-server-storage", "/onchain-verification"],
+        ["/commit-reveal-scheme", "/nonce-protection", "/time-locked-reveals"],
+        ["/180-day-inactivity", "/no-admin-keys", "/immutable-contracts"],
+    ],
+    docs: [
+        ["/quick-start-guide", "/supported-tokens", "/network-support"],
+        ["/shield-factory", "/personal-qrypt-safe", "/shield-token"],
+        ["/rest-api-reference", "/abi-and-addresses", "/faq"],
+    ],
+};
 
 const LANGS: { code: Language; label: string }[] = [
     { code: "en", label: "EN" },
     { code: "ru", label: "RU" },
     { code: "zh", label: "ZH" },
 ];
-
-/* ─── Nav label translations ─────────────────────────────────────────── */
-
-const NAV_LABEL_MAP: Record<Language, Record<string, string>> = {
-    en: { Features: "Features", "How It Works": "How It Works", Security: "Security", Docs: "Docs" },
-    ru: { Features: "Функции", "How It Works": "Как это работает", Security: "Безопасность", Docs: "Документация" },
-    zh: { Features: "功能特性", "How It Works": "工作原理", Security: "安全机制", Docs: "文档" },
-};
 
 /* ─── SharedNavBar ───────────────────────────────────────────────────── */
 
@@ -229,9 +116,9 @@ export default function SharedNavBar({ onConnect, isConnecting = false }: Shared
                     gap: 0,
                 }}>
                     {/* Logo */}
-                    <a href={import.meta.env.BASE_URL} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 0, marginRight: 32 }}>
-                        <img src={import.meta.env.BASE_URL + 'qryptum-logo.png'} alt="Qryptum" style={{ height: 38, width: 38, objectFit: "contain", display: "block" }} />
-                        <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: 16, letterSpacing: "0.12em", color: "#fff", marginLeft: -4 }}>
+                    <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 0, marginRight: 32 }}>
+                        <img src="/qryptum-logo.png" alt="Qryptum" style={{ height: 38, width: 38, objectFit: "contain", display: "block" }} />
+                        <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: 16, letterSpacing: "0.12em", color: "#d4d6e2", marginLeft: -4 }}>
                             QRYPTUM
                         </span>
                     </a>
@@ -252,9 +139,9 @@ export default function SharedNavBar({ onConnect, isConnecting = false }: Shared
                     ) : (
                         <>
                             <nav style={{ display: "flex", alignItems: "center", gap: 2, flex: 1 }}>
-                                {NAV_MENUS.map((menu, i) => (
+                                {NAV_MENU_KEYS.map((key, i) => (
                                     <button
-                                        key={menu.label}
+                                        key={key}
                                         onMouseEnter={() => openMenu(i)}
                                         onClick={() => { cancelClose(); setActiveMenu(activeMenu === i ? null : i); setActiveCategory(0); }}
                                         style={{
@@ -266,7 +153,7 @@ export default function SharedNavBar({ onConnect, isConnecting = false }: Shared
                                             transition: "color 0.15s, background 0.15s",
                                         }}
                                     >
-                                        {NAV_LABEL_MAP[lang][menu.label] ?? menu.label}
+                                        {t.navMenus[key].label}
                                         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
                                             style={{ transform: activeMenu === i ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s" }}>
                                             <path d="M6 9l6 6 6-6" />
@@ -312,7 +199,7 @@ export default function SharedNavBar({ onConnect, isConnecting = false }: Shared
                                         </div>
                                     )}
                                 </div>
-                                {onConnect ? (
+                                {onConnect && (
                                     <button onClick={handleLaunch} disabled={isConnecting}
                                         style={{
                                             display: "flex", alignItems: "center", gap: 8,
@@ -332,22 +219,6 @@ export default function SharedNavBar({ onConnect, isConnecting = false }: Shared
                                             </svg>
                                         )}
                                     </button>
-                                ) : (
-                                    <a href="/app" style={{
-                                        display: "flex", alignItems: "center", gap: 8,
-                                        background: "#fff", color: "#000", textDecoration: "none",
-                                        borderRadius: 10, padding: "8px 18px",
-                                        fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: 13,
-                                        whiteSpace: "nowrap",
-                                    }}
-                                        onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#ddd"; }}
-                                        onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#fff"; }}
-                                    >
-                                        {t.nav.launchApp}
-                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                            <path d="M5 12h14M12 5l7 7-7 7" />
-                                        </svg>
-                                    </a>
                                 )}
                             </div>
                         </>
@@ -368,12 +239,12 @@ export default function SharedNavBar({ onConnect, isConnecting = false }: Shared
                         padding: "0 20px", height: 64, flexShrink: 0,
                         borderBottom: "1px solid rgba(255,255,255,0.07)",
                     }}>
-                        <a href={import.meta.env.BASE_URL} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 0, flex: 1 }}>
-                            <img src={import.meta.env.BASE_URL + 'qryptum-logo.png'} alt="Qryptum" style={{ height: 36, width: 36, objectFit: "contain" }} />
-                            <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: 16, letterSpacing: "0.12em", color: "#fff", marginLeft: -4 }}>QRYPTUM</span>
+                        <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 0, flex: 1 }}>
+                            <img src="/qryptum-logo.png" alt="Qryptum" style={{ height: 36, width: 36, objectFit: "contain" }} />
+                            <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: 16, letterSpacing: "0.12em", color: "#d4d6e2", marginLeft: -4 }}>QRYPTUM</span>
                         </a>
                         <button onClick={() => setMobileOpen(false)}
-                            style={{ background: "none", border: "none", cursor: "pointer", padding: 8, color: "#fff" }}
+                            style={{ background: "none", border: "none", cursor: "pointer", padding: 8, color: "#d4d6e2" }}
                             aria-label="Close menu">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <path d="M18 6L6 18M6 6l12 12" />
@@ -382,8 +253,8 @@ export default function SharedNavBar({ onConnect, isConnecting = false }: Shared
                     </div>
 
                     <div style={{ flex: 1 }}>
-                        {NAV_MENUS.map((menu, i) => (
-                            <div key={menu.label}>
+                        {NAV_MENU_KEYS.map((key, i) => (
+                            <div key={key}>
                                 <button
                                     onClick={() => setMobileExpanded(mobileExpanded === i ? null : i)}
                                     style={{
@@ -393,7 +264,7 @@ export default function SharedNavBar({ onConnect, isConnecting = false }: Shared
                                         borderBottom: "1px solid rgba(255,255,255,0.06)",
                                     }}
                                 >
-                                    <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: 17, color: "#fff" }}>{NAV_LABEL_MAP[lang][menu.label] ?? menu.label}</span>
+                                    <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: 17, color: "#d4d6e2" }}>{t.navMenus[key].label}</span>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                                         stroke="rgba(255,255,255,0.45)" strokeWidth="2"
                                         style={{ transform: mobileExpanded === i ? "rotate(180deg)" : "none", transition: "transform 0.2s", flexShrink: 0 }}>
@@ -403,15 +274,15 @@ export default function SharedNavBar({ onConnect, isConnecting = false }: Shared
 
                                 {mobileExpanded === i && (
                                     <div style={{ background: "rgba(255,255,255,0.02)", paddingBottom: 8 }}>
-                                        {menu.categories.map((cat) => (
-                                            <div key={cat.title} style={{ padding: "12px 24px 8px 32px" }}>
+                                        {t.navMenus[key].categories.map((cat, ci) => (
+                                            <div key={ci} style={{ padding: "12px 24px 8px 32px" }}>
                                                 <p style={{
                                                     margin: "0 0 8px", fontFamily: "'Inter',sans-serif",
                                                     fontSize: 10, fontWeight: 700, letterSpacing: "0.12em",
                                                     color: "#627EEA", textTransform: "uppercase",
                                                 }}>{cat.title}</p>
-                                                {cat.items.map((item) => (
-                                                    <a key={item.title} href={import.meta.env.BASE_URL + item.href.slice(1)}
+                                                {cat.items.map((item, ii) => (
+                                                    <a key={ii} href={NAV_HREFS[key][ci][ii]}
                                                         style={{ display: "block", textDecoration: "none", padding: "9px 0", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
                                                         <p style={{ margin: 0, fontFamily: "'Inter',sans-serif", fontSize: 14, fontWeight: 500, color: "rgba(255,255,255,0.95)" }}>
                                                             {item.title}
@@ -444,7 +315,7 @@ export default function SharedNavBar({ onConnect, isConnecting = false }: Shared
                                     >{l.label}</button>
                                 ))}
                             </div>
-                            {onConnect ? (
+                            {onConnect && (
                                 <button onClick={() => { handleLaunch(); setMobileOpen(false); }} disabled={isConnecting}
                                     style={{
                                         width: "100%", padding: "15px", textAlign: "center",
@@ -455,13 +326,6 @@ export default function SharedNavBar({ onConnect, isConnecting = false }: Shared
                                         opacity: isConnecting ? 0.6 : 1,
                                     }}
                                 >{isConnecting ? "Connecting..." : t.nav.launchApp}</button>
-                            ) : (
-                                <a href="/app" style={{
-                                    display: "block", width: "100%", padding: "15px", textAlign: "center",
-                                    background: "#fff", color: "#000", textDecoration: "none",
-                                    borderRadius: 14, fontFamily: "'Inter',sans-serif",
-                                    fontWeight: 700, fontSize: 15, boxSizing: "border-box",
-                                }}>{t.nav.launchApp}</a>
                             )}
                         </div>
                     </div>
@@ -483,9 +347,9 @@ export default function SharedNavBar({ onConnect, isConnecting = false }: Shared
                             width: 280, borderRight: "1px solid rgba(255,255,255,0.07)",
                             padding: "24px 0", flexShrink: 0,
                         }}>
-                            {NAV_MENUS[activeMenu].categories.map((cat, ci) => (
+                            {t.navMenus[NAV_MENU_KEYS[activeMenu]].categories.map((cat, ci) => (
                                 <button
-                                    key={cat.title}
+                                    key={ci}
                                     onMouseEnter={() => setActiveCategory(ci)}
                                     style={{
                                         display: "block", width: "100%", textAlign: "left",
@@ -517,19 +381,52 @@ export default function SharedNavBar({ onConnect, isConnecting = false }: Shared
                             ))}
                         </div>
 
-                        <div style={{ flex: 1, padding: "28px 40px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 40px", alignContent: "start" }}>
-                            {NAV_MENUS[activeMenu].categories[activeCategory].items.map((item) => (
-                                <a
-                                    key={item.title}
-                                    href={import.meta.env.BASE_URL + item.href.slice(1)}
-                                    style={{ textDecoration: "none", padding: "12px 0", borderBottom: "1px solid rgba(255,255,255,0.05)" }}
-                                    onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = "rgba(98,126,234,0.3)"; }}
-                                    onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = "rgba(255,255,255,0.05)"; }}
-                                >
-                                    <p style={{ margin: 0, fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: 14, color: "#fff" }}>{item.title}</p>
-                                    <p style={{ margin: "4px 0 0", fontFamily: "'Inter',sans-serif", fontSize: 12, color: "rgba(255,255,255,0.45)", lineHeight: 1.5 }}>{item.desc}</p>
-                                </a>
-                            ))}
+                        <div style={{ flex: 1, padding: "28px 40px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 40px", alignContent: "start" }}>
+                                {t.navMenus[NAV_MENU_KEYS[activeMenu]].categories[activeCategory].items.map((item, ii) => (
+                                    <a
+                                        key={ii}
+                                        href={NAV_HREFS[NAV_MENU_KEYS[activeMenu]][activeCategory][ii]}
+                                        style={{ textDecoration: "none", padding: "12px 0", borderBottom: "1px solid rgba(255,255,255,0.05)" }}
+                                        onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = "rgba(98,126,234,0.3)"; }}
+                                        onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = "rgba(255,255,255,0.05)"; }}
+                                    >
+                                        <p style={{ margin: 0, fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: 14, color: "#d4d6e2" }}>{item.title}</p>
+                                        <p style={{ margin: "4px 0 0", fontFamily: "'Inter',sans-serif", fontSize: 12, color: "rgba(255,255,255,0.45)", lineHeight: 1.5 }}>{item.desc}</p>
+                                    </a>
+                                ))}
+                            </div>
+                            {NAV_MENU_KEYS[activeMenu] === "docs" && (
+                                <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 20 }}>
+                                    <a
+                                        href="https://qryptumorg.github.io/docs"
+                        target="_blank" rel="noopener noreferrer"
+                                        style={{
+                                            display: "inline-flex", alignItems: "center", gap: 8,
+                                            padding: "11px 18px",
+                                            border: "1px solid rgba(98,126,234,0.35)",
+                                            borderRadius: 10, textDecoration: "none",
+                                            background: "rgba(98,126,234,0.07)",
+                                            fontFamily: "'Inter',sans-serif", fontWeight: 600,
+                                            fontSize: 13, color: "#627EEA",
+                                            transition: "background 0.15s, border-color 0.15s",
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            (e.currentTarget as HTMLAnchorElement).style.background = "rgba(98,126,234,0.15)";
+                                            (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(98,126,234,0.6)";
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            (e.currentTarget as HTMLAnchorElement).style.background = "rgba(98,126,234,0.07)";
+                                            (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(98,126,234,0.35)";
+                                        }}
+                                    >
+                                        Documentation
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                            <path d="M5 12h14M12 5l7 7-7 7" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
