@@ -7,7 +7,26 @@ const basePath = process.env.BASE_PATH ?? "/";
 
 export default defineConfig({
   base: basePath,
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    {
+      name: "rewrite-public-paths-for-base",
+      generateBundle(_, bundle) {
+        if (!basePath || basePath === "/") return;
+        const p = basePath.endsWith("/") ? basePath : basePath + "/";
+        for (const chunk of Object.values(bundle)) {
+          if (chunk.type !== "chunk") continue;
+          chunk.code = chunk.code
+            .replaceAll('"/images/', '"' + p + 'images/')
+            .replaceAll("'/images/", "'" + p + "images/")
+            .replaceAll('"/qryptum-', '"' + p + 'qryptum-')
+            .replaceAll("'/qryptum-", "'" + p + "qryptum-")
+            .replaceAll("(/images/", "(" + p + "images/");
+        }
+      },
+    },
+  ],
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "src"),

@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <!-- Timer starts immediately — before any blocking resources -->
     <script>
+      // 1. SPA route restore — runs before splash check
+      (function () {
+        var p = sessionStorage.getItem('__spa_path__');
+        if (p) { sessionStorage.removeItem('__spa_path__'); window.history.replaceState(null, null, p); }
+      })();
+      // 2. Splash screen
       window.__SPLASH_START__ = Date.now();
       var _isHome = (window.location.pathname === '/' || window.location.pathname === '');
       var _seen   = sessionStorage.getItem('qryptum_splash_seen') === '1';
