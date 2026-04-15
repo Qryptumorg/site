@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function NoServerStoragePage() {
     const { t } = useLanguage();
     const p = t.featurePages.noServerStorage;
@@ -15,8 +17,8 @@ export default function NoServerStoragePage() {
             secondaryColor="#6366F1"
             heroImg="/images/qryptum-feat-network-onchain.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/vault-proof-hashing", primary: false },
-                { label: p.heroButtons[1].label, href: "/onchain-verification", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/vault-proof-hashing", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/onchain-verification", primary: false },
             ]}
             stats={[
                 { value: "0", label: p.stats[0].label, note: p.stats[0].note },
@@ -40,27 +42,27 @@ export default function NoServerStoragePage() {
                     color: "#6366F1",
                     title: p.cards[1].title,
                     body: p.cards[1].body,
-                    link: { text: p.cards[1].linkText!, href: "/vault-proof-hashing" },
+                    link: { text: p.cards[1].linkText!, href: _B + "/vault-proof-hashing" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format",
                     color: "#0284C7",
                     title: p.cards[2].title,
                     body: p.cards[2].body,
-                    link: { text: p.cards[2].linkText!, href: "/connect-wallet" },
+                    link: { text: p.cards[2].linkText!, href: _B + "/connect-wallet" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format",
                     color: "#4338CA",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/onchain-verification" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/onchain-verification" },
                 },
             ]}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/vault-proof-hashing", color: "#0EA5E9" },
-                { label: p.relatedLinks[1].label, href: "/onchain-verification", color: "#6366F1" },
-                { label: p.relatedLinks[2].label, href: "/vault-proof-security", color: "#0284C7" },
+                { label: p.relatedLinks[0].label, href: _B + "/vault-proof-hashing", color: "#0EA5E9" },
+                { label: p.relatedLinks[1].label, href: _B + "/onchain-verification", color: "#6366F1" },
+                { label: p.relatedLinks[2].label, href: _B + "/vault-proof-security", color: "#0284C7" },
             ]}
         />
     );

@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function ImmutableContractsPage() {
     const { t } = useLanguage();
     const p = t.featurePages.immutableContracts;
@@ -15,8 +17,8 @@ export default function ImmutableContractsPage() {
             secondaryColor="#EC4899"
             heroImg="/images/qryptum-feat-vault-security.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/no-admin-keys", primary: false },
-                { label: p.heroButtons[1].label, href: "/onchain-verification", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/no-admin-keys", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/onchain-verification", primary: false },
             ]}
             stats={[
                 { value: "0", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,34 +36,34 @@ export default function ImmutableContractsPage() {
                     color: "#8B5CF6",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/shield-factory" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/shield-factory" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1503551723145-6c040742065b?w=800&auto=format",
                     color: "#EC4899",
                     title: p.cards[1].title,
                     body: p.cards[1].body,
-                    link: { text: p.cards[1].linkText!, href: "/no-admin-keys" },
+                    link: { text: p.cards[1].linkText!, href: _B + "/no-admin-keys" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format",
                     color: "#7C3AED",
                     title: p.cards[2].title,
                     body: p.cards[2].body,
-                    link: { text: p.cards[2].linkText!, href: "/abi-and-addresses" },
+                    link: { text: p.cards[2].linkText!, href: _B + "/abi-and-addresses" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
                     color: "#DB2777",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/vault-proof-security" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/vault-proof-security" },
                 },
             ]}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/no-admin-keys", color: "#8B5CF6" },
-                { label: p.relatedLinks[1].label, href: "/onchain-verification", color: "#EC4899" },
-                { label: p.relatedLinks[2].label, href: "/vault-proof-security", color: "#7C3AED" },
+                { label: p.relatedLinks[0].label, href: _B + "/no-admin-keys", color: "#8B5CF6" },
+                { label: p.relatedLinks[1].label, href: _B + "/onchain-verification", color: "#EC4899" },
+                { label: p.relatedLinks[2].label, href: _B + "/vault-proof-security", color: "#7C3AED" },
             ]}
         />
     );

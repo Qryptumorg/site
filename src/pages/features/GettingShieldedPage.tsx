@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function GettingShieldedPage() {
     const { t } = useLanguage();
     const p = t.featurePages.gettingShielded;
@@ -16,7 +18,7 @@ export default function GettingShieldedPage() {
             heroImg="/images/qryptum-feat-shield-tokens.jpg"
             heroButtons={[
                 { label: p.heroButtons[0].label, href: "https://qryptum.eth.limo/app", primary: true },
-                { label: p.heroButtons[1].label, href: "/quick-start-guide" },
+                { label: p.heroButtons[1].label, href: _B + "/quick-start-guide" },
             ]}
             stats={[
                 { value: "3", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,7 +36,7 @@ export default function GettingShieldedPage() {
                     color: "#06b6d4",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/connect-wallet" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/connect-wallet" },
                 },
                 {
                     img: "/images/qryptum-getting-deploy.jpg",
@@ -53,7 +55,7 @@ export default function GettingShieldedPage() {
                     color: "#f59e0b",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/making-transfers" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/making-transfers" },
                 },
             ]}
             steps={[
@@ -69,9 +71,9 @@ export default function GettingShieldedPage() {
                 href: "https://qryptum.eth.limo/app",
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/shield-erc20-tokens", color: "#06b6d4" },
-                { label: p.relatedLinks[1].label, href: "/making-transfers", color: "#7c3aed" },
-                { label: p.relatedLinks[2].label, href: "/vault-proof-security", color: "#10b981" },
+                { label: p.relatedLinks[0].label, href: _B + "/shield-erc20-tokens", color: "#06b6d4" },
+                { label: p.relatedLinks[1].label, href: _B + "/making-transfers", color: "#7c3aed" },
+                { label: p.relatedLinks[2].label, href: _B + "/vault-proof-security", color: "#10b981" },
             ]}
         />
     );

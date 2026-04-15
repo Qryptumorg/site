@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function NonceProtectionPage() {
     const { t } = useLanguage();
     const p = t.featurePages.nonceProtection;
@@ -15,8 +17,8 @@ export default function NonceProtectionPage() {
             secondaryColor="#6366F1"
             heroImg="/images/qryptum-feat-mev-protection.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/commit-reveal-scheme", primary: false },
-                { label: p.heroButtons[1].label, href: "/time-locked-reveals", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/commit-reveal-scheme", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/time-locked-reveals", primary: false },
             ]}
             stats={[
                 { value: "1 nonce", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,7 +36,7 @@ export default function NonceProtectionPage() {
                     color: "#7C3AED",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/commit-reveal-scheme" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/commit-reveal-scheme" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format",
@@ -68,9 +70,9 @@ export default function NonceProtectionPage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/commit-reveal-scheme", color: "#7C3AED" },
-                { label: p.relatedLinks[1].label, href: "/time-locked-reveals", color: "#6366F1" },
-                { label: p.relatedLinks[2].label, href: "/mev-protection", color: "#5B21B6" },
+                { label: p.relatedLinks[0].label, href: _B + "/commit-reveal-scheme", color: "#7C3AED" },
+                { label: p.relatedLinks[1].label, href: _B + "/time-locked-reveals", color: "#6366F1" },
+                { label: p.relatedLinks[2].label, href: _B + "/mev-protection", color: "#5B21B6" },
             ]}
         />
     );

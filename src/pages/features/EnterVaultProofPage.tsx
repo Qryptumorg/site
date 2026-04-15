@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function EnterVaultProofPage() {
     const { t } = useLanguage();
     const p = t.featurePages.enterVaultProof;
@@ -15,8 +17,8 @@ export default function EnterVaultProofPage() {
             secondaryColor="#EC4899"
             heroImg="/images/qryptum-feat-vault-security.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/vault-proof-security", primary: false },
-                { label: p.heroButtons[1].label, href: "/no-server-storage", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/vault-proof-security", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/no-server-storage", primary: false },
             ]}
             stats={[
                 { value: "Browser only", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,7 +36,7 @@ export default function EnterVaultProofPage() {
                     color: "#8B5CF6",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/vault-proof-hashing" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/vault-proof-hashing" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format",
@@ -47,14 +49,14 @@ export default function EnterVaultProofPage() {
                     color: "#7C3AED",
                     title: p.cards[2].title,
                     body: p.cards[2].body,
-                    link: { text: p.cards[2].linkText!, href: "/no-server-storage" },
+                    link: { text: p.cards[2].linkText!, href: _B + "/no-server-storage" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format",
                     color: "#DB2777",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/onchain-verification" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/onchain-verification" },
                 },
             ]}
             techNote={{
@@ -68,9 +70,9 @@ export default function EnterVaultProofPage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/vault-proof-hashing", color: "#8B5CF6" },
-                { label: p.relatedLinks[1].label, href: "/no-server-storage", color: "#EC4899" },
-                { label: p.relatedLinks[2].label, href: "/commit-transfer", color: "#7C3AED" },
+                { label: p.relatedLinks[0].label, href: _B + "/vault-proof-hashing", color: "#8B5CF6" },
+                { label: p.relatedLinks[1].label, href: _B + "/no-server-storage", color: "#EC4899" },
+                { label: p.relatedLinks[2].label, href: _B + "/commit-transfer", color: "#7C3AED" },
             ]}
         />
     );

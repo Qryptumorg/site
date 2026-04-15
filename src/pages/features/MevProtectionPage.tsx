@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function MevProtectionPage() {
     const { t } = useLanguage();
     const p = t.featurePages.mevProtection;
@@ -15,7 +17,7 @@ export default function MevProtectionPage() {
             secondaryColor="#7c3aed"
             heroImg="/images/qryptum-feat-mev-protection.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/transfer-engine" },
+                { label: p.heroButtons[0].label, href: _B + "/transfer-engine" },
             ]}
             stats={[
                 { value: "Zero", label: p.stats[0].label, note: p.stats[0].note },
@@ -33,7 +35,7 @@ export default function MevProtectionPage() {
                     color: "#06b6d4",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/transfer-engine" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/transfer-engine" },
                 },
                 {
                     img: "/images/qryptum-sec-nonce.jpg",
@@ -52,7 +54,7 @@ export default function MevProtectionPage() {
                     color: "#f59e0b",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/vault-proof-security" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/vault-proof-security" },
                 },
             ]}
             techNote={{
@@ -71,9 +73,9 @@ export default function MevProtectionPage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/transfer-engine", color: "#06b6d4" },
-                { label: p.relatedLinks[1].label, href: "/commit-reveal-scheme", color: "#7c3aed" },
-                { label: p.relatedLinks[2].label, href: "/nonce-protection", color: "#10b981" },
+                { label: p.relatedLinks[0].label, href: _B + "/transfer-engine", color: "#06b6d4" },
+                { label: p.relatedLinks[1].label, href: _B + "/commit-reveal-scheme", color: "#7c3aed" },
+                { label: p.relatedLinks[2].label, href: _B + "/nonce-protection", color: "#10b981" },
             ]}
         />
     );

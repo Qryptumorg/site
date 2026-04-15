@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function SupportedTokensPage() {
     const { t } = useLanguage();
     const p = t.featurePages.supportedTokens;
@@ -15,8 +17,8 @@ export default function SupportedTokensPage() {
             secondaryColor="#00D4FF"
             heroImg="/images/qryptum-feat-token-economics.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/shield-tokens", primary: true },
-                { label: p.heroButtons[1].label, href: "/shield-erc20-tokens" },
+                { label: p.heroButtons[0].label, href: _B + "/shield-tokens", primary: true },
+                { label: p.heroButtons[1].label, href: _B + "/shield-erc20-tokens" },
             ]}
             stats={[
                 { value: "Any ERC-20", label: p.stats[0].label, note: p.stats[0].note },
@@ -52,13 +54,13 @@ export default function SupportedTokensPage() {
                     color: "#0099BB",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/network-support" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/network-support" },
                 },
             ]}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/shield-erc20-tokens", color: "#10B981" },
-                { label: p.relatedLinks[1].label, href: "/shield-tokens", color: "#00D4FF" },
-                { label: p.relatedLinks[2].label, href: "/qtoken-system", color: "#059669" },
+                { label: p.relatedLinks[0].label, href: _B + "/shield-erc20-tokens", color: "#10B981" },
+                { label: p.relatedLinks[1].label, href: _B + "/shield-tokens", color: "#00D4FF" },
+                { label: p.relatedLinks[2].label, href: _B + "/qtoken-system", color: "#059669" },
             ]}
         />
     );

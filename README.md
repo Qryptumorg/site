@@ -1,34 +1,32 @@
-# Qryptum Site
+# Qryptum: landing page
 
-Marketing site for the Qryptum protocol. Built with React, Vite, TypeScript, and Tailwind CSS v4.
+Informational landing site for the Qryptum protocol. Built with React, Vite, TypeScript, and Tailwind CSS v4.
+
+Live: https://qryptumorg.github.io/site/
 
 ## Overview
 
-Qryptum is a non-custodial protocol on Ethereum L1 that shields ERC-20 tokens inside personal cryptographic vaults called Qrypt-Safes. Vault access requires both a private key and a 6-character vault proof verified on-chain using keccak256.
+Qryptum is a non-custodial protocol on Ethereum L1 that shields ERC-20 tokens inside personal cryptographic vaults called QryptSafes. Vault access requires both a private key and a 6-character vault proof verified on-chain using keccak256.
+
+This repository contains the public-facing landing site covering all three protocol layers: QryptSafe, QryptShield, and QryptAir.
 
 ## Local Development
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
 ## Build
 
 ```bash
-npm run build
-npm run preview
+BASE_PATH=/ pnpm run build
+pnpm run preview
 ```
 
-## Environment Variables
+## GitHub Pages Build
 
-Copy `.env.example` to `.env`:
-
-```
-VITE_SHIELD_FACTORY_SEPOLIA=0x9a66500886344cbcce882137f263CB0c61aa99b1
-VITE_SHIELD_FACTORY_MAINNET=
-VITE_SHIELD_FACTORY_LOCAL=0x5FbDB2315678afecb367f032d93F642f64180aa3
-```
+The CI workflow sets `BASE_PATH=/site/` and deploys to `gh-pages` via `actions/deploy-pages`.
 
 ## Tech Stack
 
@@ -37,7 +35,6 @@ VITE_SHIELD_FACTORY_LOCAL=0x5FbDB2315678afecb367f032d93F642f64180aa3
 - TypeScript 5
 - Tailwind CSS v4
 - wouter
-- wagmi v3 + viem
 - Framer Motion
 
 ## Related Repositories

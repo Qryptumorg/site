@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function CommitRevealSchemePage() {
     const { t } = useLanguage();
     const p = t.featurePages.commitRevealScheme;
@@ -15,8 +17,8 @@ export default function CommitRevealSchemePage() {
             secondaryColor="#8B5CF6"
             heroImg="/images/qryptum-feat-commit-reveal.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/commit-phase", primary: false },
-                { label: p.heroButtons[1].label, href: "/reveal-phase", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/commit-phase", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/reveal-phase", primary: false },
             ]}
             stats={[
                 { value: "2 phases", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,28 +36,28 @@ export default function CommitRevealSchemePage() {
                     color: "#EC4899",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/commit-phase" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/commit-phase" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format",
                     color: "#8B5CF6",
                     title: p.cards[1].title,
                     body: p.cards[1].body,
-                    link: { text: p.cards[1].linkText!, href: "/reveal-phase" },
+                    link: { text: p.cards[1].linkText!, href: _B + "/reveal-phase" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format",
                     color: "#DB2777",
                     title: p.cards[2].title,
                     body: p.cards[2].body,
-                    link: { text: p.cards[2].linkText!, href: "/mev-protection" },
+                    link: { text: p.cards[2].linkText!, href: _B + "/mev-protection" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
                     color: "#6D28D9",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/nonce-protection" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/nonce-protection" },
                 },
             ]}
             techNote={{
@@ -70,9 +72,9 @@ export default function CommitRevealSchemePage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/commit-phase", color: "#EC4899" },
-                { label: p.relatedLinks[1].label, href: "/reveal-phase", color: "#8B5CF6" },
-                { label: p.relatedLinks[2].label, href: "/mev-protection", color: "#DB2777" },
+                { label: p.relatedLinks[0].label, href: _B + "/commit-phase", color: "#EC4899" },
+                { label: p.relatedLinks[1].label, href: _B + "/reveal-phase", color: "#8B5CF6" },
+                { label: p.relatedLinks[2].label, href: _B + "/mev-protection", color: "#DB2777" },
             ]}
         />
     );

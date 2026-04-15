@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function FaqPage() {
     const { t } = useLanguage();
     const p = t.featurePages.faq;
@@ -15,7 +17,7 @@ export default function FaqPage() {
             secondaryColor="#6366F1"
             heroImg="/images/qryptum-feat-guide-docs.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/quick-start-guide", primary: true },
+                { label: p.heroButtons[0].label, href: _B + "/quick-start-guide", primary: true },
             ]}
             stats={[
                 { value: "Non-custodial", label: p.stats[0].label, note: p.stats[0].note },
@@ -40,27 +42,27 @@ export default function FaqPage() {
                     color: "#6366F1",
                     title: p.cards[1].title,
                     body: p.cards[1].body,
-                    link: { text: p.cards[1].linkText!, href: "/no-admin-keys" },
+                    link: { text: p.cards[1].linkText!, href: _B + "/no-admin-keys" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=800&auto=format",
                     color: "#0284C7",
                     title: p.cards[2].title,
                     body: p.cards[2].body,
-                    link: { text: p.cards[2].linkText!, href: "/commit-reveal-scheme" },
+                    link: { text: p.cards[2].linkText!, href: _B + "/commit-reveal-scheme" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format",
                     color: "#4338CA",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/supported-tokens" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/supported-tokens" },
                 },
             ]}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/quick-start-guide", color: "#0EA5E9" },
-                { label: p.relatedLinks[1].label, href: "/supported-tokens", color: "#6366F1" },
-                { label: p.relatedLinks[2].label, href: "/getting-shielded", color: "#0284C7" },
+                { label: p.relatedLinks[0].label, href: _B + "/quick-start-guide", color: "#0EA5E9" },
+                { label: p.relatedLinks[1].label, href: _B + "/supported-tokens", color: "#6366F1" },
+                { label: p.relatedLinks[2].label, href: _B + "/getting-shielded", color: "#0284C7" },
             ]}
         />
     );

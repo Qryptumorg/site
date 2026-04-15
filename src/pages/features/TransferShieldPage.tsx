@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function TransferShieldPage() {
     const { t } = useLanguage();
     const p = t.featurePages.transferShield;
@@ -15,7 +17,7 @@ export default function TransferShieldPage() {
             secondaryColor="#7c3aed"
             heroImg="/images/qryptum-feat-shield-tokens.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/qtoken-system" },
+                { label: p.heroButtons[0].label, href: _B + "/qtoken-system" },
             ]}
             stats={[
                 { value: "Disabled", label: p.stats[0].label, note: p.stats[0].note },
@@ -33,7 +35,7 @@ export default function TransferShieldPage() {
                     color: "#f59e0b",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/qtoken-system" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/qtoken-system" },
                 },
                 {
                     img: "/images/qryptum-transfer-shield-gate.jpg",
@@ -52,7 +54,7 @@ export default function TransferShieldPage() {
                     color: "#10b981",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/vault-proof-security" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/vault-proof-security" },
                 },
             ]}
             techNote={{
@@ -70,9 +72,9 @@ export default function TransferShieldPage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/qtoken-system", color: "#f59e0b" },
-                { label: p.relatedLinks[1].label, href: "/vault-proof-security", color: "#7c3aed" },
-                { label: p.relatedLinks[2].label, href: "/create-personal-qrypt-safe", color: "#06b6d4" },
+                { label: p.relatedLinks[0].label, href: _B + "/qtoken-system", color: "#f59e0b" },
+                { label: p.relatedLinks[1].label, href: _B + "/vault-proof-security", color: "#7c3aed" },
+                { label: p.relatedLinks[2].label, href: _B + "/create-personal-qrypt-safe", color: "#06b6d4" },
             ]}
         />
     );

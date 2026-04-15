@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function CommitTransferPage() {
     const { t } = useLanguage();
     const p = t.featurePages.commitTransfer;
@@ -15,8 +17,8 @@ export default function CommitTransferPage() {
             secondaryColor="#0EA5E9"
             heroImg="/images/qryptum-feat-commit-reveal.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/reveal-and-execute", primary: true },
-                { label: p.heroButtons[1].label, href: "/commit-phase" },
+                { label: p.heroButtons[0].label, href: _B + "/reveal-and-execute", primary: true },
+                { label: p.heroButtons[1].label, href: _B + "/commit-phase" },
             ]}
             stats={[
                 { value: "1 tx", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,28 +36,28 @@ export default function CommitTransferPage() {
                     color: "#3B82F6",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/commit-phase" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/commit-phase" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format",
                     color: "#0EA5E9",
                     title: p.cards[1].title,
                     body: p.cards[1].body,
-                    link: { text: p.cards[1].linkText!, href: "/time-locked-reveals" },
+                    link: { text: p.cards[1].linkText!, href: _B + "/time-locked-reveals" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format",
                     color: "#2563EB",
                     title: p.cards[2].title,
                     body: p.cards[2].body,
-                    link: { text: p.cards[2].linkText!, href: "/nonce-protection" },
+                    link: { text: p.cards[2].linkText!, href: _B + "/nonce-protection" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format",
                     color: "#1D4ED8",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/mev-protection" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/mev-protection" },
                 },
             ]}
             techNote={{
@@ -69,9 +71,9 @@ export default function CommitTransferPage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/reveal-and-execute", color: "#3B82F6" },
-                { label: p.relatedLinks[1].label, href: "/mev-protection", color: "#0EA5E9" },
-                { label: p.relatedLinks[2].label, href: "/making-transfers", color: "#2563EB" },
+                { label: p.relatedLinks[0].label, href: _B + "/reveal-and-execute", color: "#3B82F6" },
+                { label: p.relatedLinks[1].label, href: _B + "/mev-protection", color: "#0EA5E9" },
+                { label: p.relatedLinks[2].label, href: _B + "/making-transfers", color: "#2563EB" },
             ]}
         />
     );

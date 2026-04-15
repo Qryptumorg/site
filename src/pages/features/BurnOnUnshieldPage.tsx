@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function BurnOnUnshieldPage() {
     const { t } = useLanguage();
     const p = t.featurePages.burnOnUnshield;
@@ -15,8 +17,8 @@ export default function BurnOnUnshieldPage() {
             secondaryColor="#F97316"
             heroImg="/images/qryptum-feat-burn-tokens.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/exiting-qrypt-safe", primary: true },
-                { label: p.heroButtons[1].label, href: "/one-to-one-backing" },
+                { label: p.heroButtons[0].label, href: _B + "/exiting-qrypt-safe", primary: true },
+                { label: p.heroButtons[1].label, href: _B + "/one-to-one-backing" },
             ]}
             stats={[
                 { value: "1 tx", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,7 +36,7 @@ export default function BurnOnUnshieldPage() {
                     color: "#EF4444",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/vault-proof-security" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/vault-proof-security" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1509869175650-a1d97972541a?w=800&auto=format",
@@ -53,7 +55,7 @@ export default function BurnOnUnshieldPage() {
                     color: "#B91C1C",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/vault-proof-security" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/vault-proof-security" },
                 },
             ]}
             techNote={{
@@ -68,9 +70,9 @@ export default function BurnOnUnshieldPage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/exiting-qrypt-safe", color: "#EF4444" },
-                { label: p.relatedLinks[1].label, href: "/receive-original-tokens", color: "#F97316" },
-                { label: p.relatedLinks[2].label, href: "/one-to-one-backing", color: "#DC2626" },
+                { label: p.relatedLinks[0].label, href: _B + "/exiting-qrypt-safe", color: "#EF4444" },
+                { label: p.relatedLinks[1].label, href: _B + "/receive-original-tokens", color: "#F97316" },
+                { label: p.relatedLinks[2].label, href: _B + "/one-to-one-backing", color: "#DC2626" },
             ]}
         />
     );

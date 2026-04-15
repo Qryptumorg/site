@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function TransferEnginePage() {
     const { t } = useLanguage();
     const p = t.featurePages.transferEngine;
@@ -16,7 +18,7 @@ export default function TransferEnginePage() {
             heroImg="/images/qryptum-feat-transfer-wallet.jpg"
             heroButtons={[
                 { label: p.heroButtons[0].label, href: "https://qryptum.eth.limo/app", primary: true },
-                { label: p.heroButtons[1].label, href: "/mev-protection" },
+                { label: p.heroButtons[1].label, href: _B + "/mev-protection" },
             ]}
             stats={[
                 { value: "2-phase", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,7 +36,7 @@ export default function TransferEnginePage() {
                     color: "#10b981",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/mev-protection" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/mev-protection" },
                 },
                 {
                     img: "/images/qryptum-transfer-reveal.jpg",
@@ -53,7 +55,7 @@ export default function TransferEnginePage() {
                     color: "#f59e0b",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/mev-protection" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/mev-protection" },
                 },
             ]}
             steps={[
@@ -76,9 +78,9 @@ export default function TransferEnginePage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/mev-protection", color: "#10b981" },
-                { label: p.relatedLinks[1].label, href: "/making-transfers", color: "#7c3aed" },
-                { label: p.relatedLinks[2].label, href: "/vault-proof-security", color: "#06b6d4" },
+                { label: p.relatedLinks[0].label, href: _B + "/mev-protection", color: "#10b981" },
+                { label: p.relatedLinks[1].label, href: _B + "/making-transfers", color: "#7c3aed" },
+                { label: p.relatedLinks[2].label, href: _B + "/vault-proof-security", color: "#06b6d4" },
             ]}
         />
     );

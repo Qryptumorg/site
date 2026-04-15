@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function OnchainVerificationPage() {
     const { t } = useLanguage();
     const p = t.featurePages.onchainVerification;
@@ -15,8 +17,8 @@ export default function OnchainVerificationPage() {
             secondaryColor="#EF4444"
             heroImg="/images/qryptum-feat-network-onchain.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/vault-proof-hashing", primary: false },
-                { label: p.heroButtons[1].label, href: "/immutable-contracts", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/vault-proof-hashing", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/immutable-contracts", primary: false },
             ]}
             stats={[
                 { value: "100%", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,7 +36,7 @@ export default function OnchainVerificationPage() {
                     color: "#F59E0B",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/vault-proof-hashing" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/vault-proof-hashing" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format",
@@ -47,14 +49,14 @@ export default function OnchainVerificationPage() {
                     color: "#D97706",
                     title: p.cards[2].title,
                     body: p.cards[2].body,
-                    link: { text: p.cards[2].linkText!, href: "/immutable-contracts" },
+                    link: { text: p.cards[2].linkText!, href: _B + "/immutable-contracts" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=800&auto=format",
                     color: "#B45309",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/immutable-contracts" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/immutable-contracts" },
                 },
             ]}
             techNote={{
@@ -68,9 +70,9 @@ export default function OnchainVerificationPage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/vault-proof-hashing", color: "#F59E0B" },
-                { label: p.relatedLinks[1].label, href: "/no-server-storage", color: "#EF4444" },
-                { label: p.relatedLinks[2].label, href: "/immutable-contracts", color: "#D97706" },
+                { label: p.relatedLinks[0].label, href: _B + "/vault-proof-hashing", color: "#F59E0B" },
+                { label: p.relatedLinks[1].label, href: _B + "/no-server-storage", color: "#EF4444" },
+                { label: p.relatedLinks[2].label, href: _B + "/immutable-contracts", color: "#D97706" },
             ]}
         />
     );

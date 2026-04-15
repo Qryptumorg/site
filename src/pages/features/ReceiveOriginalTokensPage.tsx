@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function ReceiveOriginalTokensPage() {
     const { t } = useLanguage();
     const p = t.featurePages.receiveOriginalTokens;
@@ -15,8 +17,8 @@ export default function ReceiveOriginalTokensPage() {
             secondaryColor="#10B981"
             heroImg="/images/qryptum-feat-token-economics.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/burn-qtokens", primary: false },
-                { label: p.heroButtons[1].label, href: "/exiting-qrypt-safe", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/burn-qtokens", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/exiting-qrypt-safe", primary: false },
             ]}
             stats={[
                 { value: "Same tx", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,7 +36,7 @@ export default function ReceiveOriginalTokensPage() {
                     color: "#22C55E",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/burn-on-unshield" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/burn-on-unshield" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1503551723145-6c040742065b?w=800&auto=format",
@@ -47,7 +49,7 @@ export default function ReceiveOriginalTokensPage() {
                     color: "#16A34A",
                     title: p.cards[2].title,
                     body: p.cards[2].body,
-                    link: { text: p.cards[2].linkText!, href: "/one-to-one-backing" },
+                    link: { text: p.cards[2].linkText!, href: _B + "/one-to-one-backing" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format",
@@ -57,9 +59,9 @@ export default function ReceiveOriginalTokensPage() {
                 },
             ]}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/burn-qtokens", color: "#22C55E" },
-                { label: p.relatedLinks[1].label, href: "/exiting-qrypt-safe", color: "#10B981" },
-                { label: p.relatedLinks[2].label, href: "/one-to-one-backing", color: "#16A34A" },
+                { label: p.relatedLinks[0].label, href: _B + "/burn-qtokens", color: "#22C55E" },
+                { label: p.relatedLinks[1].label, href: _B + "/exiting-qrypt-safe", color: "#10B981" },
+                { label: p.relatedLinks[2].label, href: _B + "/one-to-one-backing", color: "#16A34A" },
             ]}
         />
     );

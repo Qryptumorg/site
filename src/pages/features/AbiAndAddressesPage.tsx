@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function AbiAndAddressesPage() {
     const { t } = useLanguage();
     const p = t.featurePages.abiAndAddresses;
@@ -15,8 +17,8 @@ export default function AbiAndAddressesPage() {
             secondaryColor="#42A5F5"
             heroImg="/images/qryptum-feat-network-onchain.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/rest-api-reference", primary: false },
-                { label: p.heroButtons[1].label, href: "/network-support", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/rest-api-reference", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/network-support", primary: false },
             ]}
             stats={[
                 { value: "2 contracts", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,14 +36,14 @@ export default function AbiAndAddressesPage() {
                     color: "#78909C",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/shield-factory" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/shield-factory" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format",
                     color: "#42A5F5",
                     title: p.cards[1].title,
                     body: p.cards[1].body,
-                    link: { text: p.cards[1].linkText!, href: "/personal-qrypt-safe" },
+                    link: { text: p.cards[1].linkText!, href: _B + "/personal-qrypt-safe" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format",
@@ -72,9 +74,9 @@ export default function AbiAndAddressesPage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/rest-api-reference", color: "#78909C" },
-                { label: p.relatedLinks[1].label, href: "/shield-factory", color: "#42A5F5" },
-                { label: p.relatedLinks[2].label, href: "/network-support", color: "#546E7A" },
+                { label: p.relatedLinks[0].label, href: _B + "/rest-api-reference", color: "#78909C" },
+                { label: p.relatedLinks[1].label, href: _B + "/shield-factory", color: "#42A5F5" },
+                { label: p.relatedLinks[2].label, href: _B + "/network-support", color: "#546E7A" },
             ]}
         />
     );

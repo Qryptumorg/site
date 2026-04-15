@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function CommitPhasePage() {
     const { t } = useLanguage();
     const p = t.featurePages.commitPhase;
@@ -15,8 +17,8 @@ export default function CommitPhasePage() {
             secondaryColor="#6366F1"
             heroImg="/images/qryptum-feat-commit-reveal.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/reveal-phase", primary: true },
-                { label: p.heroButtons[1].label, href: "/mev-protection" },
+                { label: p.heroButtons[0].label, href: _B + "/reveal-phase", primary: true },
+                { label: p.heroButtons[1].label, href: _B + "/mev-protection" },
             ]}
             stats={[
                 { value: "1 tx", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,7 +36,7 @@ export default function CommitPhasePage() {
                     color: "#0EA5E9",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/vault-proof-hashing" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/vault-proof-hashing" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format",
@@ -47,14 +49,14 @@ export default function CommitPhasePage() {
                     color: "#3B82F6",
                     title: p.cards[2].title,
                     body: p.cards[2].body,
-                    link: { text: p.cards[2].linkText!, href: "/nonce-protection" },
+                    link: { text: p.cards[2].linkText!, href: _B + "/nonce-protection" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=800&auto=format",
                     color: "#2563EB",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/time-locked-reveals" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/time-locked-reveals" },
                 },
             ]}
             techNote={{
@@ -71,9 +73,9 @@ export default function CommitPhasePage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/reveal-phase", color: "#0EA5E9" },
-                { label: p.relatedLinks[1].label, href: "/mev-protection", color: "#6366F1" },
-                { label: p.relatedLinks[2].label, href: "/nonce-protection", color: "#3B82F6" },
+                { label: p.relatedLinks[0].label, href: _B + "/reveal-phase", color: "#0EA5E9" },
+                { label: p.relatedLinks[1].label, href: _B + "/mev-protection", color: "#6366F1" },
+                { label: p.relatedLinks[2].label, href: _B + "/nonce-protection", color: "#3B82F6" },
             ]}
         />
     );

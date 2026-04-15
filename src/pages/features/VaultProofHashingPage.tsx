@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function VaultProofHashingPage() {
     const { t } = useLanguage();
     const p = t.featurePages.vaultProofHashing;
@@ -15,8 +17,8 @@ export default function VaultProofHashingPage() {
             secondaryColor="#8B5CF6"
             heroImg="/images/qryptum-feat-vault-security.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/vault-proof-security", primary: false },
-                { label: p.heroButtons[1].label, href: "/no-server-storage", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/vault-proof-security", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/no-server-storage", primary: false },
             ]}
             stats={[
                 { value: "keccak256", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,7 +36,7 @@ export default function VaultProofHashingPage() {
                     color: "#6366F1",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/onchain-verification" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/onchain-verification" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format",
@@ -67,9 +69,9 @@ export default function VaultProofHashingPage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/no-server-storage", color: "#6366F1" },
-                { label: p.relatedLinks[1].label, href: "/onchain-verification", color: "#8B5CF6" },
-                { label: p.relatedLinks[2].label, href: "/vault-proof-security", color: "#4F46E5" },
+                { label: p.relatedLinks[0].label, href: _B + "/no-server-storage", color: "#6366F1" },
+                { label: p.relatedLinks[1].label, href: _B + "/onchain-verification", color: "#8B5CF6" },
+                { label: p.relatedLinks[2].label, href: _B + "/vault-proof-security", color: "#4F46E5" },
             ]}
         />
     );

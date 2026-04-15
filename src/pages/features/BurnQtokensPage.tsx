@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function BurnQtokensPage() {
     const { t } = useLanguage();
     const p = t.featurePages.burnQtokens;
@@ -33,14 +35,14 @@ export default function BurnQtokensPage() {
                     color: "#F97316",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/vault-proof-security" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/vault-proof-security" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=800&auto=format",
                     color: "#EF4444",
                     title: p.cards[1].title,
                     body: p.cards[1].body,
-                    link: { text: p.cards[1].linkText!, href: "/burn-on-unshield" },
+                    link: { text: p.cards[1].linkText!, href: _B + "/burn-on-unshield" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format",
@@ -53,7 +55,7 @@ export default function BurnQtokensPage() {
                     color: "#B45309",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/exiting-qrypt-safe" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/exiting-qrypt-safe" },
                 },
             ]}
             techNote={{
@@ -67,9 +69,9 @@ export default function BurnQtokensPage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/exiting-qrypt-safe", color: "#F97316" },
-                { label: p.relatedLinks[1].label, href: "/receive-original-tokens", color: "#EF4444" },
-                { label: p.relatedLinks[2].label, href: "/burn-on-unshield", color: "#DC2626" },
+                { label: p.relatedLinks[0].label, href: _B + "/exiting-qrypt-safe", color: "#F97316" },
+                { label: p.relatedLinks[1].label, href: _B + "/receive-original-tokens", color: "#EF4444" },
+                { label: p.relatedLinks[2].label, href: _B + "/burn-on-unshield", color: "#DC2626" },
             ]}
         />
     );

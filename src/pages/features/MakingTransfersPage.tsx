@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function MakingTransfersPage() {
     const { t } = useLanguage();
     const p = t.featurePages.makingTransfers;
@@ -16,7 +18,7 @@ export default function MakingTransfersPage() {
             heroImg="/images/qryptum-feat-transfer-wallet.jpg"
             heroButtons={[
                 { label: p.heroButtons[0].label, href: "https://qryptum.eth.limo/app", primary: true },
-                { label: p.heroButtons[1].label, href: "/transfer-engine" },
+                { label: p.heroButtons[1].label, href: _B + "/transfer-engine" },
             ]}
             stats={[
                 { value: "2 tx", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,7 +36,7 @@ export default function MakingTransfersPage() {
                     color: "#7c3aed",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/vault-proof-security" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/vault-proof-security" },
                 },
                 {
                     img: "/images/qryptum-transfer-reveal.jpg",
@@ -53,7 +55,7 @@ export default function MakingTransfersPage() {
                     color: "#f59e0b",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/receive-original-tokens" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/receive-original-tokens" },
                 },
             ]}
             steps={[
@@ -69,9 +71,9 @@ export default function MakingTransfersPage() {
                 href: "https://qryptum.eth.limo/app",
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/transfer-engine", color: "#7c3aed" },
-                { label: p.relatedLinks[1].label, href: "/mev-protection", color: "#06b6d4" },
-                { label: p.relatedLinks[2].label, href: "/vault-proof-security", color: "#10b981" },
+                { label: p.relatedLinks[0].label, href: _B + "/transfer-engine", color: "#7c3aed" },
+                { label: p.relatedLinks[1].label, href: _B + "/mev-protection", color: "#06b6d4" },
+                { label: p.relatedLinks[2].label, href: _B + "/vault-proof-security", color: "#10b981" },
             ]}
         />
     );

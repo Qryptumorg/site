@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function CreateQryptSafeGuidePage() {
     const { t } = useLanguage();
     const p = t.featurePages.createQryptSafeGuide;
@@ -16,7 +18,7 @@ export default function CreateQryptSafeGuidePage() {
             heroImg="/images/qryptum-feat-guide-docs.jpg"
             heroButtons={[
                 { label: p.heroButtons[0].label, href: "https://qryptum.eth.limo/app", primary: true },
-                { label: p.heroButtons[1].label, href: "/shield-factory" },
+                { label: p.heroButtons[1].label, href: _B + "/shield-factory" },
             ]}
             stats={[
                 { value: "1 tx", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,7 +36,7 @@ export default function CreateQryptSafeGuidePage() {
                     color: "#00D4FF",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/shield-factory" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/shield-factory" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format",
@@ -47,7 +49,7 @@ export default function CreateQryptSafeGuidePage() {
                     color: "#0099BB",
                     title: p.cards[2].title,
                     body: p.cards[2].body,
-                    link: { text: p.cards[2].linkText!, href: "/vault-proof-hashing" },
+                    link: { text: p.cards[2].linkText!, href: _B + "/vault-proof-hashing" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1509869175650-a1d97972541a?w=800&auto=format",
@@ -68,9 +70,9 @@ export default function CreateQryptSafeGuidePage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/connect-wallet", color: "#00D4FF" },
-                { label: p.relatedLinks[1].label, href: "/shield-tokens", color: "#7C3AED" },
-                { label: p.relatedLinks[2].label, href: "/create-personal-qrypt-safe", color: "#0099BB" },
+                { label: p.relatedLinks[0].label, href: _B + "/connect-wallet", color: "#00D4FF" },
+                { label: p.relatedLinks[1].label, href: _B + "/shield-tokens", color: "#7C3AED" },
+                { label: p.relatedLinks[2].label, href: _B + "/create-personal-qrypt-safe", color: "#0099BB" },
             ]}
         />
     );

@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function ShieldFactoryPage() {
     const { t } = useLanguage();
     const p = t.featurePages.shieldFactory;
@@ -15,8 +17,8 @@ export default function ShieldFactoryPage() {
             secondaryColor="#6366F1"
             heroImg="/images/qryptum-feat-shield-tokens.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/personal-qrypt-safe", primary: false },
-                { label: p.heroButtons[1].label, href: "/abi-and-addresses", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/personal-qrypt-safe", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/abi-and-addresses", primary: false },
             ]}
             stats={[
                 { value: "EIP-1167", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,7 +36,7 @@ export default function ShieldFactoryPage() {
                     color: "#00D4FF",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/personal-qrypt-safe" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/personal-qrypt-safe" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=800&auto=format",
@@ -53,7 +55,7 @@ export default function ShieldFactoryPage() {
                     color: "#4338CA",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/vault-proof-hashing" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/vault-proof-hashing" },
                 },
             ]}
             techNote={{
@@ -71,9 +73,9 @@ export default function ShieldFactoryPage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/personal-qrypt-safe", color: "#00D4FF" },
-                { label: p.relatedLinks[1].label, href: "/abi-and-addresses", color: "#6366F1" },
-                { label: p.relatedLinks[2].label, href: "/create-qrypt-safe", color: "#0099BB" },
+                { label: p.relatedLinks[0].label, href: _B + "/personal-qrypt-safe", color: "#00D4FF" },
+                { label: p.relatedLinks[1].label, href: _B + "/abi-and-addresses", color: "#6366F1" },
+                { label: p.relatedLinks[2].label, href: _B + "/create-qrypt-safe", color: "#0099BB" },
             ]}
         />
     );

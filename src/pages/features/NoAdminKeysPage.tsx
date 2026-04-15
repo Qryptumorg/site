@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function NoAdminKeysPage() {
     const { t } = useLanguage();
     const p = t.featurePages.noAdminKeys;
@@ -15,8 +17,8 @@ export default function NoAdminKeysPage() {
             secondaryColor="#10B981"
             heroImg="/images/qryptum-feat-vault-security.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/immutable-contracts", primary: false },
-                { label: p.heroButtons[1].label, href: "/vault-proof-security", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/immutable-contracts", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/vault-proof-security", primary: false },
             ]}
             stats={[
                 { value: "0", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,14 +36,14 @@ export default function NoAdminKeysPage() {
                     color: "#22C55E",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/immutable-contracts" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/immutable-contracts" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=800&auto=format",
                     color: "#10B981",
                     title: p.cards[1].title,
                     body: p.cards[1].body,
-                    link: { text: p.cards[1].linkText!, href: "/immutable-contracts" },
+                    link: { text: p.cards[1].linkText!, href: _B + "/immutable-contracts" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format",
@@ -54,13 +56,13 @@ export default function NoAdminKeysPage() {
                     color: "#059669",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/abi-and-addresses" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/abi-and-addresses" },
                 },
             ]}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/immutable-contracts", color: "#22C55E" },
-                { label: p.relatedLinks[1].label, href: "/vault-proof-security", color: "#10B981" },
-                { label: p.relatedLinks[2].label, href: "/no-server-storage", color: "#16A34A" },
+                { label: p.relatedLinks[0].label, href: _B + "/immutable-contracts", color: "#22C55E" },
+                { label: p.relatedLinks[1].label, href: _B + "/vault-proof-security", color: "#10B981" },
+                { label: p.relatedLinks[2].label, href: _B + "/no-server-storage", color: "#16A34A" },
             ]}
         />
     );

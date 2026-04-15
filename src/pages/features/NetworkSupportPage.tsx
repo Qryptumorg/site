@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function NetworkSupportPage() {
     const { t } = useLanguage();
     const p = t.featurePages.networkSupport;
@@ -15,8 +17,8 @@ export default function NetworkSupportPage() {
             secondaryColor="#8B5CF6"
             heroImg="/images/qryptum-feat-network-onchain.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/abi-and-addresses", primary: false },
-                { label: p.heroButtons[1].label, href: "/rest-api-reference", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/abi-and-addresses", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/rest-api-reference", primary: false },
             ]}
             stats={[
                 { value: "Chain ID 1", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,7 +36,7 @@ export default function NetworkSupportPage() {
                     color: "#6366F1",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/abi-and-addresses" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/abi-and-addresses" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format",
@@ -47,7 +49,7 @@ export default function NetworkSupportPage() {
                     color: "#4F46E5",
                     title: p.cards[2].title,
                     body: p.cards[2].body,
-                    link: { text: p.cards[2].linkText!, href: "/rest-api-reference" },
+                    link: { text: p.cards[2].linkText!, href: _B + "/rest-api-reference" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format",
@@ -57,9 +59,9 @@ export default function NetworkSupportPage() {
                 },
             ]}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/abi-and-addresses", color: "#6366F1" },
-                { label: p.relatedLinks[1].label, href: "/rest-api-reference", color: "#8B5CF6" },
-                { label: p.relatedLinks[2].label, href: "/shield-factory", color: "#4F46E5" },
+                { label: p.relatedLinks[0].label, href: _B + "/abi-and-addresses", color: "#6366F1" },
+                { label: p.relatedLinks[1].label, href: _B + "/rest-api-reference", color: "#8B5CF6" },
+                { label: p.relatedLinks[2].label, href: _B + "/shield-factory", color: "#4F46E5" },
             ]}
         />
     );

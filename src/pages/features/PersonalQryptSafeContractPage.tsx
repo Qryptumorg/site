@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function PersonalQryptSafeContractPage() {
     const { t } = useLanguage();
     const p = t.featurePages.personalQryptSafeContract;
@@ -15,8 +17,8 @@ export default function PersonalQryptSafeContractPage() {
             secondaryColor="#00D4FF"
             heroImg="/images/qryptum-feat-vault-security.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/shield-factory", primary: false },
-                { label: p.heroButtons[1].label, href: "/abi-and-addresses", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/shield-factory", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/abi-and-addresses", primary: false },
             ]}
             stats={[
                 { value: "3 functions", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,21 +36,21 @@ export default function PersonalQryptSafeContractPage() {
                     color: "#7C3AED",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/shield-tokens" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/shield-tokens" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1503551723145-6c040742065b?w=800&auto=format",
                     color: "#00D4FF",
                     title: p.cards[1].title,
                     body: p.cards[1].body,
-                    link: { text: p.cards[1].linkText!, href: "/commit-reveal-scheme" },
+                    link: { text: p.cards[1].linkText!, href: _B + "/commit-reveal-scheme" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format",
                     color: "#5B21B6",
                     title: p.cards[2].title,
                     body: p.cards[2].body,
-                    link: { text: p.cards[2].linkText!, href: "/burn-qtokens" },
+                    link: { text: p.cards[2].linkText!, href: _B + "/burn-qtokens" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
@@ -71,9 +73,9 @@ export default function PersonalQryptSafeContractPage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/shield-factory", color: "#7C3AED" },
-                { label: p.relatedLinks[1].label, href: "/shield-token", color: "#00D4FF" },
-                { label: p.relatedLinks[2].label, href: "/abi-and-addresses", color: "#5B21B6" },
+                { label: p.relatedLinks[0].label, href: _B + "/shield-factory", color: "#7C3AED" },
+                { label: p.relatedLinks[1].label, href: _B + "/shield-token", color: "#00D4FF" },
+                { label: p.relatedLinks[2].label, href: _B + "/abi-and-addresses", color: "#5B21B6" },
             ]}
         />
     );

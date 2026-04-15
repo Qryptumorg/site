@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function RevealAndExecutePage() {
     const { t } = useLanguage();
     const p = t.featurePages.revealAndExecute;
@@ -15,8 +17,8 @@ export default function RevealAndExecutePage() {
             secondaryColor="#3B82F6"
             heroImg="/images/qryptum-feat-commit-reveal.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/commit-transfer", primary: false },
-                { label: p.heroButtons[1].label, href: "/reveal-phase", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/commit-transfer", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/reveal-phase", primary: false },
             ]}
             stats={[
                 { value: "1 tx", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,7 +36,7 @@ export default function RevealAndExecutePage() {
                     color: "#10B981",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/reveal-phase" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/reveal-phase" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format",
@@ -53,7 +55,7 @@ export default function RevealAndExecutePage() {
                     color: "#2563EB",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/time-locked-reveals" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/time-locked-reveals" },
                 },
             ]}
             techNote={{
@@ -69,9 +71,9 @@ export default function RevealAndExecutePage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/commit-transfer", color: "#10B981" },
-                { label: p.relatedLinks[1].label, href: "/making-transfers", color: "#3B82F6" },
-                { label: p.relatedLinks[2].label, href: "/mev-protection", color: "#059669" },
+                { label: p.relatedLinks[0].label, href: _B + "/commit-transfer", color: "#10B981" },
+                { label: p.relatedLinks[1].label, href: _B + "/making-transfers", color: "#3B82F6" },
+                { label: p.relatedLinks[2].label, href: _B + "/mev-protection", color: "#059669" },
             ]}
         />
     );

@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function ExitingQryptSafePage() {
     const { t } = useLanguage();
     const p = t.featurePages.exitingQryptSafe;
@@ -33,7 +35,7 @@ export default function ExitingQryptSafePage() {
                     color: "#10b981",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/burn-qtokens" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/burn-qtokens" },
                 },
                 {
                     img: "/images/qryptum-exit-receive.jpg",
@@ -52,7 +54,7 @@ export default function ExitingQryptSafePage() {
                     color: "#f59e0b",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/emergency-recovery" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/emergency-recovery" },
                 },
             ]}
             techNote={{
@@ -70,9 +72,9 @@ export default function ExitingQryptSafePage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/shield-erc20-tokens", color: "#10b981" },
-                { label: p.relatedLinks[1].label, href: "/qtoken-system", color: "#06b6d4" },
-                { label: p.relatedLinks[2].label, href: "/emergency-recovery", color: "#f59e0b" },
+                { label: p.relatedLinks[0].label, href: _B + "/shield-erc20-tokens", color: "#10b981" },
+                { label: p.relatedLinks[1].label, href: _B + "/qtoken-system", color: "#06b6d4" },
+                { label: p.relatedLinks[2].label, href: _B + "/emergency-recovery", color: "#f59e0b" },
             ]}
         />
     );

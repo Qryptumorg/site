@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function QuickStartGuidePage() {
     const { t } = useLanguage();
     const p = t.featurePages.quickStartGuide;
@@ -16,7 +18,7 @@ export default function QuickStartGuidePage() {
             heroImg="/images/qryptum-feat-guide-docs.jpg"
             heroButtons={[
                 { label: p.heroButtons[0].label, href: "https://qryptum.eth.limo/app", primary: true },
-                { label: p.heroButtons[1].label, href: "/supported-tokens" },
+                { label: p.heroButtons[1].label, href: _B + "/supported-tokens" },
             ]}
             stats={[
                 { value: "3 steps", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,28 +36,28 @@ export default function QuickStartGuidePage() {
                     color: "#00D4FF",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/connect-wallet" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/connect-wallet" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=800&auto=format",
                     color: "#00C896",
                     title: p.cards[1].title,
                     body: p.cards[1].body,
-                    link: { text: p.cards[1].linkText!, href: "/create-qrypt-safe" },
+                    link: { text: p.cards[1].linkText!, href: _B + "/create-qrypt-safe" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format",
                     color: "#00AACC",
                     title: p.cards[2].title,
                     body: p.cards[2].body,
-                    link: { text: p.cards[2].linkText!, href: "/shield-tokens" },
+                    link: { text: p.cards[2].linkText!, href: _B + "/shield-tokens" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format",
                     color: "#00B080",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/qtoken-system" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/qtoken-system" },
                 },
             ]}
             steps={[
@@ -70,9 +72,9 @@ export default function QuickStartGuidePage() {
                 href: "https://qryptum.eth.limo/app",
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/supported-tokens", color: "#00D4FF" },
-                { label: p.relatedLinks[1].label, href: "/connect-wallet", color: "#00C896" },
-                { label: p.relatedLinks[2].label, href: "/getting-shielded", color: "#00AACC" },
+                { label: p.relatedLinks[0].label, href: _B + "/supported-tokens", color: "#00D4FF" },
+                { label: p.relatedLinks[1].label, href: _B + "/connect-wallet", color: "#00C896" },
+                { label: p.relatedLinks[2].label, href: _B + "/getting-shielded", color: "#00AACC" },
             ]}
         />
     );

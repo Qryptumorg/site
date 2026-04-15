@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function ShieldTokenContractPage() {
     const { t } = useLanguage();
     const p = t.featurePages.shieldTokenContract;
@@ -15,8 +17,8 @@ export default function ShieldTokenContractPage() {
             secondaryColor="#8B5CF6"
             heroImg="/images/qryptum-feat-shield-tokens.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/transfer-shield", primary: false },
-                { label: p.heroButtons[1].label, href: "/qtoken-system", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/transfer-shield", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/qtoken-system", primary: false },
             ]}
             stats={[
                 { value: "ERC-20", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,7 +36,7 @@ export default function ShieldTokenContractPage() {
                     color: "#EC4899",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/transfer-shield" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/transfer-shield" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=800&auto=format",
@@ -47,14 +49,14 @@ export default function ShieldTokenContractPage() {
                     color: "#DB2777",
                     title: p.cards[2].title,
                     body: p.cards[2].body,
-                    link: { text: p.cards[2].linkText!, href: "/one-to-one-backing" },
+                    link: { text: p.cards[2].linkText!, href: _B + "/one-to-one-backing" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
                     color: "#6D28D9",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/qtoken-system" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/qtoken-system" },
                 },
             ]}
             techNote={{
@@ -72,9 +74,9 @@ export default function ShieldTokenContractPage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/transfer-shield", color: "#EC4899" },
-                { label: p.relatedLinks[1].label, href: "/qtoken-system", color: "#8B5CF6" },
-                { label: p.relatedLinks[2].label, href: "/one-to-one-backing", color: "#DB2777" },
+                { label: p.relatedLinks[0].label, href: _B + "/transfer-shield", color: "#EC4899" },
+                { label: p.relatedLinks[1].label, href: _B + "/qtoken-system", color: "#8B5CF6" },
+                { label: p.relatedLinks[2].label, href: _B + "/one-to-one-backing", color: "#DB2777" },
             ]}
         />
     );

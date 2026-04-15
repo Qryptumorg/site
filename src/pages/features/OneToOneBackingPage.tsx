@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function OneToOneBackingPage() {
     const { t } = useLanguage();
     const p = t.featurePages.oneToOneBacking;
@@ -15,8 +17,8 @@ export default function OneToOneBackingPage() {
             secondaryColor="#4F46E5"
             heroImg="/images/qryptum-feat-token-economics.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/qtoken-system", primary: true },
-                { label: p.heroButtons[1].label, href: "/shield-erc20-tokens" },
+                { label: p.heroButtons[0].label, href: _B + "/qtoken-system", primary: true },
+                { label: p.heroButtons[1].label, href: _B + "/shield-erc20-tokens" },
             ]}
             stats={[
                 { value: "1:1", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,7 +36,7 @@ export default function OneToOneBackingPage() {
                     color: "#7C3AED",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/shield-tokens" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/shield-tokens" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
@@ -53,7 +55,7 @@ export default function OneToOneBackingPage() {
                     color: "#6D28D9",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/burn-on-unshield" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/burn-on-unshield" },
                 },
             ]}
             techNote={{
@@ -68,9 +70,9 @@ export default function OneToOneBackingPage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/qtoken-system", color: "#7C3AED" },
-                { label: p.relatedLinks[1].label, href: "/burn-on-unshield", color: "#4F46E5" },
-                { label: p.relatedLinks[2].label, href: "/shield-erc20-tokens", color: "#8B5CF6" },
+                { label: p.relatedLinks[0].label, href: _B + "/qtoken-system", color: "#7C3AED" },
+                { label: p.relatedLinks[1].label, href: _B + "/burn-on-unshield", color: "#4F46E5" },
+                { label: p.relatedLinks[2].label, href: _B + "/shield-erc20-tokens", color: "#8B5CF6" },
             ]}
         />
     );

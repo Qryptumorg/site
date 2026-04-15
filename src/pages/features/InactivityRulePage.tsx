@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function InactivityRulePage() {
     const { t } = useLanguage();
     const p = t.featurePages.inactivityRule;
@@ -15,8 +17,8 @@ export default function InactivityRulePage() {
             secondaryColor="#F97316"
             heroImg="/images/qryptum-feat-time-lock.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/emergency-recovery", primary: false },
-                { label: p.heroButtons[1].label, href: "/no-admin-keys", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/emergency-recovery", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/no-admin-keys", primary: false },
             ]}
             stats={[
                 { value: "180 days", label: p.stats[0].label, note: p.stats[0].note },
@@ -40,14 +42,14 @@ export default function InactivityRulePage() {
                     color: "#F97316",
                     title: p.cards[1].title,
                     body: p.cards[1].body,
-                    link: { text: p.cards[1].linkText!, href: "/emergency-recovery" },
+                    link: { text: p.cards[1].linkText!, href: _B + "/emergency-recovery" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format",
                     color: "#DC2626",
                     title: p.cards[2].title,
                     body: p.cards[2].body,
-                    link: { text: p.cards[2].linkText!, href: "/no-admin-keys" },
+                    link: { text: p.cards[2].linkText!, href: _B + "/no-admin-keys" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format",
@@ -69,9 +71,9 @@ export default function InactivityRulePage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/emergency-recovery", color: "#EF4444" },
-                { label: p.relatedLinks[1].label, href: "/no-admin-keys", color: "#F97316" },
-                { label: p.relatedLinks[2].label, href: "/immutable-contracts", color: "#DC2626" },
+                { label: p.relatedLinks[0].label, href: _B + "/emergency-recovery", color: "#EF4444" },
+                { label: p.relatedLinks[1].label, href: _B + "/no-admin-keys", color: "#F97316" },
+                { label: p.relatedLinks[2].label, href: _B + "/immutable-contracts", color: "#DC2626" },
             ]}
         />
     );

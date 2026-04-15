@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function ShieldTokensPage() {
     const { t } = useLanguage();
     const p = t.featurePages.shieldTokens;
@@ -16,7 +18,7 @@ export default function ShieldTokensPage() {
             heroImg="/images/qryptum-feat-shield-tokens.jpg"
             heroButtons={[
                 { label: p.heroButtons[0].label, href: "https://qryptum.eth.limo/app", primary: true },
-                { label: p.heroButtons[1].label, href: "/supported-tokens" },
+                { label: p.heroButtons[1].label, href: _B + "/supported-tokens" },
             ]}
             stats={[
                 { value: "Any ERC-20", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,14 +36,14 @@ export default function ShieldTokensPage() {
                     color: "#00C896",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/shield-erc20-tokens" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/shield-erc20-tokens" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
                     color: "#00D4FF",
                     title: p.cards[1].title,
                     body: p.cards[1].body,
-                    link: { text: p.cards[1].linkText!, href: "/enter-vault-proof" },
+                    link: { text: p.cards[1].linkText!, href: _B + "/enter-vault-proof" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&auto=format",
@@ -54,7 +56,7 @@ export default function ShieldTokensPage() {
                     color: "#0099BB",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/qtoken-system" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/qtoken-system" },
                 },
             ]}
             techNote={{
@@ -68,9 +70,9 @@ export default function ShieldTokensPage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/shield-erc20-tokens", color: "#00C896" },
-                { label: p.relatedLinks[1].label, href: "/one-to-one-backing", color: "#00D4FF" },
-                { label: p.relatedLinks[2].label, href: "/create-qrypt-safe", color: "#00A876" },
+                { label: p.relatedLinks[0].label, href: _B + "/shield-erc20-tokens", color: "#00C896" },
+                { label: p.relatedLinks[1].label, href: _B + "/one-to-one-backing", color: "#00D4FF" },
+                { label: p.relatedLinks[2].label, href: _B + "/create-qrypt-safe", color: "#00A876" },
             ]}
         />
     );

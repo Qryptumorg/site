@@ -287,9 +287,9 @@ export default function QryptAirPage() {
             <section style={{ borderTop: "1px solid rgba(255,255,255,0.07)", padding: isMobile ? "40px 24px" : "48px 72px" }}>
                 <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", gap: 12, flexWrap: "wrap" as const }}>
                     {[
-                        { label: p.relatedLinks[0].label, href: "/making-transfers", color: PRIMARY },
-                        { label: p.relatedLinks[1].label, href: "/vault-proof-security", color: SECONDARY },
-                        { label: p.relatedLinks[2].label, href: "/transfer-engine", color: "#b45309" },
+                        { label: p.relatedLinks[0].label, href: _B + "/making-transfers", color: PRIMARY },
+                        { label: p.relatedLinks[1].label, href: _B + "/vault-proof-security", color: SECONDARY },
+                        { label: p.relatedLinks[2].label, href: _B + "/transfer-engine", color: "#b45309" },
                     ].map((link, i) => (
                         <a key={i} href={link.href} style={{ padding: "10px 18px", borderRadius: 10, border: `1px solid ${link.color}40`, background: `${link.color}10`, color: link.color, fontSize: 13, fontWeight: 600, textDecoration: "none" }}>
                             {link.label} →

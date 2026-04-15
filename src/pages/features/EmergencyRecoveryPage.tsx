@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function EmergencyRecoveryPage() {
     const { t } = useLanguage();
     const p = t.featurePages.emergencyRecovery;
@@ -16,7 +18,7 @@ export default function EmergencyRecoveryPage() {
             heroImg="/images/qryptum-feat-vault-security.jpg"
             heroButtons={[
                 { label: p.heroButtons[0].label, href: "/180-day-inactivity", primary: false },
-                { label: p.heroButtons[1].label, href: "/no-admin-keys", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/no-admin-keys", primary: false },
             ]}
             stats={[
                 { value: "180 days", label: p.stats[0].label, note: p.stats[0].note },
@@ -47,7 +49,7 @@ export default function EmergencyRecoveryPage() {
                     color: "#DC2626",
                     title: p.cards[2].title,
                     body: p.cards[2].body,
-                    link: { text: p.cards[2].linkText!, href: "/no-admin-keys" },
+                    link: { text: p.cards[2].linkText!, href: _B + "/no-admin-keys" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
@@ -58,8 +60,8 @@ export default function EmergencyRecoveryPage() {
             ]}
             relatedLinks={[
                 { label: p.relatedLinks[0].label, href: "/180-day-inactivity", color: "#EF4444" },
-                { label: p.relatedLinks[1].label, href: "/no-admin-keys", color: "#F97316" },
-                { label: p.relatedLinks[2].label, href: "/exiting-qrypt-safe", color: "#DC2626" },
+                { label: p.relatedLinks[1].label, href: _B + "/no-admin-keys", color: "#F97316" },
+                { label: p.relatedLinks[2].label, href: _B + "/exiting-qrypt-safe", color: "#DC2626" },
             ]}
         />
     );

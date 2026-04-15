@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function RevealPhasePage() {
     const { t } = useLanguage();
     const p = t.featurePages.revealPhase;
@@ -15,8 +17,8 @@ export default function RevealPhasePage() {
             secondaryColor="#0EA5E9"
             heroImg="/images/qryptum-feat-commit-reveal.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/commit-phase", primary: false },
-                { label: p.heroButtons[1].label, href: "/making-transfers", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/commit-phase", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/making-transfers", primary: false },
             ]}
             stats={[
                 { value: "10 min", label: p.stats[0].label, note: p.stats[0].note },
@@ -34,7 +36,7 @@ export default function RevealPhasePage() {
                     color: "#10B981",
                     title: p.cards[0].title,
                     body: p.cards[0].body,
-                    link: { text: p.cards[0].linkText!, href: "/vault-proof-hashing" },
+                    link: { text: p.cards[0].linkText!, href: _B + "/vault-proof-hashing" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format",
@@ -53,7 +55,7 @@ export default function RevealPhasePage() {
                     color: "#0891B2",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/time-locked-reveals" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/time-locked-reveals" },
                 },
             ]}
             techNote={{
@@ -69,9 +71,9 @@ export default function RevealPhasePage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/commit-phase", color: "#10B981" },
-                { label: p.relatedLinks[1].label, href: "/making-transfers", color: "#0EA5E9" },
-                { label: p.relatedLinks[2].label, href: "/vault-proof-hashing", color: "#059669" },
+                { label: p.relatedLinks[0].label, href: _B + "/commit-phase", color: "#10B981" },
+                { label: p.relatedLinks[1].label, href: _B + "/making-transfers", color: "#0EA5E9" },
+                { label: p.relatedLinks[2].label, href: _B + "/vault-proof-hashing", color: "#059669" },
             ]}
         />
     );

@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function TimeLockedRevealsPage() {
     const { t } = useLanguage();
     const p = t.featurePages.timeLockedReveals;
@@ -15,8 +17,8 @@ export default function TimeLockedRevealsPage() {
             secondaryColor="#EF4444"
             heroImg="/images/qryptum-feat-time-lock.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/commit-phase", primary: false },
-                { label: p.heroButtons[1].label, href: "/nonce-protection", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/commit-phase", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/nonce-protection", primary: false },
             ]}
             stats={[
                 { value: "10 min", label: p.stats[0].label, note: p.stats[0].note },
@@ -40,7 +42,7 @@ export default function TimeLockedRevealsPage() {
                     color: "#EF4444",
                     title: p.cards[1].title,
                     body: p.cards[1].body,
-                    link: { text: p.cards[1].linkText!, href: "/nonce-protection" },
+                    link: { text: p.cards[1].linkText!, href: _B + "/nonce-protection" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format",
@@ -53,7 +55,7 @@ export default function TimeLockedRevealsPage() {
                     color: "#B45309",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/making-transfers" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/making-transfers" },
                 },
             ]}
             techNote={{
@@ -70,9 +72,9 @@ export default function TimeLockedRevealsPage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/nonce-protection", color: "#F59E0B" },
-                { label: p.relatedLinks[1].label, href: "/commit-phase", color: "#EF4444" },
-                { label: p.relatedLinks[2].label, href: "/mev-protection", color: "#D97706" },
+                { label: p.relatedLinks[0].label, href: _B + "/nonce-protection", color: "#F59E0B" },
+                { label: p.relatedLinks[1].label, href: _B + "/commit-phase", color: "#EF4444" },
+                { label: p.relatedLinks[2].label, href: _B + "/mev-protection", color: "#D97706" },
             ]}
         />
     );

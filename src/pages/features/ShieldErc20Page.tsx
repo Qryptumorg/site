@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function ShieldErc20Page() {
     const { t } = useLanguage();
     const p = t.featurePages.shieldErc20;
@@ -53,7 +55,7 @@ export default function ShieldErc20Page() {
                     color: "#f59e0b",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/qtoken-system" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/qtoken-system" },
                 },
             ]}
             techNote={{
@@ -70,9 +72,9 @@ export default function ShieldErc20Page() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/qtoken-system", color: "#7c3aed" },
-                { label: p.relatedLinks[1].label, href: "/vault-proof-security", color: "#06b6d4" },
-                { label: p.relatedLinks[2].label, href: "/exiting-qrypt-safe", color: "#10b981" },
+                { label: p.relatedLinks[0].label, href: _B + "/qtoken-system", color: "#7c3aed" },
+                { label: p.relatedLinks[1].label, href: _B + "/vault-proof-security", color: "#06b6d4" },
+                { label: p.relatedLinks[2].label, href: _B + "/exiting-qrypt-safe", color: "#10b981" },
             ]}
         />
     );

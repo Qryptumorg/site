@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function ConnectWalletPage() {
     const { t } = useLanguage();
     const p = t.featurePages.connectWallet;
@@ -16,7 +18,7 @@ export default function ConnectWalletPage() {
             heroImg="/images/qryptum-feat-transfer-wallet.jpg"
             heroButtons={[
                 { label: p.heroButtons[0].label, href: "https://qryptum.eth.limo/app", primary: true },
-                { label: p.heroButtons[1].label, href: "/create-qrypt-safe" },
+                { label: p.heroButtons[1].label, href: _B + "/create-qrypt-safe" },
             ]}
             stats={[
                 { value: "MetaMask", label: p.stats[0].label, note: p.stats[0].note },
@@ -53,13 +55,13 @@ export default function ConnectWalletPage() {
                     color: "#B45309",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/network-support" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/network-support" },
                 },
             ]}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/create-qrypt-safe", color: "#F59E0B" },
-                { label: p.relatedLinks[1].label, href: "/quick-start-guide", color: "#EF4444" },
-                { label: p.relatedLinks[2].label, href: "/getting-shielded", color: "#D97706" },
+                { label: p.relatedLinks[0].label, href: _B + "/create-qrypt-safe", color: "#F59E0B" },
+                { label: p.relatedLinks[1].label, href: _B + "/quick-start-guide", color: "#EF4444" },
+                { label: p.relatedLinks[2].label, href: _B + "/getting-shielded", color: "#D97706" },
             ]}
         />
     );

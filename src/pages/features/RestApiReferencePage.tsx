@@ -1,6 +1,8 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function RestApiReferencePage() {
     const { t } = useLanguage();
     const p = t.featurePages.restApiReference;
@@ -15,8 +17,8 @@ export default function RestApiReferencePage() {
             secondaryColor="#EF4444"
             heroImg="/images/qryptum-feat-guide-docs.jpg"
             heroButtons={[
-                { label: p.heroButtons[0].label, href: "/abi-and-addresses", primary: false },
-                { label: p.heroButtons[1].label, href: "/network-support", primary: false },
+                { label: p.heroButtons[0].label, href: _B + "/abi-and-addresses", primary: false },
+                { label: p.heroButtons[1].label, href: _B + "/network-support", primary: false },
             ]}
             stats={[
                 { value: "REST", label: p.stats[0].label, note: p.stats[0].note },
@@ -52,7 +54,7 @@ export default function RestApiReferencePage() {
                     color: "#B45309",
                     title: p.cards[3].title,
                     body: p.cards[3].body,
-                    link: { text: p.cards[3].linkText!, href: "/no-server-storage" },
+                    link: { text: p.cards[3].linkText!, href: _B + "/no-server-storage" },
                 },
             ]}
             techNote={{
@@ -69,9 +71,9 @@ export default function RestApiReferencePage() {
                 ],
             }}
             relatedLinks={[
-                { label: p.relatedLinks[0].label, href: "/abi-and-addresses", color: "#F59E0B" },
-                { label: p.relatedLinks[1].label, href: "/network-support", color: "#EF4444" },
-                { label: p.relatedLinks[2].label, href: "/shield-factory", color: "#D97706" },
+                { label: p.relatedLinks[0].label, href: _B + "/abi-and-addresses", color: "#F59E0B" },
+                { label: p.relatedLinks[1].label, href: _B + "/network-support", color: "#EF4444" },
+                { label: p.relatedLinks[2].label, href: _B + "/shield-factory", color: "#D97706" },
             ]}
         />
     );

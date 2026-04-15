@@ -49,7 +49,7 @@ function ProductsBento() {
         ["EIP-712", "QR Code", "No Internet"],
     ];
     const PRODUCT_IMGS  = ["/images/qryptum-prod-qryptsafe.jpg", "/images/qryptum-prod-qryptshield.jpg", "/images/qryptum-prod-qryptair.jpg"];
-    const PRODUCT_HREFS = ["/create-personal-qrypt-safe", "/qrypt-shield", "/qrypt-air"];
+    const PRODUCT_HREFS = [_B + "/create-personal-qrypt-safe", _B + "/qrypt-shield", _B + "/qrypt-air"];
     const PRODUCT_GRID  = [
         { col: "1 / 2", row: "1 / 3" },
         { col: "2 / 3", row: "1 / 2" },
@@ -929,7 +929,7 @@ function Footer() {
                     {L.footerCopy}
                 </p>
                 <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
-                    {[{ label: L.footerPrivacy, href: "/privacy" }, { label: L.footerTerms, href: "/terms" }].map(item => (
+                    {[{ label: L.footerPrivacy, href: _B + "/privacy" }, { label: L.footerTerms, href: _B + "/terms" }].map(item => (
                         <a
                             key={item.label}
                             href={item.href}
@@ -977,8 +977,8 @@ function UseCases() {
     }, []);
 
     const cardMeta = [
-        { img: "/qryptum-usecase-shield.jpg",      bg: "rgba(20,24,60,0.9)",  border: "rgba(98,126,234,0.15)", href: "/vault-proof-security"  },
-        { img: "/qryptum-usecase-inheritance.jpg", bg: "rgba(35,18,55,0.9)",  border: "rgba(150,80,220,0.15)", href: "/making-transfers"       },
+        { img: "/qryptum-usecase-shield.jpg",      bg: "rgba(20,24,60,0.9)",  border: "rgba(98,126,234,0.15)", href: _B + "/vault-proof-security"  },
+        { img: "/qryptum-usecase-inheritance.jpg", bg: "rgba(35,18,55,0.9)",  border: "rgba(150,80,220,0.15)", href: _B + "/making-transfers"       },
         { img: "/qryptum-usecase-coldwallet.jpg",  bg: "rgba(12,32,24,0.9)",  border: "rgba(30,180,100,0.15)", href: "https://qryptum.eth.limo/app"                   },
     ];
     const cards = L.useCasesCards.map((c, i) => ({ ...cardMeta[i], ...c }));
@@ -1526,9 +1526,9 @@ function HeroSection({ onConnect, isConnecting }: { onConnect: () => void; isCon
                         <div className="pill-scan-top" />
                         <div className="pill-scan-bottom" />
                         {[
-                            { href: "/create-personal-qrypt-safe", color: "#22C55E", name: "QryptSafe",   tag: L.heroProductPillTags[0] },
-                            { href: "/qrypt-shield",               color: "#8B5CF6", name: "QryptShield", tag: L.heroProductPillTags[1] },
-                            { href: "/qrypt-air",                  color: "#F59E0B", name: "QryptAir",    tag: L.heroProductPillTags[2] },
+                            { href: _B + "/create-personal-qrypt-safe", color: "#22C55E", name: "QryptSafe",   tag: L.heroProductPillTags[0] },
+                            { href: _B + "/qrypt-shield",               color: "#8B5CF6", name: "QryptShield", tag: L.heroProductPillTags[1] },
+                            { href: _B + "/qrypt-air",                  color: "#F59E0B", name: "QryptAir",    tag: L.heroProductPillTags[2] },
                         ].map((pill) => (
                             <a
                                 key={pill.href}
