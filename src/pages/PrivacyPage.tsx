@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import SharedNavBar from "../components/SharedNavBar";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 type PrivacySection = {
     title: string;
     body?: readonly string[];
@@ -113,7 +115,7 @@ export default function PrivacyPage() {
                 padding: "28px 32px",
                 textAlign: "center",
             }}>
-                <a href="/" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 0, marginBottom: 10 }}>
+                <a href={_B + "/"} style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 0, marginBottom: 10 }}>
                     <img src="/qryptum-logo.png" alt="Qryptum" style={{ height: 22, width: 22, objectFit: "contain" }} />
                     <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 800, fontSize: 11, color: "rgba(255,255,255,0.4)", letterSpacing: "-0.01em", marginLeft: -4 }}>QRYPTUM</span>
                 </a>

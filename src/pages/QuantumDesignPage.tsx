@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import SharedNavBar from "@/components/SharedNavBar";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 const INDIGO = "#4f46e5";
 const VIOLET = "#7c3aed";
 const CYAN = "#06b6d4";
@@ -80,7 +82,7 @@ export default function QuantumDesignPage() {
                             textDecoration: "none", padding: "13px 32px", borderRadius: 10, fontWeight: 700, fontSize: 14,
                             background: `linear-gradient(135deg, ${INDIGO}, ${VIOLET})`, color: "#d4d6e2",
                         }}>{t.common.openApp}</a>
-                        <a href="/vault-proof-hashing" style={{
+                        <a href={_B + "/vault-proof-hashing"} style={{
                             textDecoration: "none", padding: "13px 32px", borderRadius: 10, fontWeight: 700, fontSize: 14,
                             background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", color: "#d4d6e2",
                         }}>{t.common.readDocs}</a>
@@ -398,7 +400,7 @@ export default function QuantumDesignPage() {
                             textDecoration: "none", padding: "15px 40px", borderRadius: 12, fontWeight: 800, fontSize: 15,
                             background: `linear-gradient(135deg, ${INDIGO}, ${VIOLET})`, color: "#d4d6e2",
                         }}>{L.ctaPrimary}</a>
-                        <a href="/vault-proof-hashing" style={{
+                        <a href={_B + "/vault-proof-hashing"} style={{
                             textDecoration: "none", padding: "15px 40px", borderRadius: 12, fontWeight: 700, fontSize: 15,
                             background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)", color: "#d4d6e2",
                         }}>{L.ctaSecondary}</a>
@@ -408,7 +410,7 @@ export default function QuantumDesignPage() {
 
             {/* ══════════ FOOTER ════════════════════════════════════════════ */}
             <footer style={{ background: "#000", borderTop: "1px solid rgba(255,255,255,0.06)", padding: "28px 24px", textAlign: "center" }}>
-                <a href="/" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 0, marginBottom: 10 }}>
+                <a href={_B + "/"} style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 0, marginBottom: 10 }}>
                     <img src="/qryptum-logo.png" alt="Qryptum" style={{ height: 22, width: 22, objectFit: "contain" }} />
                     <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 800, fontSize: 11, color: "rgba(255,255,255,0.4)", letterSpacing: "-0.01em", marginLeft: -4 }}>QRYPTUM</span>
                 </a>

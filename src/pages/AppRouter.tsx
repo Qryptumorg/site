@@ -1,5 +1,6 @@
 import { Suspense, lazy } from "react";
-import { Switch, Route } from "wouter";
+import { Router, Switch, Route } from "wouter";
+
 import { LanguageProvider } from "@/lib/LanguageContext";
 import PageLoader from "@/components/PageLoader";
 
@@ -60,8 +61,11 @@ const RestApiReferencePage = lazy(() => import("./features/RestApiReferencePage"
 const AbiAndAddressesPage = lazy(() => import("./features/AbiAndAddressesPage"));
 const FaqPage = lazy(() => import("./features/FaqPage"));
 
+const _base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function AppRouter() {
     return (
+        <Router base={_base}>
         <LanguageProvider>
         <Suspense fallback={<PageLoader />}>
         <Switch>
@@ -151,5 +155,6 @@ export default function AppRouter() {
         </Switch>
         </Suspense>
         </LanguageProvider>
+        </Router>
     );
 }

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import SharedNavBar from "../components/SharedNavBar";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 function useIsMobile() {
     const [m, setM] = useState(() => typeof window !== "undefined" && window.innerWidth < 768);
     useEffect(() => {
@@ -651,7 +653,7 @@ function Footer() {
             padding: "32px 24px",
             textAlign: "center",
         }}>
-            <a href="/" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 0, marginBottom: 12 }}>
+            <a href={_B + "/"} style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 0, marginBottom: 12 }}>
                 <img src="/qryptum-logo.png" alt="Qryptum" style={{ height: 24, width: 24, objectFit: "contain" }} />
                 <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 800, fontSize: 12, color: "rgba(255,255,255,0.5)", letterSpacing: "-0.01em", marginLeft: -4 }}>QRYPTUM</span>
             </a>

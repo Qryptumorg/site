@@ -4,6 +4,8 @@ import { useLanguage } from "@/lib/LanguageContext";
 import { translations } from "@/lib/translations";
 import { useLocation } from "wouter";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 type FP = typeof translations.en.featurePages;
 
 export default function QryptShieldPage() {
@@ -147,7 +149,7 @@ export default function QryptShieldPage() {
                                 <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 10 }}>{p.cards[0].title}</div>
                                 <div style={{ fontSize: 14, lineHeight: 1.65, color: "rgba(255,255,255,0.55)" }}>{p.cards[0].body}</div>
                                 {p.cards[0].linkText && (
-                                    <a href="/transfer-engine" style={{ display: "inline-block", marginTop: 14, fontSize: 13, fontWeight: 600, color: PRIMARY, textDecoration: "none" }}>
+                                    <a href={_B + "/transfer-engine"} style={{ display: "inline-block", marginTop: 14, fontSize: 13, fontWeight: 600, color: PRIMARY, textDecoration: "none" }}>
                                         {p.cards[0].linkText} →
                                     </a>
                                 )}
@@ -176,7 +178,7 @@ export default function QryptShieldPage() {
                                 <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 10 }}>{p.cards[3].title}</div>
                                 <div style={{ fontSize: 14, lineHeight: 1.65, color: "rgba(255,255,255,0.55)" }}>{p.cards[3].body}</div>
                                 {p.cards[3].linkText && (
-                                    <a href="/making-transfers" style={{ display: "inline-block", marginTop: 14, fontSize: 13, fontWeight: 600, color: PRIMARY, textDecoration: "none" }}>
+                                    <a href={_B + "/making-transfers"} style={{ display: "inline-block", marginTop: 14, fontSize: 13, fontWeight: 600, color: PRIMARY, textDecoration: "none" }}>
                                         {p.cards[3].linkText} →
                                     </a>
                                 )}

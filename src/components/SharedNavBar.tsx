@@ -7,27 +7,29 @@ import { useLanguage } from "@/lib/LanguageContext";
 const NAV_MENU_KEYS = ["features", "howItWorks", "security", "docs"] as const;
 type NavMenuKey = typeof NAV_MENU_KEYS[number];
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 const NAV_HREFS: Record<NavMenuKey, string[][]> = {
     features: [
-        ["/create-personal-qrypt-safe", "/shield-erc20-tokens", "/transfer-shield"],
-        ["/qtoken-system", "/one-to-one-backing", "/burn-on-unshield"],
-        ["/commit-phase", "/reveal-phase", "/mev-protection"],
-        ["/making-transfers", "/qrypt-shield"],
+        [_B+"/create-personal-qrypt-safe", _B+"/shield-erc20-tokens", _B+"/transfer-shield"],
+        [_B+"/qtoken-system", _B+"/one-to-one-backing", _B+"/burn-on-unshield"],
+        [_B+"/commit-phase", _B+"/reveal-phase", _B+"/mev-protection"],
+        [_B+"/making-transfers", _B+"/qrypt-shield"],
     ],
     howItWorks: [
-        ["/connect-wallet", "/create-qrypt-safe", "/shield-tokens"],
-        ["/enter-vault-proof", "/commit-transfer", "/reveal-and-execute"],
-        ["/burn-qtokens", "/receive-original-tokens", "/emergency-recovery"],
+        [_B+"/connect-wallet", _B+"/create-qrypt-safe", _B+"/shield-tokens"],
+        [_B+"/enter-vault-proof", _B+"/commit-transfer", _B+"/reveal-and-execute"],
+        [_B+"/burn-qtokens", _B+"/receive-original-tokens", _B+"/emergency-recovery"],
     ],
     security: [
-        ["/quantum-design", "/vault-proof-hashing", "/no-server-storage", "/onchain-verification"],
-        ["/commit-reveal-scheme", "/nonce-protection", "/time-locked-reveals"],
-        ["/180-day-inactivity", "/no-admin-keys", "/immutable-contracts"],
+        [_B+"/quantum-design", _B+"/vault-proof-hashing", _B+"/no-server-storage", _B+"/onchain-verification"],
+        [_B+"/commit-reveal-scheme", _B+"/nonce-protection", _B+"/time-locked-reveals"],
+        [_B+"/180-day-inactivity", _B+"/no-admin-keys", _B+"/immutable-contracts"],
     ],
     docs: [
-        ["/quick-start-guide", "/supported-tokens", "/network-support"],
-        ["/shield-factory", "/personal-qrypt-safe", "/shield-token"],
-        ["/rest-api-reference", "/abi-and-addresses", "/faq"],
+        [_B+"/quick-start-guide", _B+"/supported-tokens", _B+"/network-support"],
+        [_B+"/shield-factory", _B+"/personal-qrypt-safe", _B+"/shield-token"],
+        [_B+"/rest-api-reference", _B+"/abi-and-addresses", _B+"/faq"],
     ],
 };
 
@@ -116,7 +118,7 @@ export default function SharedNavBar({ onConnect, isConnecting = false }: Shared
                     gap: 0,
                 }}>
                     {/* Logo */}
-                    <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 0, marginRight: 32 }}>
+                    <a href={_B + "/"} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 0, marginRight: 32 }}>
                         <img src="/qryptum-logo.png" alt="Qryptum" style={{ height: 38, width: 38, objectFit: "contain", display: "block" }} />
                         <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: 16, letterSpacing: "0.12em", color: "#d4d6e2", marginLeft: -4 }}>
                             QRYPTUM
@@ -239,7 +241,7 @@ export default function SharedNavBar({ onConnect, isConnecting = false }: Shared
                         padding: "0 20px", height: 64, flexShrink: 0,
                         borderBottom: "1px solid rgba(255,255,255,0.07)",
                     }}>
-                        <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 0, flex: 1 }}>
+                        <a href={_B + "/"} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 0, flex: 1 }}>
                             <img src="/qryptum-logo.png" alt="Qryptum" style={{ height: 36, width: 36, objectFit: "contain" }} />
                             <span style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: 16, letterSpacing: "0.12em", color: "#d4d6e2", marginLeft: -4 }}>QRYPTUM</span>
                         </a>

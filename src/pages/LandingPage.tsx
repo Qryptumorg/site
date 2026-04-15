@@ -5,6 +5,8 @@ import SharedNavBar from "@/components/SharedNavBar";
 import HeroCardRow from "@/components/HeroCardRow";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function LandingPage() {
     const [, navigate] = useLocation();
     const isConnecting = false;
@@ -869,7 +871,7 @@ function Footer() {
             }}>
                 {/* Brand */}
                 <div style={{ flex: 1.4, paddingRight: isMobile ? 0 : 48 }}>
-                    <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 0, marginBottom: 16 }}>
+                    <a href={_B + "/"} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 0, marginBottom: 16 }}>
                         <img src="/qryptum-logo.png" alt="Qryptum" style={{ height: 36, width: 36, objectFit: "contain", display: "block" }} />
                         <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 800, color: "#d4d6e2", letterSpacing: "-0.01em", marginLeft: -4 }}>QRYPTUM</span>
                     </a>
@@ -1016,7 +1018,7 @@ function UseCases() {
             {isMobile ? (
                 <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                     {/* Quantum Design card - mobile first */}
-                    <a href="/quantum-design" style={{ textDecoration: "none", display: "block", position: "relative", borderRadius: 20, overflow: "hidden", minHeight: 220, border: "1px solid rgba(79,70,229,0.25)" }}>
+                    <a href={_B + "/quantum-design"} style={{ textDecoration: "none", display: "block", position: "relative", borderRadius: 20, overflow: "hidden", minHeight: 220, border: "1px solid rgba(79,70,229,0.25)" }}>
                         <img src="/images/qryptum-quantum-design-hero.jpg" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.4 }} />
                         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(79,70,229,0.55) 0%, rgba(0,0,0,0.75) 100%)" }} />
                         <div style={{ position: "relative", padding: "32px 28px" }}>
@@ -1054,7 +1056,7 @@ function UseCases() {
             ) : (
                 <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                     {/* Row 1: Quantum Design - full width featured card */}
-                    <a href="/quantum-design" style={{
+                    <a href={_B + "/quantum-design"} style={{
                         textDecoration: "none", display: "block", position: "relative",
                         borderRadius: 20, overflow: "hidden", minHeight: 280,
                         border: "1px solid rgba(79,70,229,0.22)",
