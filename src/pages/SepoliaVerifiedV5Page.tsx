@@ -11,8 +11,10 @@ const IMPL_V5     = "0x06e29f9309Afa42A3f5E5640717bd8db952F12ba";
 const VAULT_A     = "0x340C7041cefdf5786644aE7624486620B0E07B70";
 const VAULT_B     = "0xA592B995ac851CBC69E91F29696391a530e3D37d";
 const QUSDC       = "0xeA614DD453DC33D4D6Ce1F67Df95f380AbDF215C";
-const FACTORY_V4  = "";
-const FACTORY_V3  = "";
+const FACTORY_V4  = "0x611Ba6F93fAeC0203eBee1c3e35d72C1e5ba560F";
+const FACTORY_V3  = "0x88E8eAFafc99E83e687BCAbD53F783a92e51F75c";
+const FACTORY_V2  = "0x26BAb8B6e88201ad4824ea1290a7C9c7b9B10fCf";
+const FACTORY_V1  = "0xd05F4fb3f24C7bF0cb482123186CF797E42CF17A";
 const WALLET_A    = "0x2459A9B3D481Bb02e6844Cf28314b2c3eaC431e4";
 const WALLET_B    = "0xA3F12571e24811CB885cae2a17F8e45C84343829";
 const USDC_SEPOLIA = "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238";
@@ -603,8 +605,8 @@ export default function SepoliaVerifiedV5Page() {
                         {[
                             { label: "v4 Factory (decommissioned: superseded by v5 bytes32 upgrade)", value: FACTORY_V4, note: "v4: string passwords, QryptAir, QryptShield" },
                             { label: "v3 Factory (decommissioned: superseded by v4/v5)", value: FACTORY_V3, note: "v3: 26/26 E2E, commit-reveal only" },
-                            { label: "v2 ShieldFactory (decommissioned: decimal fix)", value: "", note: "v2: qToken decimal fix" },
-                            { label: "v1 ShieldFactory (decommissioned: original deploy)", value: "", note: "v1: hardcoded 18 decimals" },
+                            { label: "v2 ShieldFactory (decommissioned: decimal fix)", value: FACTORY_V2, note: "v2: qToken decimal fix" },
+                            { label: "v1 ShieldFactory (decommissioned: original deploy)", value: FACTORY_V1, note: "v1: hardcoded 18 decimals" },
                         ].map((c, i) => (
                             <div key={i} style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start", gap: 10, padding: "12px 16px", background: "rgba(239,68,68,0.04)", border: "1px solid rgba(239,68,68,0.12)", borderRadius: 10 }}>
                                 <div style={{ flex: 1, minWidth: 220 }}>
