@@ -53,7 +53,7 @@ export default function QryptShieldPage() {
                     {p.heroButtons.map((b, i) => (
                         <a
                             key={i}
-                            href={i === 0 ? "/transfer-engine" : "/mev-protection"}
+                            href={i === 0 ? _B + "/transfer-engine" : _B + "/mev-protection"}
                             style={{ padding: "10px 20px", borderRadius: 10, border: `1px solid ${i === 0 ? PRIMARY : "rgba(255,255,255,0.15)"}`, background: i === 0 ? "rgba(139,92,246,0.15)" : "transparent", color: "#d4d6e2", fontWeight: 600, fontSize: 14, textDecoration: "none" }}
                         >
                             {b.label}

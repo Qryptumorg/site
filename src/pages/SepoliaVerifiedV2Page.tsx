@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import SharedNavBar from "@/components/SharedNavBar";
+import SepoliaVersionNav from "@/components/SepoliaVersionNav";
 import { useLanguage } from "@/lib/LanguageContext";
 import { translations } from "@/lib/translations";
+
+const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 type SR2 = typeof translations.en.sepoliaRecord.v2;
 
@@ -503,6 +506,11 @@ export default function SepoliaVerifiedV2Page() {
                         <TestRow key={i} n={i + 1} title={test.title} desc={test.desc} isMobile={isMobile} txHash={TEST_TX[i] ?? null} />
                     ))}
                 </div>
+
+                <SepoliaVersionNav
+                    prev={{ label: "V1 Record", href: "/qryptum-sepolia-verified-v1" }}
+                    next={{ label: "V3 Record", href: "/qryptum-sepolia-verified-v3" }}
+                />
 
             </div>
         </div>
