@@ -1,10 +1,9 @@
-import { Suspense, lazy, useState, useEffect } from "react";
+import { Suspense, lazy } from "react";
 import { Switch, Route } from "wouter";
 import { LanguageProvider } from "@/lib/LanguageContext";
 import PageLoader from "@/components/PageLoader";
-import LandingPage from "./LandingPage";
 
-const DashboardPage = lazy(() => import("./DashboardPage"));
+const LandingPage = lazy(() => import("./LandingPage"));
 const CreateQryptSafePage = lazy(() => import("./CreateQryptSafePage"));
 const NotFound = lazy(() => import("./not-found"));
 const SepoliaVerifiedPage = lazy(() => import("./SepoliaVerifiedPage"));
@@ -61,56 +60,20 @@ const RestApiReferencePage = lazy(() => import("./features/RestApiReferencePage"
 const AbiAndAddressesPage = lazy(() => import("./features/AbiAndAddressesPage"));
 const FaqPage = lazy(() => import("./features/FaqPage"));
 
-// Renders DashboardPage with a hard 7-second cap on the loading spinner.
-// After 7s, forces the dashboard to appear regardless of what's still loading.
-// Any background processes (railgun, RPC calls) continue after render.
-function DashboardRoute() {
-    const [Component, setComponent] = useState<React.ComponentType | null>(null);
-    const [forceShow, setForceShow] = useState(false);
-
-    useEffect(() => {
-        const timer = setTimeout(() => setForceShow(true), 7000);
-
-        import("./DashboardPage")
-            .then(m => {
-                clearTimeout(timer);
-                setComponent(() => m.default as React.ComponentType);
-            })
-            .catch(() => {
-                clearTimeout(timer);
-                setForceShow(true);
-            });
-
-        return () => clearTimeout(timer);
-    }, []);
-
-    if (Component) return <Component />;
-    if (forceShow) {
-        // 7s elapsed — render via Suspense without timeout (will show once module arrives)
-        return (
-            <Suspense fallback={<PageLoader />}>
-                <DashboardPage />
-            </Suspense>
-        );
-    }
-    return <PageLoader />;
-}
-
 export default function AppRouter() {
     return (
         <LanguageProvider>
-        <Suspense fallback={null}>
+        <Suspense fallback={<PageLoader />}>
         <Switch>
             {/* Core */}
             <Route path="/" component={LandingPage} />
-            <Route path="/app" component={DashboardRoute} />
-            <Route path="/sepolia-verified" component={SepoliaVerifiedPage} />
-            <Route path="/sepolia-verified-v1" component={SepoliaVerifiedV1Page} />
-            <Route path="/sepolia-verified-v2" component={SepoliaVerifiedV2Page} />
-            <Route path="/sepolia-verified-v3" component={SepoliaVerifiedV3Page} />
-            <Route path="/sepolia-verified-v4" component={SepoliaVerifiedV4Page} />
-            <Route path="/sepolia-verified-v5" component={SepoliaVerifiedV5Page} />
-            <Route path="/sepolia-verified-v6" component={SepoliaVerifiedV6Page} />
+            <Route path="/qryptum-sepolia-verified" component={SepoliaVerifiedPage} />
+            <Route path="/qryptum-sepolia-verified-v1" component={SepoliaVerifiedV1Page} />
+            <Route path="/qryptum-sepolia-verified-v2" component={SepoliaVerifiedV2Page} />
+            <Route path="/qryptum-sepolia-verified-v3" component={SepoliaVerifiedV3Page} />
+            <Route path="/qryptum-sepolia-verified-v4" component={SepoliaVerifiedV4Page} />
+            <Route path="/qryptum-sepolia-verified-v5" component={SepoliaVerifiedV5Page} />
+            <Route path="/qryptum-sepolia-verified-v6" component={SepoliaVerifiedV6Page} />
             <Route path="/privacy" component={PrivacyPage} />
             <Route path="/terms" component={TermsPage} />
 

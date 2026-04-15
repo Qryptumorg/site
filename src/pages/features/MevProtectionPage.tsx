@@ -1,58 +1,62 @@
-import FeatureBentoPage from "../FeatureBentoPage";
+import FeatureBentoPage from "@/pages/FeatureBentoPage";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function MevProtectionPage() {
+    const { t } = useLanguage();
+    const p = t.featurePages.mevProtection;
     return (
         <FeatureBentoPage
-            pageTitle="MEV Protection"
-            badge="Protocol Architecture"
-            heroTitle="Front-Running"
-            heroHighlight="Structurally Impossible"
-            heroSubtitle="The commit-reveal scheme removes any window for mempool observers to front-run or sandwich your transfers. By the time details are visible, the transfer is already done."
+            pageTitle={p.pageTitle}
+            badge={p.badge}
+            heroTitle={p.heroTitle}
+            heroHighlight={p.heroHighlight}
+            heroSubtitle={p.heroSubtitle}
             primaryColor="#06b6d4"
             secondaryColor="#7c3aed"
+            heroImg="/images/qryptum-feat-mev-protection.jpg"
             heroButtons={[
-                { label: "Transfer Engine", href: "/transfer-engine" },
+                { label: p.heroButtons[0].label, href: "/transfer-engine" },
             ]}
             stats={[
-                { value: "Zero", label: "MEV window", note: "Commit reveals nothing" },
-                { value: "Unique", label: "Nonce per commit", note: "Replay attacks blocked" },
-                { value: "600s", label: "Reveal deadline", note: "Expired commits void" },
-                { value: "On-chain", label: "Nonce registry", note: "Used nonces stored forever" },
+                { value: "Zero", label: p.stats[0].label, note: p.stats[0].note },
+                { value: "Unique", label: p.stats[1].label, note: p.stats[1].note },
+                { value: "600s", label: p.stats[2].label, note: p.stats[2].note },
+                { value: "On-chain", label: p.stats[3].label, note: p.stats[3].note },
             ]}
-            sectionBadge="Anti-MEV Design"
+            sectionBadge={p.sectionBadge}
             sectionColor="#06b6d4"
-            sectionHeading="Why MEV Cannot Touch Qryptum"
-            sectionBody="MEV bots need to see transfer details before they are finalized. The commit-reveal scheme makes the details invisible until execution is already guaranteed."
+            sectionHeading={p.sectionHeading}
+            sectionBody={p.sectionBody}
             cards={[
                 {
-                    img: "/images/transfer-commit.png",
+                    img: "/images/qryptum-transfer-commit.jpg",
                     color: "#06b6d4",
-                    title: "Commit Reveals Nothing",
-                    body: "The commitment is a keccak256 hash. It contains no readable information about recipient, amount, or vault proof. Mempool scanners see only an opaque 32-byte value.",
-                    link: { text: "Commit-reveal flow", href: "/transfer-engine" },
+                    title: p.cards[0].title,
+                    body: p.cards[0].body,
+                    link: { text: p.cards[0].linkText!, href: "/transfer-engine" },
                 },
                 {
-                    img: "/images/transfer-nonce.png",
+                    img: "/images/qryptum-sec-nonce.jpg",
                     color: "#7c3aed",
-                    title: "Nonce Prevents Replay",
-                    body: "Each commit includes a unique nonce. The contract records used nonces permanently on-chain. No attacker can reuse a captured commitment against a different target.",
+                    title: p.cards[1].title,
+                    body: p.cards[1].body,
                 },
                 {
-                    img: "/images/transfer-window.png",
+                    img: "/images/qryptum-sec-timelocked.jpg",
                     color: "#10b981",
-                    title: "10-Minute Time Lock",
-                    body: "The reveal window expires after 600 seconds. An uncommitted or expired reveal cannot be forced through. This prevents griefing where someone commits but never reveals.",
+                    title: p.cards[2].title,
+                    body: p.cards[2].body,
                 },
                 {
-                    img: "/images/mev-protection.png",
+                    img: "/images/qryptum-transfer-mev.jpg",
                     color: "#f59e0b",
-                    title: "No Off-Chain Coordination",
-                    body: "Every step happens on Ethereum. There is no relayer, no private mempool, no trusted sequencer. Protection comes from the protocol design itself.",
-                    link: { text: "Security overview", href: "/vault-proof-security" },
+                    title: p.cards[3].title,
+                    body: p.cards[3].body,
+                    link: { text: p.cards[3].linkText!, href: "/vault-proof-security" },
                 },
             ]}
             techNote={{
-                label: "Why the commit hash is opaque",
+                label: p.techNoteLabel!,
                 lines: [
                     "// Attacker sees only this in mempool:",
                     "commitHash = 0x3f7a91b2c4d8e5f1...",
@@ -67,9 +71,9 @@ export default function MevProtectionPage() {
                 ],
             }}
             relatedLinks={[
-                { label: "Transfer Engine", href: "/transfer-engine", color: "#06b6d4" },
-                { label: "Vault Proof Security", href: "/vault-proof-security", color: "#7c3aed" },
-                { label: "Making Transfers", href: "/making-transfers", color: "#10b981" },
+                { label: p.relatedLinks[0].label, href: "/transfer-engine", color: "#06b6d4" },
+                { label: p.relatedLinks[1].label, href: "/commit-reveal-scheme", color: "#7c3aed" },
+                { label: p.relatedLinks[2].label, href: "/nonce-protection", color: "#10b981" },
             ]}
         />
     );

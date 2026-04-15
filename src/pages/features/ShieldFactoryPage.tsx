@@ -1,59 +1,63 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function ShieldFactoryPage() {
+    const { t } = useLanguage();
+    const p = t.featurePages.shieldFactory;
     return (
         <FeatureBentoPage
-            pageTitle="ShieldFactory"
-            badge="SMART CONTRACTS"
-            heroTitle="Factory Contract"
-            heroHighlight="Deploys Your Vault"
-            heroSubtitle="ShieldFactory uses EIP-1167 minimal proxy cloning to deploy a gas-efficient PersonalQrypt-Safe contract for every wallet that calls deployVault(). One per wallet, stored permanently on-chain."
+            pageTitle={p.pageTitle}
+            badge={p.badge}
+            heroTitle={p.heroTitle}
+            heroHighlight={p.heroHighlight}
+            heroSubtitle={p.heroSubtitle}
             primaryColor="#00D4FF"
             secondaryColor="#6366F1"
+            heroImg="/images/qryptum-feat-shield-tokens.jpg"
             heroButtons={[
-                { label: "PersonalQrypt-Safe", href: "/personal-qrypt-safe", primary: false },
-                { label: "ABI and Addresses", href: "/abi-and-addresses", primary: false },
+                { label: p.heroButtons[0].label, href: "/personal-qrypt-safe", primary: false },
+                { label: p.heroButtons[1].label, href: "/abi-and-addresses", primary: false },
             ]}
             stats={[
-                { value: "EIP-1167", label: "Clone pattern", note: "Minimal proxy standard" },
-                { value: "1 per wallet", label: "Qrypt-Safe limit", note: "Factory enforces this" },
-                { value: "~$1.20", label: "Deployment cost", note: "Clone is cheaper than full deploy" },
-                { value: "On-chain map", label: "Wallet to vault", note: "Permanent address registry" },
+                { value: "EIP-1167", label: p.stats[0].label, note: p.stats[0].note },
+                { value: "1 per wallet", label: p.stats[1].label, note: p.stats[1].note },
+                { value: "~$1.20", label: p.stats[2].label, note: p.stats[2].note },
+                { value: "On-chain map", label: p.stats[3].label, note: p.stats[3].note },
             ]}
-            sectionBadge="CONTRACT ARCHITECTURE"
-            sectionHeading="How ShieldFactory Works"
-            sectionBody="ShieldFactory stores a reference PersonalQrypt-Safe implementation. When deployVault() is called, it creates a minimal proxy clone of that implementation, initializes it with the caller's address and vault proof hash, and records the mapping."
+            sectionBadge={p.sectionBadge}
             sectionColor="#00D4FF"
+            sectionHeading={p.sectionHeading}
+            sectionBody={p.sectionBody}
             cards={[
                 {
                     img: "https://images.unsplash.com/photo-1509869175650-a1d97972541a?w=800&auto=format",
                     color: "#00D4FF",
-                    title: "EIP-1167 Minimal Proxy",
-                    body: "Clone contracts are ~45-byte delegatecall proxies pointing to the implementation address. They cost a fraction of a full deployment but have identical function signatures.",
-                    link: { text: "PersonalQrypt-Safe contract", href: "/personal-qrypt-safe" },
+                    title: p.cards[0].title,
+                    body: p.cards[0].body,
+                    link: { text: p.cards[0].linkText!, href: "/personal-qrypt-safe" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=800&auto=format",
                     color: "#6366F1",
-                    title: "One Qrypt-Safe Per Wallet",
-                    body: "deployVault() requires that vaults[msg.sender] == address(0). A second call from the same wallet reverts. Each wallet gets exactly one Qrypt-Safe.",
+                    title: p.cards[1].title,
+                    body: p.cards[1].body,
                 },
                 {
                     img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format",
                     color: "#0099BB",
-                    title: "Wallet-to-Vault Registry",
-                    body: "The mapping vaults[address] => address is publicly readable. Any contract or user can look up anyone's Qrypt-Safe address by wallet address.",
+                    title: p.cards[2].title,
+                    body: p.cards[2].body,
                 },
                 {
                     img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format",
                     color: "#4338CA",
-                    title: "Vault Proof Hash on Init",
-                    body: "The clone is initialized with the caller's wallet address and vault proof hash in the same transaction. No separate initialization call is required.",
-                    link: { text: "Vault proof hashing", href: "/vault-proof-hashing" },
+                    title: p.cards[3].title,
+                    body: p.cards[3].body,
+                    link: { text: p.cards[3].linkText!, href: "/vault-proof-hashing" },
                 },
             ]}
             techNote={{
-                label: "Contract: ShieldFactory.deployVault()",
+                label: p.techNoteLabel!,
                 lines: [
                     "address public implementation;",
                     "mapping(address => address) public vaults;",
@@ -61,15 +65,15 @@ export default function ShieldFactoryPage() {
                     "function deployVault(bytes32 vaultProofHash) external returns (address vault) {",
                     "    require(vaults[msg.sender] == address(0), 'already deployed');",
                     "    vault = Clones.clone(implementation);",
-                    "    IPersonalQrypt-Safe(vault).initialize(msg.sender, vaultProofHash);",
+                    "    IPersonalQryptSafe(vault).initialize(msg.sender, vaultProofHash);",
                     "    vaults[msg.sender] = vault;",
                     "}",
                 ],
             }}
             relatedLinks={[
-                { label: "PersonalQrypt-Safe", href: "/personal-qrypt-safe", color: "#00D4FF" },
-                { label: "ABI and Addresses", href: "/abi-and-addresses", color: "#6366F1" },
-                { label: "Create Qrypt-Safe", href: "/create-qrypt-safe", color: "#0099BB" },
+                { label: p.relatedLinks[0].label, href: "/personal-qrypt-safe", color: "#00D4FF" },
+                { label: p.relatedLinks[1].label, href: "/abi-and-addresses", color: "#6366F1" },
+                { label: p.relatedLinks[2].label, href: "/create-qrypt-safe", color: "#0099BB" },
             ]}
         />
     );

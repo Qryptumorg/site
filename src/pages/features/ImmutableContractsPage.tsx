@@ -1,63 +1,67 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function ImmutableContractsPage() {
+    const { t } = useLanguage();
+    const p = t.featurePages.immutableContracts;
     return (
         <FeatureBentoPage
-            pageTitle="Immutable Contracts"
-            badge="EMERGENCY RECOVERY"
-            heroTitle="Bytecode is Final."
-            heroHighlight="No Upgrades Ever."
-            heroSubtitle="Qryptum smart contracts are deployed without proxy patterns or upgrade mechanisms. The code running on Ethereum today is the exact code that will run forever. Nothing can change it."
+            pageTitle={p.pageTitle}
+            badge={p.badge}
+            heroTitle={p.heroTitle}
+            heroHighlight={p.heroHighlight}
+            heroSubtitle={p.heroSubtitle}
             primaryColor="#8B5CF6"
             secondaryColor="#EC4899"
+            heroImg="/images/qryptum-feat-vault-security.jpg"
             heroButtons={[
-                { label: "No Admin Keys", href: "/no-admin-keys", primary: false },
-                { label: "Onchain Verification", href: "/onchain-verification", primary: false },
+                { label: p.heroButtons[0].label, href: "/no-admin-keys", primary: false },
+                { label: p.heroButtons[1].label, href: "/onchain-verification", primary: false },
             ]}
             stats={[
-                { value: "0", label: "Upgrade mechanisms", note: "No proxy, no beacon" },
-                { value: "0", label: "Proxy admin keys", note: "No upgrade role exists" },
-                { value: "Bytecode final", label: "On deployment", note: "Immutable from block 1" },
-                { value: "Ethereum L1", label: "Enforcement", note: "Protocol-level guarantee" },
+                { value: "0", label: p.stats[0].label, note: p.stats[0].note },
+                { value: "0", label: p.stats[1].label, note: p.stats[1].note },
+                { value: "Bytecode final", label: p.stats[2].label, note: p.stats[2].note },
+                { value: "Ethereum L1", label: p.stats[3].label, note: p.stats[3].note },
             ]}
-            sectionBadge="IMMUTABILITY DESIGN"
-            sectionHeading="Why No Upgrade Mechanism Is a Feature"
-            sectionBody="Upgradeable proxy contracts introduce a trust assumption: whoever holds the proxy admin key can push any new implementation. Qryptum removes this attack surface entirely by deploying non-upgradeable contracts with no proxy pattern."
+            sectionBadge={p.sectionBadge}
             sectionColor="#8B5CF6"
+            sectionHeading={p.sectionHeading}
+            sectionBody={p.sectionBody}
             cards={[
                 {
                     img: "https://images.unsplash.com/photo-1516245834210-c4c142787335?w=800&auto=format",
                     color: "#8B5CF6",
-                    title: "No Proxy Pattern",
-                    body: "ShieldFactory and PersonalQrypt-Safe are not deployed behind a transparent proxy, UUPS proxy, or beacon proxy. The address you interact with is the implementation address.",
-                    link: { text: "ShieldFactory", href: "/shield-factory" },
+                    title: p.cards[0].title,
+                    body: p.cards[0].body,
+                    link: { text: p.cards[0].linkText!, href: "/shield-factory" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1503551723145-6c040742065b?w=800&auto=format",
                     color: "#EC4899",
-                    title: "No Upgrade Admin Role",
-                    body: "There is no address in the system with permission to push a new contract implementation. Once deployed, the contract logic is sealed by Ethereum itself.",
-                    link: { text: "No admin keys", href: "/no-admin-keys" },
+                    title: p.cards[1].title,
+                    body: p.cards[1].body,
+                    link: { text: p.cards[1].linkText!, href: "/no-admin-keys" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format",
                     color: "#7C3AED",
-                    title: "Verification on Etherscan",
-                    body: "The source code is verified on Etherscan for all supported networks. Anyone can inspect the contract and confirm the absence of upgrade logic.",
-                    link: { text: "ABI and addresses", href: "/abi-and-addresses" },
+                    title: p.cards[2].title,
+                    body: p.cards[2].body,
+                    link: { text: p.cards[2].linkText!, href: "/abi-and-addresses" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
                     color: "#DB2777",
-                    title: "Future-Proof Security",
-                    body: "Immutability means the security properties of your Qrypt-Safe cannot be degraded by a future protocol update. What you audit today is what protects you forever.",
-                    link: { text: "Vault proof security", href: "/vault-proof-security" },
+                    title: p.cards[3].title,
+                    body: p.cards[3].body,
+                    link: { text: p.cards[3].linkText!, href: "/vault-proof-security" },
                 },
             ]}
             relatedLinks={[
-                { label: "No Admin Keys", href: "/no-admin-keys", color: "#8B5CF6" },
-                { label: "Onchain Verification", href: "/onchain-verification", color: "#EC4899" },
-                { label: "Vault Proof Security", href: "/vault-proof-security", color: "#7C3AED" },
+                { label: p.relatedLinks[0].label, href: "/no-admin-keys", color: "#8B5CF6" },
+                { label: p.relatedLinks[1].label, href: "/onchain-verification", color: "#EC4899" },
+                { label: p.relatedLinks[2].label, href: "/vault-proof-security", color: "#7C3AED" },
             ]}
         />
     );

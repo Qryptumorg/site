@@ -1,72 +1,76 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function OneToOneBackingPage() {
+    const { t } = useLanguage();
+    const p = t.featurePages.oneToOneBacking;
     return (
         <FeatureBentoPage
-            pageTitle="1:1 Backing"
-            badge="QTOKEN SYSTEM"
-            heroTitle="Every qToken"
-            heroHighlight="Fully Backed Always"
-            heroSubtitle="No fractional reserve. Every qToken minted is backed 1:1 by the original ERC-20 asset locked inside your Qrypt-Safe. No exceptions, no partial collateral."
+            pageTitle={p.pageTitle}
+            badge={p.badge}
+            heroTitle={p.heroTitle}
+            heroHighlight={p.heroHighlight}
+            heroSubtitle={p.heroSubtitle}
             primaryColor="#7C3AED"
             secondaryColor="#4F46E5"
+            heroImg="/images/qryptum-feat-token-economics.jpg"
             heroButtons={[
-                { label: "qToken System", href: "/qtoken-system", primary: true },
-                { label: "Shield Tokens", href: "/shield-erc20-tokens" },
+                { label: p.heroButtons[0].label, href: "/qtoken-system", primary: true },
+                { label: p.heroButtons[1].label, href: "/shield-erc20-tokens" },
             ]}
             stats={[
-                { value: "1:1", label: "Peg ratio", note: "No fractional reserve" },
-                { value: "100%", label: "Collateralized", note: "Always, by design" },
-                { value: "Atomic", label: "Mint and lock", note: "Same transaction" },
-                { value: "Verified", label: "By contract", note: "Not by the UI" },
+                { value: "1:1", label: p.stats[0].label, note: p.stats[0].note },
+                { value: "100%", label: p.stats[1].label, note: p.stats[1].note },
+                { value: "Atomic", label: p.stats[2].label, note: p.stats[2].note },
+                { value: "Verified", label: p.stats[3].label, note: p.stats[3].note },
             ]}
-            sectionBadge="BACKING MECHANISM"
-            sectionHeading="Why qTokens Cannot Be Undercollateralized"
-            sectionBody="The smart contract mints exactly one qToken unit per one ERC-20 unit deposited. The mint and the lock happen in the same transaction. There is no path to mint without locking."
+            sectionBadge={p.sectionBadge}
             sectionColor="#7C3AED"
+            sectionHeading={p.sectionHeading}
+            sectionBody={p.sectionBody}
             cards={[
                 {
                     img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format",
                     color: "#7C3AED",
-                    title: "Atomic Mint and Lock",
-                    body: "shield() deposits the ERC-20 token and mints the corresponding qToken in one atomic call. If either step fails, the entire transaction reverts.",
-                    link: { text: "See shield()", href: "/shield-tokens" },
+                    title: p.cards[0].title,
+                    body: p.cards[0].body,
+                    link: { text: p.cards[0].linkText!, href: "/shield-tokens" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
                     color: "#4F46E5",
-                    title: "No Surplus Minting",
-                    body: "The contract tracks exact balances per token per Qrypt-Safe. It is not possible to mint qTokens above the deposited amount under any condition.",
+                    title: p.cards[1].title,
+                    body: p.cards[1].body,
                 },
                 {
                     img: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&auto=format",
                     color: "#8B5CF6",
-                    title: "Collateral Always On-Chain",
-                    body: "The original ERC-20 tokens are held inside your PersonalQrypt-Safe contract on Ethereum L1. No off-chain custodian holds your collateral.",
+                    title: p.cards[2].title,
+                    body: p.cards[2].body,
                 },
                 {
                     img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format",
                     color: "#6D28D9",
-                    title: "Burn Symmetry",
-                    body: "On unshield, exactly one qToken is burned per one ERC-20 unit returned. The contract enforces this symmetry: no partial burns, no remainder.",
-                    link: { text: "Burn on Unshield", href: "/burn-on-unshield" },
+                    title: p.cards[3].title,
+                    body: p.cards[3].body,
+                    link: { text: p.cards[3].linkText!, href: "/burn-on-unshield" },
                 },
             ]}
             techNote={{
-                label: "Contract: backing verification",
+                label: p.techNoteLabel!,
                 lines: [
-                    "// shield() atomically locks and mints",
+                    "// shield() atomically shields and mints",
                     "function shield(address token, uint256 amount) external {",
                     "    IERC20(token).transferFrom(msg.sender, address(this), amount);",
                     "    IShieldToken(qTokenOf[token]).mint(msg.sender, amount);",
                     "}",
-                    "// 1:1 enforced: amount locked == amount minted",
+                    "// 1:1 enforced: amount shielded == amount minted",
                 ],
             }}
             relatedLinks={[
-                { label: "qToken System", href: "/qtoken-system", color: "#7C3AED" },
-                { label: "Shield ERC-20 Tokens", href: "/shield-erc20-tokens", color: "#4F46E5" },
-                { label: "Burn on Unshield", href: "/burn-on-unshield", color: "#8B5CF6" },
+                { label: p.relatedLinks[0].label, href: "/qtoken-system", color: "#7C3AED" },
+                { label: p.relatedLinks[1].label, href: "/burn-on-unshield", color: "#4F46E5" },
+                { label: p.relatedLinks[2].label, href: "/shield-erc20-tokens", color: "#8B5CF6" },
             ]}
         />
     );

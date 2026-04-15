@@ -149,8 +149,8 @@ function FlowDiagramAir() {
     const W = 920, H = 160;
     const nodes = [
         { label: "Vault Owner", sub: "Wallet A signs", color: "#F59E0B" },
-        { label: "Sign EIP-712", sub: "Voucher offline", color: "#F59E0B" },
-        { label: "Voucher", sub: "code + sig", color: "#06B6D4" },
+        { label: "Sign EIP-712", sub: "OffToken offline", color: "#F59E0B" },
+        { label: "OffToken", sub: "code + sig", color: "#06B6D4" },
         { label: "Anyone", sub: "relays tx", color: "#8B5CF6" },
         { label: "QryptSafe", sub: "verify ECDSA + nonce", color: "#06B6D4" },
         { label: "Recipient", sub: "receives ERC-20", color: "#22C55E" },
@@ -358,12 +358,12 @@ export default function SepoliaVerifiedV5Page() {
             {/* ═══ HERO ═══════════════════════════════════════════ */}
             <div style={{ position: "relative", overflow: "hidden" }}>
                 <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-                    <img src={`${import.meta.env.BASE_URL}sepolia-vault-hero.jpg`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", filter: "brightness(0.18) saturate(1.2)" }} />
+                    <img src="/qryptum-sepolia-vault-hero.jpg" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", filter: "brightness(0.45) saturate(1.2)" }} />
                     <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 70%, #000000 100%)" }} />
                 </div>
 
                 <div style={{ position: "relative", zIndex: 1, maxWidth: W, margin: "0 auto", padding: pad }}>
-                    <div style={{ padding: isMobile ? "100px 0 40px": "110px 0 56px" }}>
+                    <div style={{ padding: isMobile ? "160px 0 100px" : "200px 0 140px" }}>
                         <div style={{ display: isMobile ? "block": "grid", gridTemplateColumns: "1fr 400px", gap: 60, alignItems: "center" }}>
                             <div>
                                 <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.22)", borderRadius: 20, padding: "4px 14px 4px 9px", marginBottom: 22 }}>
@@ -392,7 +392,7 @@ export default function SepoliaVerifiedV5Page() {
                             </div>
                             {!isMobile && (
                                 <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 32px 80px rgba(0,0,0,0.7)" }}>
-                                    <img src={`${import.meta.env.BASE_URL}sepolia-vault-hero.jpg`} alt="Vault visualization" style={{ width: "100%", display: "block", aspectRatio: "16/9", objectFit: "cover" }} />
+                                    <img src="/qryptum-sepolia-vault-hero.jpg" alt="Vault visualization" style={{ width: "100%", display: "block", aspectRatio: "16/9", objectFit: "cover" }} />
                                 </div>
                             )}
                         </div>
@@ -495,12 +495,12 @@ export default function SepoliaVerifiedV5Page() {
                         );
 
                         const imgStyle: React.CSSProperties = { width: "100%", height: "100%", minHeight: 180, objectFit: "cover", display: "block" };
-                        const g1chart = <img src={`${import.meta.env.BASE_URL}images/bento-infra.jpg`} alt="Infrastructure" style={imgStyle} />;
-                        const g2chart = <img src={`${import.meta.env.BASE_URL}images/bento-setup.jpg`} alt="Setup" style={imgStyle} />;
-                        const g3chart = <img src={`${import.meta.env.BASE_URL}images/bento-safe.jpg`} alt="QryptSafe" style={imgStyle} />;
-                        const g4chart = <img src={`${import.meta.env.BASE_URL}images/bento-air.jpg`} alt="QryptAir" style={imgStyle} />;
-                        const g5chart = <img src={`${import.meta.env.BASE_URL}images/bento-shield.jpg`} alt="QryptShield" style={imgStyle} />;
-                        const g6chart = <img src={`${import.meta.env.BASE_URL}images/bento-security.jpg`} alt="Security" style={imgStyle} />;
+                        const g1chart = <img src="/images/qryptum-bento-infra.jpg" alt="Infrastructure" style={imgStyle} />;
+                        const g2chart = <img src="/images/qryptum-bento-setup.jpg" alt="Setup" style={imgStyle} />;
+                        const g3chart = <img src="/images/qryptum-bento-safe.jpg" alt="QryptSafe" style={imgStyle} />;
+                        const g4chart = <img src="/images/qryptum-bento-air.jpg" alt="QryptAir" style={imgStyle} />;
+                        const g5chart = <img src="/images/qryptum-bento-shield.jpg" alt="QryptShield" style={imgStyle} />;
+                        const g6chart = <img src="/images/qryptum-bento-security.jpg" alt="Security" style={imgStyle} />;
 
                         return (
                             <>
@@ -537,12 +537,12 @@ export default function SepoliaVerifiedV5Page() {
                                 )}
                                 {bentoRow(false, g4chart,
                                     <><SectionHead text={sr.groupLabels[3]} color="rgba(255,255,255,0.3)" />
-                                    <TestRow n={20} title="Create EIP-712 QryptAir voucher: offline signature" desc="Wallet A signs Voucher struct off-chain. Domain: {name:'QryptAir', version:'1', chainId:11155111}. transferCodeHash = keccak256(transferCode). Local ECDSA verify confirmed." />
-                                    <TestRow n={21} title="claimAirVoucher(): Wallet B redeems 2 USDC voucher" desc="Wallet B calls claimAirVoucher. 2 USDC delivered. Anyone with valid signature can redeem. Event AirVoucherClaimed emitted." tx={TX_CLAIM_AIR} />
-                                    <TestRow n={22} title="claimAirVoucher() replay same nonce: revert expected" desc="Re-using a redeemed voucher nonce reverts 'Voucher already redeemed'. One-time-use nonce enforcement confirmed." revertOnly />
-                                    <TestRow n={23} title="claimAirVoucher() expired deadline: revert expected" desc="Deadline in the past reverts 'Voucher expired'. Time-bound protection confirmed." revertOnly />
-                                    <TestRow n={24} title="claimAirVoucher() signature over wrong transferCodeHash: revert expected" desc="Sig signed over wrong hash: ECDSA.recover returns wrong address. Reverts 'Sig not from vault owner'. Voucher integrity confirmed." revertOnly />
-                                    <TestRow n={25} title="claimAirVoucher() signed by non-vault-owner: revert expected" desc="Sig from Wallet B (not QryptSafe A owner) reverts 'Sig not from vault owner'. ECDSA checks vault.owner." revertOnly /></>,
+                                    <TestRow n={20} title="Create EIP-712 QryptAir offToken: offline signature" desc="Wallet A signs OffToken struct off-chain. Domain: {name:'QryptAir', version:'1', chainId:11155111}. transferCodeHash = keccak256(transferCode). Local ECDSA verify confirmed." />
+                                    <TestRow n={21} title="claimAirOffToken(): Wallet B redeems 2 USDC offToken" desc="Wallet B calls claimAirOffToken. 2 USDC delivered. Anyone with valid signature can redeem. Event AirOffTokenClaimed emitted." tx={TX_CLAIM_AIR} />
+                                    <TestRow n={22} title="claimAirOffToken() replay same nonce: revert expected" desc="Re-using a redeemed offToken nonce reverts 'OffToken already redeemed'. One-time-use nonce enforcement confirmed." revertOnly />
+                                    <TestRow n={23} title="claimAirOffToken() expired deadline: revert expected" desc="Deadline in the past reverts 'OffToken expired'. Time-bound protection confirmed." revertOnly />
+                                    <TestRow n={24} title="claimAirOffToken() signature over wrong transferCodeHash: revert expected" desc="Sig signed over wrong hash: ECDSA.recover returns wrong address. Reverts 'Sig not from vault owner'. OffToken integrity confirmed." revertOnly />
+                                    <TestRow n={25} title="claimAirOffToken() signed by non-vault-owner: revert expected" desc="Sig from Wallet B (not QryptSafe A owner) reverts 'Sig not from vault owner'. ECDSA checks vault.owner." revertOnly /></>,
                                     "rgba(255,255,255,0.02)"
                                 )}
                                 {bentoRow(true, g5chart,
@@ -560,7 +560,7 @@ export default function SepoliaVerifiedV5Page() {
                                     <TestRow n={32} title="Any vault function from non-owner: revert expected" desc="Wallet B cannot call QryptSafe A's onlyOwner functions. Reverts 'Not QryptSafe owner'. Access control confirmed on all protected functions." revertOnly /></>,
                                     "rgba(255,255,255,0.07)"
                                 )}
-                                {bentoRow(false, <img src={`${import.meta.env.BASE_URL}images/bento-registry.jpg`} alt="Vault Registry" style={{ width: "100%", height: "100%", minHeight: 180, objectFit: "cover", display: "block" }} />,
+                                {bentoRow(false, <img src="/images/qryptum-bento-registry.jpg" alt="Vault Registry" style={{ width: "100%", height: "100%", minHeight: 180, objectFit: "cover", display: "block" }} />,
                                     <><SectionHead text={sr.groupLabels[6]} color="rgba(255,255,255,0.4)" />
                                     <TestRow n={33} title="factory.hasQryptSafe() returns true for both wallets" desc="hasQryptSafe(A)=true, hasQryptSafe(B)=true. Factory registry maps every wallet to its deployed clone." />
                                     <TestRow n={34} title="vault.initialized is true after createQryptSafe" desc="initialized() = true. notInitialized modifier prevents double-init." />
@@ -571,12 +571,12 @@ export default function SepoliaVerifiedV5Page() {
                                     <TestRow n={39} title="qrypt() twice accumulates qToken balance correctly" desc="Before: 2.0 qUSDC. After: 3.0 qUSDC. Sequential qrypt() calls accumulate without resetting." tx={TX_T39} />
                                     <TestRow n={40} title="unqrypt() emits TokenUnqrypted event" desc="Receipt confirmed 3 logs. TokenUnqrypted event emitted on every qToken burn." tx={TX_T40} />
                                     <TestRow n={41} title="duplicate veilTransfer() reverts Veil already exists" desc="Committing same veilHash twice reverts 'Veil already exists'. Commit-reveal integrity enforced." revertOnly />
-                                    <TestRow n={42} title="usedVoucherNonces() returns false for unused nonce" desc="Fresh random nonce: usedVoucherNonces = false. Replay protection inactive until first redemption." />
-                                    <TestRow n={43} title="usedVoucherNonces() true after claimAirVoucher" desc="usedVoucherNonces(AIR_NONCE) = true after T21 redemption. On-chain nonce bitmap confirmed." />
-                                    <TestRow n={44} title="claimAirVoucher() emits AirVoucherClaimed event" desc="Receipt confirmed 3 logs. AirVoucherClaimed event emitted. Full event-driven redemption auditable." tx={TX_T44} /></>,
+                                    <TestRow n={42} title="usedOffTokenNonces() returns false for unused nonce" desc="Fresh random nonce: usedOffTokenNonces = false. Replay protection inactive until first redemption." />
+                                    <TestRow n={43} title="usedOffTokenNonces() true after claimAirOffToken" desc="usedOffTokenNonces(AIR_NONCE) = true after T21 redemption. On-chain nonce bitmap confirmed." />
+                                    <TestRow n={44} title="claimAirOffToken() emits AirOffTokenClaimed event" desc="Receipt confirmed 3 logs. AirOffTokenClaimed event emitted. Full event-driven redemption auditable." tx={TX_T44} /></>,
                                     "rgba(255,255,255,0.07)"
                                 )}
-                                {bentoRow(true, <img src={`${import.meta.env.BASE_URL}images/bento-isolation.jpg`} alt="qToken Isolation" style={{ width: "100%", height: "100%", minHeight: 180, objectFit: "cover", display: "block" }} />,
+                                {bentoRow(true, <img src="/images/qryptum-bento-isolation.jpg" alt="qToken Isolation" style={{ width: "100%", height: "100%", minHeight: 180, objectFit: "cover", display: "block" }} />,
                                     <><SectionHead text={sr.groupLabels[7]} color="rgba(255,255,255,0.4)" />
                                     <TestRow n={45} title="qToken is non-transferable between users" desc="ShieldToken.transfer() to external address reverts. Soulbound to vault: cannot be sold, bridged, or delegated." revertOnly />
                                     <TestRow n={46} title="two QryptSafes are independent — Vault B owner and state" desc={`Vault B owner=${short(WALLET_B)}, initialized=true. Each wallet gets isolated EIP-1167 clone with independent storage.`} />
@@ -621,8 +621,8 @@ export default function SepoliaVerifiedV5Page() {
                 </div>
 
                 <SepoliaVersionNav
-                    prev={{ label: "V4 Record", href: "/sepolia-verified-v4" }}
-                    next={{ label: "V6 Record", href: "/sepolia-verified-v6" }}
+                    prev={{ label: "V4 Record", href: "/qryptum-sepolia-verified-v4" }}
+                    next={{ label: "V6 Record", href: "/qryptum-sepolia-verified-v6" }}
                 />
 
             </div>

@@ -1,62 +1,66 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function NoAdminKeysPage() {
+    const { t } = useLanguage();
+    const p = t.featurePages.noAdminKeys;
     return (
         <FeatureBentoPage
-            pageTitle="No Admin Keys"
-            badge="EMERGENCY RECOVERY"
-            heroTitle="No Multisig,"
-            heroHighlight="No Admin Override"
-            heroSubtitle="No key holder, multisig, DAO, or protocol team can access your Qrypt-Safe. This is enforced at the bytecode level: there is no admin function in the contract to call."
+            pageTitle={p.pageTitle}
+            badge={p.badge}
+            heroTitle={p.heroTitle}
+            heroHighlight={p.heroHighlight}
+            heroSubtitle={p.heroSubtitle}
             primaryColor="#22C55E"
             secondaryColor="#10B981"
+            heroImg="/images/qryptum-feat-vault-security.jpg"
             heroButtons={[
-                { label: "Immutable Contracts", href: "/immutable-contracts", primary: false },
-                { label: "Vault Proof Security", href: "/vault-proof-security", primary: false },
+                { label: p.heroButtons[0].label, href: "/immutable-contracts", primary: false },
+                { label: p.heroButtons[1].label, href: "/vault-proof-security", primary: false },
             ]}
             stats={[
-                { value: "0", label: "Admin keys", note: "No privileged role in contract" },
-                { value: "0", label: "Multisig signers", note: "No governance control" },
-                { value: "0", label: "Upgrade paths", note: "No proxy, no admin call" },
-                { value: "Bytecode", label: "Enforcement level", note: "Not just a policy claim" },
+                { value: "0", label: p.stats[0].label, note: p.stats[0].note },
+                { value: "0", label: p.stats[1].label, note: p.stats[1].note },
+                { value: "0", label: p.stats[2].label, note: p.stats[2].note },
+                { value: "Bytecode", label: p.stats[3].label, note: p.stats[3].note },
             ]}
-            sectionBadge="NON-CUSTODIAL DESIGN"
-            sectionHeading="How the Contract Enforces Non-Custody"
-            sectionBody="The PersonalQrypt-Safe contract contains no onlyOwner admin function with privileged access to user funds. The only address that can trigger shield, transfer, or unshield is the wallet that deployed the vault."
+            sectionBadge={p.sectionBadge}
             sectionColor="#22C55E"
+            sectionHeading={p.sectionHeading}
+            sectionBody={p.sectionBody}
             cards={[
                 {
                     img: "https://images.unsplash.com/photo-1509869175650-a1d97972541a?w=800&auto=format",
                     color: "#22C55E",
-                    title: "No Admin Function",
-                    body: "The contract bytecode contains no function with a privileged role that could drain user funds, pause operations, or alter vault proof hashes.",
-                    link: { text: "Immutable contracts", href: "/immutable-contracts" },
+                    title: p.cards[0].title,
+                    body: p.cards[0].body,
+                    link: { text: p.cards[0].linkText!, href: "/immutable-contracts" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=800&auto=format",
                     color: "#10B981",
-                    title: "No Proxy Admin",
-                    body: "There is no upgrade proxy and no proxy admin key. The contract at deployment is the final contract. Qryptum cannot push a new implementation that could include admin access.",
-                    link: { text: "Immutable contracts", href: "/immutable-contracts" },
+                    title: p.cards[1].title,
+                    body: p.cards[1].body,
+                    link: { text: p.cards[1].linkText!, href: "/immutable-contracts" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format",
                     color: "#16A34A",
-                    title: "Wallet Owner is the Only Authority",
-                    body: "Every function on PersonalQrypt-Safe that moves tokens requires msg.sender to be the owner wallet and the vault proof to be valid. No override path exists.",
+                    title: p.cards[2].title,
+                    body: p.cards[2].body,
                 },
                 {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
                     color: "#059669",
-                    title: "Verifiable On Etherscan",
-                    body: "Anyone can read the deployed contract bytecode on Etherscan and verify the absence of admin functions. This is a technical guarantee, not a promise.",
-                    link: { text: "ABI and addresses", href: "/abi-and-addresses" },
+                    title: p.cards[3].title,
+                    body: p.cards[3].body,
+                    link: { text: p.cards[3].linkText!, href: "/abi-and-addresses" },
                 },
             ]}
             relatedLinks={[
-                { label: "Immutable Contracts", href: "/immutable-contracts", color: "#22C55E" },
-                { label: "Vault Proof Security", href: "/vault-proof-security", color: "#10B981" },
-                { label: "No Server Storage", href: "/no-server-storage", color: "#16A34A" },
+                { label: p.relatedLinks[0].label, href: "/immutable-contracts", color: "#22C55E" },
+                { label: p.relatedLinks[1].label, href: "/vault-proof-security", color: "#10B981" },
+                { label: p.relatedLinks[2].label, href: "/no-server-storage", color: "#16A34A" },
             ]}
         />
     );

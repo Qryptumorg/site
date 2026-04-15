@@ -1,69 +1,78 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function QuickStartGuidePage() {
+    const { t } = useLanguage();
+    const p = t.featurePages.quickStartGuide;
     return (
         <FeatureBentoPage
-            pageTitle="Quick Start Guide"
-            badge="GETTING STARTED"
-            heroTitle="From Zero to"
-            heroHighlight="Shielded in 5 Minutes"
-            heroSubtitle="Connect your wallet, deploy your Qrypt-Safe, and shield your first ERC-20 token. Three steps, one browser, no account needed. Approximately $1.65 in total gas."
+            pageTitle={p.pageTitle}
+            badge={p.badge}
+            heroTitle={p.heroTitle}
+            heroHighlight={p.heroHighlight}
+            heroSubtitle={p.heroSubtitle}
             primaryColor="#00D4FF"
             secondaryColor="#00C896"
+            heroImg="/images/qryptum-feat-guide-docs.jpg"
             heroButtons={[
-                { label: "Launch App", href: "/app", primary: true },
-                { label: "Supported Tokens", href: "/supported-tokens" },
+                { label: p.heroButtons[0].label, href: "https://qryptum.eth.limo/app", primary: true },
+                { label: p.heroButtons[1].label, href: "/supported-tokens" },
             ]}
             stats={[
-                { value: "3 steps", label: "To get shielded", note: "Connect, deploy, shield" },
-                { value: "5 min", label: "Total setup time", note: "Including deployment" },
-                { value: "~$1.65", label: "Total cost", note: "Deploy + first shield" },
-                { value: "Forever", label: "Your vault persists", note: "On Ethereum L1" },
+                { value: "3 steps", label: p.stats[0].label, note: p.stats[0].note },
+                { value: "5 min", label: p.stats[1].label, note: p.stats[1].note },
+                { value: "~$1.65", label: p.stats[2].label, note: p.stats[2].note },
+                { value: "Forever", label: p.stats[3].label, note: p.stats[3].note },
             ]}
-            sectionBadge="THREE STEPS"
-            sectionHeading="The Full Process in Order"
-            sectionBody="You need a funded Ethereum wallet, a supported ERC-20 token to shield, and approximately 5 minutes. The rest is handled by the app and the Ethereum network."
+            sectionBadge={p.sectionBadge}
             sectionColor="#00D4FF"
+            sectionHeading={p.sectionHeading}
+            sectionBody={p.sectionBody}
             cards={[
                 {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
                     color: "#00D4FF",
-                    title: "Step 1: Connect Wallet",
-                    body: "Open the app and connect your MetaMask or WalletConnect wallet. No account creation. Your wallet address is your identity.",
-                    link: { text: "Connect wallet", href: "/connect-wallet" },
+                    title: p.cards[0].title,
+                    body: p.cards[0].body,
+                    link: { text: p.cards[0].linkText!, href: "/connect-wallet" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=800&auto=format",
                     color: "#00C896",
-                    title: "Step 2: Deploy Qrypt-Safe",
-                    body: "Click Deploy and confirm one Ethereum transaction. ShieldFactory creates your personal vault contract. Cost: approximately $1.20.",
-                    link: { text: "Create Qrypt-Safe", href: "/create-qrypt-safe" },
+                    title: p.cards[1].title,
+                    body: p.cards[1].body,
+                    link: { text: p.cards[1].linkText!, href: "/create-qrypt-safe" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format",
                     color: "#00AACC",
-                    title: "Step 3: Shield Tokens",
-                    body: "Approve and shield any ERC-20 token. Your Qrypt-Safe locks the tokens and mints qTokens to your wallet. Cost: approximately $0.45.",
-                    link: { text: "Shield tokens", href: "/shield-tokens" },
+                    title: p.cards[2].title,
+                    body: p.cards[2].body,
+                    link: { text: p.cards[2].linkText!, href: "/shield-tokens" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format",
                     color: "#00B080",
-                    title: "What You Have After",
-                    body: "A deployed Qrypt-Safe on Ethereum L1 holding your ERC-20 tokens, with qTokens visible in MetaMask, and a vault proof only you know.",
-                    link: { text: "qToken system", href: "/qtoken-system" },
+                    title: p.cards[3].title,
+                    body: p.cards[3].body,
+                    link: { text: p.cards[3].linkText!, href: "/qtoken-system" },
                 },
             ]}
             steps={[
-                { n: "01", color: "#00D4FF", title: "Connect Wallet", desc: "Use MetaMask or WalletConnect. No signup required.", detail: "eth_requestAccounts: standard EIP-1193 request" },
-                { n: "02", color: "#00C896", title: "Set Vault Proof and Deploy", desc: "Choose a vault proof phrase. It is hashed client-side. One transaction deploys your Qrypt-Safe.", detail: "ShieldFactory.deployVault(keccak256(vaultProof))" },
-                { n: "03", color: "#00D4FF", title: "Approve and Shield", desc: "Approve the Qrypt-Safe to spend your tokens, then call shield(). qTokens arrive in the same block.", detail: "IERC20.approve(qrypt-safe, amount) + qrypt-safe.shield(token, amount, proof)" },
+                { n: "01", color: "#00D4FF", title: p.steps[0].title, desc: p.steps[0].desc, detail: "eth_requestAccounts: standard EIP-1193 request" },
+                { n: "02", color: "#00C896", title: p.steps[1].title, desc: p.steps[1].desc, detail: "ShieldFactory.deployVault(keccak256(vaultProof))" },
+                { n: "03", color: "#00D4FF", title: p.steps[2].title, desc: p.steps[2].desc, detail: "IERC20.approve(qryptSafe, amount)" },
             ]}
-            cta={{ title: "Ready to Get Shielded?", body: "Deploy your Qrypt-Safe and shield your first token in under 5 minutes.", button: "Launch App", href: "/app" }}
+            cta={{
+                title: p.cta!.title,
+                body: p.cta!.body,
+                button: p.cta!.button,
+                href: "https://qryptum.eth.limo/app",
+            }}
             relatedLinks={[
-                { label: "Connect Wallet", href: "/connect-wallet", color: "#00D4FF" },
-                { label: "Create Qrypt-Safe", href: "/create-qrypt-safe", color: "#00C896" },
-                { label: "Shield Tokens", href: "/shield-tokens", color: "#00AACC" },
+                { label: p.relatedLinks[0].label, href: "/supported-tokens", color: "#00D4FF" },
+                { label: p.relatedLinks[1].label, href: "/connect-wallet", color: "#00C896" },
+                { label: p.relatedLinks[2].label, href: "/getting-shielded", color: "#00AACC" },
             ]}
         />
     );

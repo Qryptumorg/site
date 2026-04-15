@@ -1,58 +1,62 @@
-import FeatureBentoPage from "../FeatureBentoPage";
+import FeatureBentoPage from "@/pages/FeatureBentoPage";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function TransferShieldPage() {
+    const { t } = useLanguage();
+    const p = t.featurePages.transferShield;
     return (
         <FeatureBentoPage
-            pageTitle="Transfer Shield"
-            badge="Shield Protocol"
-            heroTitle="qTokens Cannot"
-            heroHighlight="Leave Without You"
-            heroSubtitle="The Transfer Shield is a bytecode-level restriction built into every qToken contract. Direct wallet-to-wallet transfers are permanently disabled. Movement requires your vault proof."
+            pageTitle={p.pageTitle}
+            badge={p.badge}
+            heroTitle={p.heroTitle}
+            heroHighlight={p.heroHighlight}
+            heroSubtitle={p.heroSubtitle}
             primaryColor="#f59e0b"
             secondaryColor="#7c3aed"
+            heroImg="/images/qryptum-feat-shield-tokens.jpg"
             heroButtons={[
-                { label: "qToken System", href: "/qtoken-system" },
+                { label: p.heroButtons[0].label, href: "/qtoken-system" },
             ]}
             stats={[
-                { value: "Disabled", label: "Direct transfers", note: "transfer() always reverts" },
-                { value: "Bytecode", label: "Enforcement level", note: "Not just UI restriction" },
-                { value: "Vault only", label: "Movement path", note: "Must go through Qrypt-Safe" },
-                { value: "Zero", label: "Admin override", note: "No emergency bypass exists" },
+                { value: "Disabled", label: p.stats[0].label, note: p.stats[0].note },
+                { value: "Bytecode", label: p.stats[1].label, note: p.stats[1].note },
+                { value: "Vault only", label: p.stats[2].label, note: p.stats[2].note },
+                { value: "Zero", label: p.stats[3].label, note: p.stats[3].note },
             ]}
-            sectionBadge="How Transfer Shield Works"
+            sectionBadge={p.sectionBadge}
             sectionColor="#f59e0b"
-            sectionHeading="Unauthorized Movement Is Impossible"
-            sectionBody="Standard ERC-20 tokens can be sent by anyone who holds them. qTokens cannot. The contract overrides the transfer function at the bytecode level and rejects all calls that do not originate from the Qrypt-Safe vault."
+            sectionHeading={p.sectionHeading}
+            sectionBody={p.sectionBody}
             cards={[
                 {
-                    img: "/images/card-erc20-shield.png",
+                    img: "/images/qryptum-shield-erc20-deposit.jpg",
                     color: "#f59e0b",
-                    title: "transfer() Always Reverts",
-                    body: "Calling token.transfer() or token.transferFrom() from any address other than the PersonalVault contract triggers an immediate revert. No amount. No destination. Just a revert.",
-                    link: { text: "qToken architecture", href: "/qtoken-system" },
+                    title: p.cards[0].title,
+                    body: p.cards[0].body,
+                    link: { text: p.cards[0].linkText!, href: "/qtoken-system" },
                 },
                 {
-                    img: "/images/shield-lock.png",
+                    img: "/images/qryptum-transfer-shield-gate.jpg",
                     color: "#7c3aed",
-                    title: "Only Vault Can Move Tokens",
-                    body: "The qToken contract stores the vault address at deployment. The onlyVault modifier checks msg.sender on every mint, burn, and transfer. It cannot be changed after deployment.",
+                    title: p.cards[1].title,
+                    body: p.cards[1].body,
                 },
                 {
-                    img: "/images/sec-onchain.png",
+                    img: "/images/qryptum-sec-onchain.jpg",
                     color: "#06b6d4",
-                    title: "Theft Requires Your Vault Proof",
-                    body: "Even if an attacker gains access to your wallet private key, they still cannot drain your shielded assets without knowing your vault proof. The second factor is never stored anywhere.",
+                    title: p.cards[2].title,
+                    body: p.cards[2].body,
                 },
                 {
-                    img: "/images/card-smart-contract.png",
+                    img: "/images/qryptum-card-smart-contract.jpg",
                     color: "#10b981",
-                    title: "Immutable After Deployment",
-                    body: "The transfer restriction is part of the deployed bytecode. There is no owner function, no proxy upgrade path, and no admin key that can disable it after deployment.",
-                    link: { text: "Vault proof security", href: "/vault-proof-security" },
+                    title: p.cards[3].title,
+                    body: p.cards[3].body,
+                    link: { text: p.cards[3].linkText!, href: "/vault-proof-security" },
                 },
             ]}
             techNote={{
-                label: "Transfer block implementation",
+                label: p.techNoteLabel!,
                 lines: [
                     "// qToken ERC-20 override",
                     "function transfer(address to, uint256 amount)",
@@ -66,9 +70,9 @@ export default function TransferShieldPage() {
                 ],
             }}
             relatedLinks={[
-                { label: "qToken System", href: "/qtoken-system", color: "#f59e0b" },
-                { label: "Vault Proof Security", href: "/vault-proof-security", color: "#7c3aed" },
-                { label: "Create Qrypt-Safe", href: "/create-personal-qrypt-safe", color: "#06b6d4" },
+                { label: p.relatedLinks[0].label, href: "/qtoken-system", color: "#f59e0b" },
+                { label: p.relatedLinks[1].label, href: "/vault-proof-security", color: "#7c3aed" },
+                { label: p.relatedLinks[2].label, href: "/create-personal-qrypt-safe", color: "#06b6d4" },
             ]}
         />
     );

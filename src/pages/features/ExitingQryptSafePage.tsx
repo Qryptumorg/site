@@ -1,74 +1,78 @@
-import FeatureBentoPage from "../FeatureBentoPage";
+import FeatureBentoPage from "@/pages/FeatureBentoPage";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function ExitingQryptSafePage() {
+    const { t } = useLanguage();
+    const p = t.featurePages.exitingQryptSafe;
     return (
         <FeatureBentoPage
-            pageTitle="Exiting Your Qrypt-Safe"
-            badge="Exit Process"
-            heroTitle="Unshield and"
-            heroHighlight="Reclaim Anytime"
-            heroSubtitle="Exit your Qrypt-Safe whenever you choose. Burn your qTokens, verify your vault proof, and receive your original ERC-20 tokens back to your wallet in one transaction."
+            pageTitle={p.pageTitle}
+            badge={p.badge}
+            heroTitle={p.heroTitle}
+            heroHighlight={p.heroHighlight}
+            heroSubtitle={p.heroSubtitle}
             primaryColor="#10b981"
             secondaryColor="#f59e0b"
+            heroImg="/images/qryptum-feat-guide-docs.jpg"
             heroButtons={[
-                { label: "Open App", href: "/app", primary: true },
+                { label: p.heroButtons[0].label, href: "https://qryptum.eth.limo/app", primary: true },
             ]}
             stats={[
-                { value: "1 tx", label: "To unshield", note: "Single on-chain call" },
-                { value: "Instant", label: "Token return", note: "Same block as unshield" },
-                { value: "Burned", label: "qTokens fate", note: "Destroyed on exit" },
-                { value: "180 days", label: "Recovery unlock", note: "Emergency fallback" },
+                { value: "1 tx", label: p.stats[0].label, note: p.stats[0].note },
+                { value: "Instant", label: p.stats[1].label, note: p.stats[1].note },
+                { value: "Burned", label: p.stats[2].label, note: p.stats[2].note },
+                { value: "180 days", label: p.stats[3].label, note: p.stats[3].note },
             ]}
-            sectionBadge="How Exiting Works"
+            sectionBadge={p.sectionBadge}
             sectionColor="#10b981"
-            sectionHeading="Your Tokens, On Your Terms"
-            sectionBody="Unshielding is as simple as shielding. Provide your vault proof, specify the amount, and the Qrypt-Safe burns your qTokens and returns the originals."
+            sectionHeading={p.sectionHeading}
+            sectionBody={p.sectionBody}
             cards={[
                 {
-                    img: "/images/exit-burn.png",
+                    img: "/images/qryptum-exit-burn.jpg",
                     color: "#10b981",
-                    title: "Burn qTokens",
-                    body: "Call unshield() with your vault proof and amount. The Qrypt-Safe burns exactly that amount of qTokens from your wallet in the same transaction.",
-                    link: { text: "Unshield flow", href: "/docs/introduction/how-it-works" },
+                    title: p.cards[0].title,
+                    body: p.cards[0].body,
+                    link: { text: p.cards[0].linkText!, href: "/burn-qtokens" },
                 },
                 {
-                    img: "/images/exit-receive.png",
+                    img: "/images/qryptum-exit-receive.jpg",
                     color: "#06b6d4",
-                    title: "Receive Original Tokens",
-                    body: "Within the same transaction, the original ERC-20 tokens are transferred from the vault directly to your wallet. No waiting. No intermediary.",
+                    title: p.cards[1].title,
+                    body: p.cards[1].body,
                 },
                 {
-                    img: "/images/card-dual-factor.png",
+                    img: "/images/qryptum-card-dual-factor.jpg",
                     color: "#7c3aed",
-                    title: "Dual-Factor on Exit Too",
-                    body: "Unshielding requires both your private key (wallet signature) and your vault proof. An attacker who holds your qTokens cannot drain your vault.",
+                    title: p.cards[2].title,
+                    body: p.cards[2].body,
                 },
                 {
-                    img: "/images/exit-recovery.png",
+                    img: "/images/qryptum-exit-recovery.jpg",
                     color: "#f59e0b",
-                    title: "Emergency Recovery After 180 Days",
-                    body: "If your Qrypt-Safe has had no activity for 180 days, an emergency recovery path unlocks. This protects against lost vault proofs in extreme edge cases.",
-                    link: { text: "Recovery details", href: "/docs/introduction/overview" },
+                    title: p.cards[3].title,
+                    body: p.cards[3].body,
+                    link: { text: p.cards[3].linkText!, href: "/emergency-recovery" },
                 },
             ]}
             techNote={{
-                label: "Unshield transaction call",
+                label: p.techNoteLabel!,
                 lines: [
                     "// Single transaction unshield",
                     "personalVault.unshield(tokenAddress, amount, vaultProof)",
                     "",
                     "// Contract burns qTokens and returns originals atomically",
-                    "qToken.burn(msg.sender, amount);           // qToken destroyed",
-                    "token.transfer(msg.sender, amount);        // Original returned",
+                    "qToken.burn(msg.sender, amount);",
+                    "token.transfer(msg.sender, amount);",
                     "",
                     "// Emergency path (180 days inactivity only)",
                     "personalVault.emergencyWithdraw(tokenAddress)",
                 ],
             }}
             relatedLinks={[
-                { label: "Shield ERC-20 Tokens", href: "/shield-erc20-tokens", color: "#10b981" },
-                { label: "qToken System", href: "/qtoken-system", color: "#06b6d4" },
-                { label: "Vault Proof Security", href: "/vault-proof-security", color: "#f59e0b" },
+                { label: p.relatedLinks[0].label, href: "/shield-erc20-tokens", color: "#10b981" },
+                { label: p.relatedLinks[1].label, href: "/qtoken-system", color: "#06b6d4" },
+                { label: p.relatedLinks[2].label, href: "/emergency-recovery", color: "#f59e0b" },
             ]}
         />
     );

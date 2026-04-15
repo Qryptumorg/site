@@ -197,11 +197,11 @@ export default function SepoliaVerifiedV4Page() {
             {/* ═══ HERO ═══════════════════════════════════════════ */}
             <div style={{ position: "relative", overflow: "hidden" }}>
                 <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-                    <img src={`${import.meta.env.BASE_URL}images/sepolia-v4-hero.jpg`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 35%", filter: "brightness(0.20) saturate(1.3)" }} />
+                    <img src="/images/qryptum-sepolia-v4-hero.jpg" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 35%", filter: "brightness(0.45) saturate(1.3)" }} />
                     <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(5,7,16,0.1) 0%, rgba(5,7,16,0.65) 70%, #050710 100%)" }} />
                 </div>
                 <div style={{ position: "relative", zIndex: 1, maxWidth: W, margin: "0 auto", padding: pad }}>
-                    <div style={{ padding: isMobile ? "120px 0 72px" : "160px 0 110px" }}>
+                    <div style={{ padding: isMobile ? "160px 0 100px" : "200px 0 140px" }}>
                         <div style={{ display: isMobile ? "block" : "grid", gridTemplateColumns: "1fr 380px", gap: 60, alignItems: "center" }}>
                             <div>
                                 <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 20, padding: "4px 14px 4px 9px", marginBottom: 22 }}>
@@ -230,7 +230,7 @@ export default function SepoliaVerifiedV4Page() {
                             </div>
                             {!isMobile && (
                                 <div style={{ borderRadius: 20, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 32px 80px rgba(0,0,0,0.7)" }}>
-                                    <img src={`${import.meta.env.BASE_URL}images/sepolia-v4-right.jpg`} alt="Analytics crystal dashboard" style={{ width: "100%", display: "block", aspectRatio: "4/3", objectFit: "cover" }} />
+                                    <img src="/images/qryptum-sepolia-v4-right.jpg" alt="Analytics crystal dashboard" style={{ width: "100%", display: "block", aspectRatio: "4/3", objectFit: "cover" }} />
                                 </div>
                             )}
                         </div>
@@ -241,8 +241,8 @@ export default function SepoliaVerifiedV4Page() {
             {/* ═══ CONTENT ════════════════════════════════════════ */}
             <div style={{ maxWidth: W, margin: "0 auto", padding: pad }}>
                 <SepoliaVersionNav
-                    prev={{ label: "V3 Record", href: "/sepolia-verified-v3" }}
-                    next={{ label: "V5 Record", href: "/sepolia-verified-v5" }}
+                    prev={{ label: "V3 Record", href: "/qryptum-sepolia-verified-v3" }}
+                    next={{ label: "V5 Record", href: "/qryptum-sepolia-verified-v5" }}
                 />
 
                 {/* ── V3 to V4 Changes ─── */}
@@ -281,7 +281,7 @@ export default function SepoliaVerifiedV4Page() {
                         </div>
                         {!isMobile && (
                             <div style={{ position: "relative", minHeight: 260 }}>
-                                <img src={`${import.meta.env.BASE_URL}images/sepolia-v4-hero.jpg`} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.55) saturate(1.2)" }} />
+                                <img src="/images/qryptum-sepolia-v4-hero.jpg" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.55) saturate(1.2)" }} />
                                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(5,7,16,0.7) 0%, transparent 60%)" }} />
                             </div>
                         )}
@@ -403,9 +403,9 @@ function unshield(
                     <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, color: "rgba(255,255,255,0.42)", margin: "0 0 24px", lineHeight: 1.65 }}>{sr.prevVersionBody}</p>
                     <div style={{ display: isMobile ? "block" : "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 24 }}>
                         {[
-                            { label: "V3 (QryptSafe)", factory: FACTORY_V3, impl: IMPL_V3, link: "/sepolia-verified-v3", linkLabel: sr.viewV3RecordLink, features: "No-Admin, ECDSA meta, changeVaultProof, 36 tests" },
-                            { label: "V2 (QryptSafe)", factory: FACTORY_V2, impl: IMPL_V2, link: "/sepolia-verified-v2", linkLabel: sr.viewV2RecordLink, features: "No-Pausable, nonce commit, SafeERC20, 23 tests" },
-                            { label: "V1 (ShieldFactory)", factory: FACTORY_V1, impl: IMPL_V1, link: "/sepolia-verified-v1", linkLabel: sr.viewV1RecordLink, features: "EIP-1167 genesis, 18-dec bug, 12 tests" },
+                            { label: "V3 (QryptSafe)", factory: FACTORY_V3, impl: IMPL_V3, link: "/qryptum-sepolia-verified-v3", linkLabel: sr.viewV3RecordLink, features: "No-Admin, ECDSA meta, changeVaultProof, 36 tests" },
+                            { label: "V2 (QryptSafe)", factory: FACTORY_V2, impl: IMPL_V2, link: "/qryptum-sepolia-verified-v2", linkLabel: sr.viewV2RecordLink, features: "No-Pausable, nonce commit, SafeERC20, 23 tests" },
+                            { label: "V1 (ShieldFactory)", factory: FACTORY_V1, impl: IMPL_V1, link: "/qryptum-sepolia-verified-v1", linkLabel: sr.viewV1RecordLink, features: "EIP-1167 genesis, 18-dec bug, 12 tests" },
                         ].map(v => (
                             <div key={v.label} style={{ background: "rgba(239,68,68,0.03)", border: "1px solid rgba(239,68,68,0.1)", borderRadius: 14, padding: "20px 18px" }}>
                                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
@@ -436,7 +436,7 @@ function unshield(
                     <div style={{ display: isMobile ? "block" : "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12 }}>
                         {[
                             { issue: "No Railgun ZK privacy", fix: "V5: unshieldToRailgun sends tokens to Railgun pool via zero-knowledge proof." },
-                            { issue: "No QryptAir EIP-712 voucher", fix: "V5: createVoucher + redeemVoucher offline transfer via signed EIP-712 message." },
+                            { issue: "No QryptAir EIP-712 offToken", fix: "V5: createOffToken + redeemOffToken offline transfer via signed EIP-712 message." },
                             { issue: "Static passwordHash", fix: "V6: OTP chain (proofChainHead) rotates after each use. Hash cannot be reused." },
                         ].map((item, i) => (
                             <div key={i} style={{ background: "rgba(239,68,68,0.04)", border: "1px solid rgba(239,68,68,0.14)", borderRadius: 12, padding: "16px 16px" }}>
@@ -472,7 +472,7 @@ function unshield(
                     <div style={{ paddingTop: 28, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
                         <GroupDivider label="Factory & Vault" />
                         <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", marginBottom: 24 }}>
-                            <img src={`${import.meta.env.BASE_URL}images/v4-test-factory.jpg`} alt="Permissionless factory architecture" style={{ width: "100%", display: "block", height: 240, objectFit: "cover", objectPosition: "center" }} />
+                            <img src="/images/qryptum-v4-test-factory.jpg" alt="Permissionless factory architecture" style={{ width: "100%", display: "block", height: 240, objectFit: "cover", objectPosition: "center" }} />
                         </div>
                         <TestRow pass n={1} title="factory has no owner or pause" desc="QryptSafeV4.owner is undefined in the ABI. No Ownable inherited, no pause function, no privileged factory control. Vault creation is permissionless from block zero." />
                         <TestRow pass n={2} title="factory stores createdAt block" desc="After createVault(), factory.vaultCreatedAt(owner) returns the block number of deployment. Stored in a mapping(address => uint256) at factory level. Readable without events." />
@@ -489,7 +489,7 @@ function unshield(
                         <div style={{ display: isMobile ? "block" : "grid", gridTemplateColumns: "32% 1fr", gap: 32, alignItems: "stretch" }}>
                             {!isMobile && (
                                 <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", minHeight: 300 }}>
-                                    <img src={`${import.meta.env.BASE_URL}images/v4-test-shield.jpg`} alt="Token shielding and unshielding" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }} />
+                                    <img src="/images/qryptum-v4-test-shield.jpg" alt="Token shielding and unshielding" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }} />
                                 </div>
                             )}
                             <div>
@@ -506,7 +506,7 @@ function unshield(
                             </div>
                             {isMobile && (
                                 <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", marginTop: 20 }}>
-                                    <img src={`${import.meta.env.BASE_URL}images/v4-test-shield.jpg`} alt="Token shielding and unshielding" style={{ width: "100%", display: "block", aspectRatio: "1/1", objectFit: "cover" }} />
+                                    <img src="/images/qryptum-v4-test-shield.jpg" alt="Token shielding and unshielding" style={{ width: "100%", display: "block", aspectRatio: "1/1", objectFit: "cover" }} />
                                 </div>
                             )}
                         </div>
@@ -529,7 +529,7 @@ function unshield(
                                 <TestRow pass n={27} title="activityCount increments on reveal" desc="reveal() increments activityCount and updates lastActivityBlock. The commit step does not count as a separate activity in this test; only the reveal is measured." />
                             </div>
                             <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", marginTop: isMobile ? 20 : 0, minHeight: 300 }}>
-                                <img src={`${import.meta.env.BASE_URL}images/v4-test-commitreveal.jpg`} alt="Proof rotation and commit-reveal" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }} />
+                                <img src="/images/qryptum-v4-test-commitreveal.jpg" alt="Proof rotation and commit-reveal" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }} />
                             </div>
                         </div>
                     </div>
@@ -538,7 +538,7 @@ function unshield(
                     <div style={{ paddingTop: 28, marginTop: 28, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
                         <GroupDivider label="metaTransfer, Multi-token & qToken" />
                         <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", marginBottom: 24 }}>
-                            <img src={`${import.meta.env.BASE_URL}images/v4-test-metatransfer.jpg`} alt="ECDSA meta-transfer and multi-token" style={{ width: "100%", display: "block", height: 240, objectFit: "cover", objectPosition: "center" }} />
+                            <img src="/images/qryptum-v4-test-metatransfer.jpg" alt="ECDSA meta-transfer and multi-token" style={{ width: "100%", display: "block", height: 240, objectFit: "cover", objectPosition: "center" }} />
                         </div>
                         <TestRow pass n={28} title="metaTransfer with valid signature" desc="Owner signs a hash of (token, to, amount, deadline, sigNonce) off-chain. A third-party relayer submits the signature. qToken burned, ERC-20 sent to recipient. Relayer pays gas, owner signs only." />
                         <TestRow pass n={29} title="metaTransfer expired deadline" note="revert SignatureExpired()" desc="block.timestamp > deadline reverts with SignatureExpired before any signature validation. Deadline check is first to avoid unnecessary ECDSA computation." revertOnly />
@@ -557,7 +557,7 @@ function unshield(
                         <div style={{ display: isMobile ? "block" : "grid", gridTemplateColumns: "32% 1fr", gap: 32, alignItems: "stretch" }}>
                             {!isMobile && (
                                 <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", minHeight: 300 }}>
-                                    <img src={`${import.meta.env.BASE_URL}images/v4-test-emergency.jpg`} alt="Emergency and edge cases" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }} />
+                                    <img src="/images/qryptum-v4-test-emergency.jpg" alt="Emergency and edge cases" style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }} />
                                 </div>
                             )}
                             <div>
@@ -575,7 +575,7 @@ function unshield(
                             </div>
                             {isMobile && (
                                 <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", marginTop: 20 }}>
-                                    <img src={`${import.meta.env.BASE_URL}images/v4-test-emergency.jpg`} alt="Emergency and edge cases" style={{ width: "100%", display: "block", aspectRatio: "1/1", objectFit: "cover" }} />
+                                    <img src="/images/qryptum-v4-test-emergency.jpg" alt="Emergency and edge cases" style={{ width: "100%", display: "block", aspectRatio: "1/1", objectFit: "cover" }} />
                                 </div>
                             )}
                         </div>
@@ -671,7 +671,7 @@ function unshield(
                             <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>Previous version</div>
                             <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 18, fontWeight: 800, color: "#d4d6e2", letterSpacing: "-0.02em" }}>QryptSafe V3</div>
                             <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 12, color: "rgba(255,255,255,0.35)", lineHeight: 1.55, maxWidth: 280 }}>No-Admin factory, ECDSA meta-transfer, changeVaultProof, commit-reveal. 36 tests.</div>
-                            <Link href="/sepolia-verified-v3"
+                            <Link href="/qryptum-sepolia-verified-v3"
                                 style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.6)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "11px 20px", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8, marginTop: 4 }}
                                 onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = "#fff"; (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.22)"; }}
                                 onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.6)"; (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.1)"; }}>
@@ -689,8 +689,8 @@ function unshield(
                         <div style={{ display: "flex", flexDirection: "column", alignItems: isMobile ? "flex-start" : "flex-end", gap: 10 }}>
                             <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>Next version</div>
                             <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 18, fontWeight: 800, color: "#d4d6e2", letterSpacing: "-0.02em" }}>QryptSafe V5</div>
-                            <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 12, color: "rgba(255,255,255,0.35)", lineHeight: 1.55, maxWidth: 280, textAlign: isMobile ? "left" : "right" }}>Railgun ZK privacy (unshieldToRailgun) + QryptAir EIP-712 offline voucher + commit-reveal v2. 51 tests.</div>
-                            <Link href="/sepolia-verified-v5"
+                            <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 12, color: "rgba(255,255,255,0.35)", lineHeight: 1.55, maxWidth: 280, textAlign: isMobile ? "left" : "right" }}>Railgun ZK privacy (unshieldToRailgun) + QryptAir EIP-712 offline offToken + commit-reveal v2. 51 tests.</div>
+                            <Link href="/qryptum-sepolia-verified-v5"
                                 style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 700, color: "#d4d6e2", background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 10, padding: "11px 20px", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8, marginTop: 4 }}
                                 onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.13)"; }}
                                 onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.08)"; }}>

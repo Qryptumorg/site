@@ -1,58 +1,62 @@
-import FeatureBentoPage from "../FeatureBentoPage";
+import FeatureBentoPage from "@/pages/FeatureBentoPage";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function QTokenSystemPage() {
+    const { t } = useLanguage();
+    const p = t.featurePages.qtokenSystem;
     return (
         <FeatureBentoPage
-            pageTitle="qToken System"
-            badge="qToken System"
-            heroTitle="Shielded Tokens,"
-            heroHighlight="Visible in MetaMask"
-            heroSubtitle="Every shielded asset gets a corresponding qToken. It appears in your wallet, tracks your position 1:1, and is burned automatically when you exit."
+            pageTitle={p.pageTitle}
+            badge={p.badge}
+            heroTitle={p.heroTitle}
+            heroHighlight={p.heroHighlight}
+            heroSubtitle={p.heroSubtitle}
             primaryColor="#7c3aed"
             secondaryColor="#06b6d4"
+            heroImg="/images/qryptum-feat-token-economics.jpg"
             heroButtons={[
-                { label: "Shield a Token", href: "/app", primary: true },
+                { label: p.heroButtons[0].label, href: "https://qryptum.eth.limo/app", primary: true },
             ]}
             stats={[
-                { value: "q prefix", label: "Naming convention", note: "qETH, qUSDT, qUSDC..." },
-                { value: "1:1", label: "Peg ratio", note: "Always fully backed" },
-                { value: "Non-transferable", label: "Between wallets", note: "Only movable via vault" },
-                { value: "Auto-burned", label: "On unshield", note: "Same tx as token return" },
+                { value: "q prefix", label: p.stats[0].label, note: p.stats[0].note },
+                { value: "1:1", label: p.stats[1].label, note: p.stats[1].note },
+                { value: "Non-transferable", label: p.stats[2].label, note: p.stats[2].note },
+                { value: "Auto-burned", label: p.stats[3].label, note: p.stats[3].note },
             ]}
-            sectionBadge="Token Architecture"
+            sectionBadge={p.sectionBadge}
             sectionColor="#7c3aed"
-            sectionHeading="How qTokens Track Your Position"
-            sectionBody="qTokens are ERC-20 tokens with a critical restriction: direct wallet-to-wallet transfers are disabled. They can only move through your Qrypt-Safe, making theft impossible without your vault proof."
+            sectionHeading={p.sectionHeading}
+            sectionBody={p.sectionBody}
             cards={[
                 {
-                    img: "/images/qtoken-mint.png",
+                    img: "/images/qryptum-qtoken-backing.jpg",
                     color: "#7c3aed",
-                    title: "Minted on Shield",
-                    body: "The moment you shield an ERC-20, the Qrypt-Safe calls mint() on the corresponding qToken contract. You receive the exact same amount in your wallet.",
-                    link: { text: "Shield flow", href: "/shield-erc20-tokens" },
+                    title: p.cards[0].title,
+                    body: p.cards[0].body,
+                    link: { text: p.cards[0].linkText!, href: "/shield-erc20-tokens" },
                 },
                 {
-                    img: "/images/qtoken-metamask.png",
+                    img: "/images/qryptum-qtoken-tokens.jpg",
                     color: "#06b6d4",
-                    title: "Visible in MetaMask",
-                    body: "qTokens are standard ERC-20 tokens. They appear in MetaMask and any wallet that shows token balances. Add the contract address to see them.",
+                    title: p.cards[1].title,
+                    body: p.cards[1].body,
                 },
                 {
-                    img: "/images/qtoken-nontransfer.png",
+                    img: "/images/qryptum-transfer-shield-block.jpg",
                     color: "#10b981",
-                    title: "Transfer Locked at Bytecode",
-                    body: "The qToken contract overrides ERC-20 transfer() and transferFrom(). Any call from outside the Qrypt-Safe reverts. Your balance cannot be moved by anyone else.",
+                    title: p.cards[2].title,
+                    body: p.cards[2].body,
                 },
                 {
-                    img: "/images/qtoken-burn.png",
+                    img: "/images/qryptum-qtoken-burn.jpg",
                     color: "#f59e0b",
-                    title: "Burned on Unshield",
-                    body: "When you call unshield(), the Qrypt-Safe burns your qTokens and releases the original ERC-20 back to your wallet. Mint and burn happen in the same atomic transaction.",
-                    link: { text: "Exiting your Qrypt-Safe", href: "/exiting-qrypt-safe" },
+                    title: p.cards[3].title,
+                    body: p.cards[3].body,
+                    link: { text: p.cards[3].linkText!, href: "/exiting-qrypt-safe" },
                 },
             ]}
             techNote={{
-                label: "qToken contract restrictions",
+                label: p.techNoteLabel!,
                 lines: [
                     "// Transfer blocked for external callers",
                     "function transfer(address to, uint256 amount) public override returns (bool) {",
@@ -65,9 +69,9 @@ export default function QTokenSystemPage() {
                 ],
             }}
             relatedLinks={[
-                { label: "Shield ERC-20 Tokens", href: "/shield-erc20-tokens", color: "#06b6d4" },
-                { label: "Transfer Shield", href: "/transfer-shield", color: "#7c3aed" },
-                { label: "Exiting Qrypt-Safe", href: "/exiting-qrypt-safe", color: "#10b981" },
+                { label: p.relatedLinks[0].label, href: "/shield-erc20-tokens", color: "#06b6d4" },
+                { label: p.relatedLinks[1].label, href: "/transfer-shield", color: "#7c3aed" },
+                { label: p.relatedLinks[2].label, href: "/exiting-qrypt-safe", color: "#10b981" },
             ]}
         />
     );

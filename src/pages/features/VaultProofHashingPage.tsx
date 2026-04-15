@@ -1,58 +1,62 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function VaultProofHashingPage() {
+    const { t } = useLanguage();
+    const p = t.featurePages.vaultProofHashing;
     return (
         <FeatureBentoPage
-            pageTitle="Vault Proof Hashing"
-            badge="CRYPTOGRAPHIC DESIGN"
-            heroTitle="keccak256"
-            heroHighlight="Post-Quantum Security"
-            heroSubtitle="Your vault proof is hashed using keccak256 before any on-chain interaction. The protocol stores only the 256-bit hash. The plaintext never appears on any blockchain, server, or network call."
+            pageTitle={p.pageTitle}
+            badge={p.badge}
+            heroTitle={p.heroTitle}
+            heroHighlight={p.heroHighlight}
+            heroSubtitle={p.heroSubtitle}
             primaryColor="#6366F1"
             secondaryColor="#8B5CF6"
+            heroImg="/images/qryptum-feat-vault-security.jpg"
             heroButtons={[
-                { label: "Vault Proof Security", href: "/vault-proof-security", primary: false },
-                { label: "No Server Storage", href: "/no-server-storage", primary: false },
+                { label: p.heroButtons[0].label, href: "/vault-proof-security", primary: false },
+                { label: p.heroButtons[1].label, href: "/no-server-storage", primary: false },
             ]}
             stats={[
-                { value: "keccak256", label: "Hash function", note: "Ethereum-native standard" },
-                { value: "256 bits", label: "Hash output", note: "32-byte digest" },
-                { value: "0", label: "Plaintext on-chain", note: "Never written to storage" },
-                { value: "$528K", label: "Brute-force cost", note: "At 0.5 gwei, $2,500/ETH" },
+                { value: "keccak256", label: p.stats[0].label, note: p.stats[0].note },
+                { value: "256 bits", label: p.stats[1].label, note: p.stats[1].note },
+                { value: "0", label: p.stats[2].label, note: p.stats[2].note },
+                { value: "$528K", label: p.stats[3].label, note: p.stats[3].note },
             ]}
-            sectionBadge="HASH FUNCTION"
-            sectionHeading="Why keccak256 and Why It Is Enough"
-            sectionBody="keccak256 is the hash function native to the Ethereum Virtual Machine. It produces a 256-bit digest from any input. Finding a plaintext that matches a stored hash would cost hundreds of thousands of dollars in compute at current gas prices."
+            sectionBadge={p.sectionBadge}
             sectionColor="#6366F1"
+            sectionHeading={p.sectionHeading}
+            sectionBody={p.sectionBody}
             cards={[
                 {
                     img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format",
                     color: "#6366F1",
-                    title: "EVM-Native Hash Function",
-                    body: "keccak256 is the same hash function Ethereum uses for state roots, transaction hashes, and address derivation. It is deeply battle-tested in the EVM context.",
-                    link: { text: "Onchain verification", href: "/onchain-verification" },
+                    title: p.cards[0].title,
+                    body: p.cards[0].body,
+                    link: { text: p.cards[0].linkText!, href: "/onchain-verification" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format",
                     color: "#8B5CF6",
-                    title: "Only Hash Stored On-Chain",
-                    body: "The PersonalQrypt-Safe contract stores only the keccak256 digest of your vault proof. No plaintext, no hint, no salt stored alongside it.",
+                    title: p.cards[1].title,
+                    body: p.cards[1].body,
                 },
                 {
                     img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format",
                     color: "#4F46E5",
-                    title: "Brute-Force Cost Analysis",
-                    body: "At 0.5 gwei and $2,500/ETH, a full 256-bit brute force costs approximately $528,000. This is the economic floor for attacking any Qrypt-Safe vault proof.",
+                    title: p.cards[2].title,
+                    body: p.cards[2].body,
                 },
                 {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
                     color: "#7C3AED",
-                    title: "Pre-Image Resistance",
-                    body: "keccak256 is pre-image resistant: given a hash, computing the original input is computationally infeasible. An attacker who sees the stored hash learns nothing useful.",
+                    title: p.cards[3].title,
+                    body: p.cards[3].body,
                 },
             ]}
             techNote={{
-                label: "Hash: keccak256 in Solidity and JavaScript",
+                label: p.techNoteLabel!,
                 lines: [
                     "// Solidity: hash stored on deployment",
                     "bytes32 public vaultProofHash;",
@@ -63,9 +67,9 @@ export default function VaultProofHashingPage() {
                 ],
             }}
             relatedLinks={[
-                { label: "Vault Proof Security", href: "/vault-proof-security", color: "#6366F1" },
-                { label: "No Server Storage", href: "/no-server-storage", color: "#8B5CF6" },
-                { label: "Onchain Verification", href: "/onchain-verification", color: "#4F46E5" },
+                { label: p.relatedLinks[0].label, href: "/no-server-storage", color: "#6366F1" },
+                { label: p.relatedLinks[1].label, href: "/onchain-verification", color: "#8B5CF6" },
+                { label: p.relatedLinks[2].label, href: "/vault-proof-security", color: "#4F46E5" },
             ]}
         />
     );

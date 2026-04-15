@@ -1,59 +1,63 @@
-import FeatureBentoPage from "../FeatureBentoPage";
+import FeatureBentoPage from "@/pages/FeatureBentoPage";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function ShieldErc20Page() {
+    const { t } = useLanguage();
+    const p = t.featurePages.shieldErc20;
     return (
         <FeatureBentoPage
-            pageTitle="Shield ERC-20 Tokens"
-            badge="Shield Protocol"
-            heroTitle="Shield Any ERC-20"
-            heroHighlight="Token Instantly"
-            heroSubtitle="Deposit any ERC-20 token into your Qrypt-Safe in one transaction. Receive qTokens immediately. Your assets stay on-chain, fully collateralized."
+            pageTitle={p.pageTitle}
+            badge={p.badge}
+            heroTitle={p.heroTitle}
+            heroHighlight={p.heroHighlight}
+            heroSubtitle={p.heroSubtitle}
             primaryColor="#06b6d4"
             secondaryColor="#7c3aed"
+            heroImg="/images/qryptum-feat-shield-tokens.jpg"
             heroButtons={[
-                { label: "Open App", href: "/app", primary: true },
-                { label: "Read Docs", href: "/docs/introduction/overview" },
+                { label: p.heroButtons[0].label, href: "https://qryptum.eth.limo/app", primary: true },
+                { label: p.heroButtons[1].label, href: "https://qryptumorg.github.io/docs/introduction/overview" },
             ]}
             stats={[
-                { value: "Any ERC-20", label: "Token support", note: "ETH, USDT, USDC, DAI..." },
-                { value: "1 tx", label: "Shield cost", note: "Single approval + deposit" },
-                { value: "1:1", label: "qToken ratio", note: "Fully backed always" },
-                { value: "Instant", label: "qToken mint", note: "Same block as deposit" },
+                { value: "Any ERC-20", label: p.stats[0].label, note: p.stats[0].note },
+                { value: "1 tx", label: p.stats[1].label, note: p.stats[1].note },
+                { value: "1:1", label: p.stats[2].label, note: p.stats[2].note },
+                { value: "Instant", label: p.stats[3].label, note: p.stats[3].note },
             ]}
-            sectionBadge="How Shielding Works"
+            sectionBadge={p.sectionBadge}
             sectionColor="#06b6d4"
-            sectionHeading="From Token to qToken in One Click"
-            sectionBody="Shielding converts your ERC-20 into a cryptographically protected qToken. The original token stays locked inside your Qrypt-Safe until you choose to unshield."
+            sectionHeading={p.sectionHeading}
+            sectionBody={p.sectionBody}
             cards={[
                 {
-                    img: "/images/shield-approve.png",
+                    img: "/images/qryptum-shield-erc20-deposit.jpg",
                     color: "#06b6d4",
-                    title: "Approve Once",
-                    body: "Grant your Qrypt-Safe permission to pull the token. This is a standard ERC-20 approve() call. You set the exact amount you want to shield.",
-                    link: { text: "ERC-20 approval flow", href: "/docs/introduction/overview" },
+                    title: p.cards[0].title,
+                    body: p.cards[0].body,
+                    link: { text: p.cards[0].linkText!, href: "https://qryptumorg.github.io/docs/introduction/overview" },
                 },
                 {
-                    img: "/images/shield-lock.png",
+                    img: "/images/qryptum-shield-erc20-instant.jpg",
                     color: "#7c3aed",
-                    title: "Token Locked In Vault",
-                    body: "Your ERC-20 transfers from your wallet to the Qrypt-Safe contract. The contract holds it exclusively. No pool. No shared custody.",
+                    title: p.cards[1].title,
+                    body: p.cards[1].body,
                 },
                 {
-                    img: "/images/shield-qtoken.png",
+                    img: "/images/qryptum-shield-erc20-tokens.jpg",
                     color: "#10b981",
-                    title: "qToken Minted Immediately",
-                    body: "The Qrypt-Safe mints an equal amount of qTokens to your wallet in the same transaction. 100 USDT shielded returns 100 qUSDT.",
+                    title: p.cards[2].title,
+                    body: p.cards[2].body,
                 },
                 {
-                    img: "/images/card-erc20-shield.png",
+                    img: "/images/qryptum-getting-shield.jpg",
                     color: "#f59e0b",
-                    title: "Full Collateralization Always",
-                    body: "Every qToken in circulation is backed 1:1 by the original asset locked in your Qrypt-Safe. There is no fractional reserve. No lending. No yield.",
-                    link: { text: "qToken system", href: "/qtoken-system" },
+                    title: p.cards[3].title,
+                    body: p.cards[3].body,
+                    link: { text: p.cards[3].linkText!, href: "/qtoken-system" },
                 },
             ]}
             techNote={{
-                label: "Shield transaction calls",
+                label: p.techNoteLabel!,
                 lines: [
                     "// Step 1: Standard ERC-20 approval",
                     "token.approve(vaultAddress, amount)",
@@ -66,9 +70,9 @@ export default function ShieldErc20Page() {
                 ],
             }}
             relatedLinks={[
-                { label: "qToken System", href: "/qtoken-system", color: "#7c3aed" },
-                { label: "Vault Proof Security", href: "/vault-proof-security", color: "#06b6d4" },
-                { label: "Exiting Qrypt-Safe", href: "/exiting-qrypt-safe", color: "#10b981" },
+                { label: p.relatedLinks[0].label, href: "/qtoken-system", color: "#7c3aed" },
+                { label: p.relatedLinks[1].label, href: "/vault-proof-security", color: "#06b6d4" },
+                { label: p.relatedLinks[2].label, href: "/exiting-qrypt-safe", color: "#10b981" },
             ]}
         />
     );

@@ -1,58 +1,62 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function RestApiReferencePage() {
+    const { t } = useLanguage();
+    const p = t.featurePages.restApiReference;
     return (
         <FeatureBentoPage
-            pageTitle="REST API Reference"
-            badge="INTEGRATION GUIDE"
-            heroTitle="Backend API"
-            heroHighlight="for Developers"
-            heroSubtitle="The Qryptum REST API provides endpoints for indexing Qrypt-Safe events, querying vault states, and retrieving transaction history: without requiring direct Ethereum RPC calls."
+            pageTitle={p.pageTitle}
+            badge={p.badge}
+            heroTitle={p.heroTitle}
+            heroHighlight={p.heroHighlight}
+            heroSubtitle={p.heroSubtitle}
             primaryColor="#F59E0B"
             secondaryColor="#EF4444"
+            heroImg="/images/qryptum-feat-guide-docs.jpg"
             heroButtons={[
-                { label: "ABI and Addresses", href: "/abi-and-addresses", primary: false },
-                { label: "Network Support", href: "/network-support", primary: false },
+                { label: p.heroButtons[0].label, href: "/abi-and-addresses", primary: false },
+                { label: p.heroButtons[1].label, href: "/network-support", primary: false },
             ]}
             stats={[
-                { value: "REST", label: "API style", note: "Standard HTTP endpoints" },
-                { value: "JSON", label: "Response format", note: "All responses" },
-                { value: "No auth", label: "For read endpoints", note: "Public read access" },
-                { value: "Websocket", label: "Event streams", note: "Real-time vault events" },
+                { value: "REST", label: p.stats[0].label, note: p.stats[0].note },
+                { value: "JSON", label: p.stats[1].label, note: p.stats[1].note },
+                { value: "No auth", label: p.stats[2].label, note: p.stats[2].note },
+                { value: "Websocket", label: p.stats[3].label, note: p.stats[3].note },
             ]}
-            sectionBadge="API ENDPOINTS"
-            sectionHeading="What the API Provides and What It Does Not"
-            sectionBody="The API indexes Ethereum events from ShieldFactory and PersonalQrypt-Safe contracts. It provides read-only data for the UI: Qrypt-Safe addresses, token balances, and transaction history. It never holds vault proofs or private data."
+            sectionBadge={p.sectionBadge}
             sectionColor="#F59E0B"
+            sectionHeading={p.sectionHeading}
+            sectionBody={p.sectionBody}
             cards={[
                 {
                     img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format",
                     color: "#F59E0B",
-                    title: "GET /vault/:address",
-                    body: "Returns the Qrypt-Safe contract address for a given wallet, along with shielded token balances indexed from on-chain events.",
+                    title: p.cards[0].title,
+                    body: p.cards[0].body,
                 },
                 {
                     img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format",
                     color: "#EF4444",
-                    title: "GET /transactions/:vault",
-                    body: "Returns paginated transaction history for a Qrypt-Safe: shield events, transfer commits, reveals, and unshield events indexed from Ethereum logs.",
+                    title: p.cards[1].title,
+                    body: p.cards[1].body,
                 },
                 {
                     img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format",
                     color: "#D97706",
-                    title: "WebSocket /events",
-                    body: "Subscribe to real-time vault events. The server pushes new shield, commit, reveal, and unshield events as they are confirmed on Ethereum.",
+                    title: p.cards[2].title,
+                    body: p.cards[2].body,
                 },
                 {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
                     color: "#B45309",
-                    title: "No Secret Data in API",
-                    body: "The API never stores or returns vault proofs, private keys, or any sensitive data. It only indexes publicly visible Ethereum event data.",
-                    link: { text: "No server storage", href: "/no-server-storage" },
+                    title: p.cards[3].title,
+                    body: p.cards[3].body,
+                    link: { text: p.cards[3].linkText!, href: "/no-server-storage" },
                 },
             ]}
             techNote={{
-                label: "API: example requests",
+                label: p.techNoteLabel!,
                 lines: [
                     "// Get Qrypt-Safe for a wallet",
                     "GET /api/vault/0xYourWalletAddress",
@@ -65,9 +69,9 @@ export default function RestApiReferencePage() {
                 ],
             }}
             relatedLinks={[
-                { label: "ABI and Addresses", href: "/abi-and-addresses", color: "#F59E0B" },
-                { label: "Network Support", href: "/network-support", color: "#EF4444" },
-                { label: "ShieldFactory", href: "/shield-factory", color: "#D97706" },
+                { label: p.relatedLinks[0].label, href: "/abi-and-addresses", color: "#F59E0B" },
+                { label: p.relatedLinks[1].label, href: "/network-support", color: "#EF4444" },
+                { label: p.relatedLinks[2].label, href: "/shield-factory", color: "#D97706" },
             ]}
         />
     );

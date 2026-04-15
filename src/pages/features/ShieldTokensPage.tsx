@@ -1,60 +1,64 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function ShieldTokensPage() {
+    const { t } = useLanguage();
+    const p = t.featurePages.shieldTokens;
     return (
         <FeatureBentoPage
-            pageTitle="Shield Tokens"
-            badge="HOW IT WORKS"
-            heroTitle="Deposit ERC-20,"
-            heroHighlight="Receive qTokens"
-            heroSubtitle="Call shield() with any supported ERC-20 token. Your Qrypt-Safe locks the tokens and mints the exact equivalent in qTokens to your wallet address, 1:1, atomically."
+            pageTitle={p.pageTitle}
+            badge={p.badge}
+            heroTitle={p.heroTitle}
+            heroHighlight={p.heroHighlight}
+            heroSubtitle={p.heroSubtitle}
             primaryColor="#00C896"
             secondaryColor="#00D4FF"
+            heroImg="/images/qryptum-feat-shield-tokens.jpg"
             heroButtons={[
-                { label: "Shield Now", href: "/app", primary: true },
-                { label: "Supported Tokens", href: "/supported-tokens" },
+                { label: p.heroButtons[0].label, href: "https://qryptum.eth.limo/app", primary: true },
+                { label: p.heroButtons[1].label, href: "/supported-tokens" },
             ]}
             stats={[
-                { value: "Any ERC-20", label: "Token support", note: "Standard interface required" },
-                { value: "1:1", label: "qToken mint", note: "No fractional reserve" },
-                { value: "~$0.45", label: "Gas cost", note: "ERC-20 approve + shield()" },
-                { value: "Instant", label: "qToken receipt", note: "Same block as deposit" },
+                { value: "Any ERC-20", label: p.stats[0].label, note: p.stats[0].note },
+                { value: "1:1", label: p.stats[1].label, note: p.stats[1].note },
+                { value: "~$0.45", label: p.stats[2].label, note: p.stats[2].note },
+                { value: "Instant", label: p.stats[3].label, note: p.stats[3].note },
             ]}
-            sectionBadge="SHIELDING PROCESS"
-            sectionHeading="Two Transactions to Shield"
-            sectionBody="First approve the Qrypt-Safe to spend your ERC-20 tokens, then call shield(). The approval is a standard ERC-20 step. The shield() call locks the tokens and mints your qTokens in one transaction."
+            sectionBadge={p.sectionBadge}
             sectionColor="#00C896"
+            sectionHeading={p.sectionHeading}
+            sectionBody={p.sectionBody}
             cards={[
                 {
                     img: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=800&auto=format",
                     color: "#00C896",
-                    title: "ERC-20 Approve First",
-                    body: "Before shielding, you approve your Qrypt-Safe contract to transfer the tokens on your behalf. This is a standard ERC-20 allowance call.",
-                    link: { text: "Shield ERC-20 tokens", href: "/shield-erc20-tokens" },
+                    title: p.cards[0].title,
+                    body: p.cards[0].body,
+                    link: { text: p.cards[0].linkText!, href: "/shield-erc20-tokens" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
                     color: "#00D4FF",
-                    title: "Vault Proof Required",
-                    body: "shield() requires your vault proof to verify you are the Qrypt-Safe owner. The plaintext is hashed client-side before submission.",
-                    link: { text: "Enter vault proof", href: "/enter-vault-proof" },
+                    title: p.cards[1].title,
+                    body: p.cards[1].body,
+                    link: { text: p.cards[1].linkText!, href: "/enter-vault-proof" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&auto=format",
                     color: "#00A876",
-                    title: "Atomic Lock and Mint",
-                    body: "The shield() call atomically locks your ERC-20 tokens inside the Qrypt-Safe and mints the exact qToken amount to your wallet in one transaction.",
+                    title: p.cards[2].title,
+                    body: p.cards[2].body,
                 },
                 {
                     img: "https://images.unsplash.com/photo-1503551723145-6c040742065b?w=800&auto=format",
                     color: "#0099BB",
-                    title: "qTokens Visible in MetaMask",
-                    body: "After shielding, the qTokens appear in your MetaMask with the q prefix: qETH, qUSDT, qUSDC. They track your shielded position exactly.",
-                    link: { text: "qToken system", href: "/qtoken-system" },
+                    title: p.cards[3].title,
+                    body: p.cards[3].body,
+                    link: { text: p.cards[3].linkText!, href: "/qtoken-system" },
                 },
             ]}
             techNote={{
-                label: "Contract: shield tokens",
+                label: p.techNoteLabel!,
                 lines: [
                     "function shield(address token, uint256 amount, bytes32 vaultProof) external {",
                     "    require(keccak256(vaultProof) == vaultProofHash, 'invalid proof');",
@@ -64,9 +68,9 @@ export default function ShieldTokensPage() {
                 ],
             }}
             relatedLinks={[
-                { label: "Shield ERC-20 Tokens", href: "/shield-erc20-tokens", color: "#00C896" },
-                { label: "1:1 Backing", href: "/one-to-one-backing", color: "#00D4FF" },
-                { label: "Create Qrypt-Safe", href: "/create-qrypt-safe", color: "#00A876" },
+                { label: p.relatedLinks[0].label, href: "/shield-erc20-tokens", color: "#00C896" },
+                { label: p.relatedLinks[1].label, href: "/one-to-one-backing", color: "#00D4FF" },
+                { label: p.relatedLinks[2].label, href: "/create-qrypt-safe", color: "#00A876" },
             ]}
         />
     );

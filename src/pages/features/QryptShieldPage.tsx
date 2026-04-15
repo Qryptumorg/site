@@ -24,10 +24,18 @@ export default function QryptShieldPage() {
 
     return (
         <div style={{ background: "#000", minHeight: "100vh", color: "#d4d6e2", fontFamily: "'Inter',sans-serif" }}>
-            <SharedNavBar onConnect={() => navigate("/app")} isConnecting={false} />
+            <SharedNavBar onConnect={() => window.open("https://qryptum.eth.limo/app", "_blank")} isConnecting={false} />
 
             {/* HERO */}
-            <section style={{ padding: isMobile ? "120px 24px 72px" : "140px 72px 80px", maxWidth: 1200, margin: "0 auto" }}>
+            <section style={{ position: "relative", overflow: "hidden" }}>
+                {/* Hero BG */}
+                <img
+                    src="/images/qryptum-qrypt-shield-hero.png"
+                    alt=""
+                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", opacity: 0.32, zIndex: 0, pointerEvents: "none" }}
+                />
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.60) 55%, #000 100%)", zIndex: 1, pointerEvents: "none" }} />
+            <div style={{ position: "relative", zIndex: 2, padding: isMobile ? "120px 24px 72px" : "140px 72px 80px", maxWidth: 1200, margin: "0 auto" }}>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(139,92,246,0.12)", border: "1px solid rgba(139,92,246,0.3)", borderRadius: 100, padding: "6px 14px", marginBottom: 32 }}>
                     <div style={{ width: 6, height: 6, borderRadius: "50%", background: PRIMARY }} />
                     <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: PRIMARY }}>{p.badge}</span>
@@ -66,6 +74,7 @@ export default function QryptShieldPage() {
                         </div>
                     ))}
                 </div>
+            </div>
             </section>
 
             {/* HOW IT WORKS */}
@@ -103,12 +112,12 @@ export default function QryptShieldPage() {
                         </div>
                         <div style={{ display: "flex", flexDirection: "column" as const, gap: 16 }}>
                             <img
-                                src={`${import.meta.env.BASE_URL}images/qs-pool-mix.jpg`}
+                                src="/images/qryptum-qs-pool-mix.jpg"
                                 alt="Anonymity pool"
                                 style={{ width: "100%", borderRadius: 16, border: "1px solid rgba(139,92,246,0.2)" }}
                             />
                             <img
-                                src={`${import.meta.env.BASE_URL}images/qs-relayer.jpg`}
+                                src="/images/qryptum-qs-relayer.jpg"
                                 alt="Public relayer"
                                 style={{ width: "100%", borderRadius: 16, border: "1px solid rgba(109,40,217,0.2)" }}
                             />
@@ -133,7 +142,7 @@ export default function QryptShieldPage() {
 
                     <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "2fr 1fr", gap: 16, marginBottom: 16 }}>
                         <div style={{ borderRadius: 20, overflow: "hidden", background: "rgba(139,92,246,0.06)", border: "1px solid rgba(139,92,246,0.15)" }}>
-                            <img src={`${import.meta.env.BASE_URL}images/qs-pool-deposit.jpg`} alt="" style={{ width: "100%", height: 220, objectFit: "cover", display: "block" }} />
+                            <img src="/images/qryptum-qs-pool-deposit.jpg" alt="" style={{ width: "100%", height: 220, objectFit: "cover", display: "block" }} />
                             <div style={{ padding: "28px 28px 32px" }}>
                                 <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 10 }}>{p.cards[0].title}</div>
                                 <div style={{ fontSize: 14, lineHeight: 1.65, color: "rgba(255,255,255,0.55)" }}>{p.cards[0].body}</div>
@@ -145,7 +154,7 @@ export default function QryptShieldPage() {
                             </div>
                         </div>
                         <div style={{ borderRadius: 20, overflow: "hidden", background: "rgba(139,92,246,0.06)", border: "1px solid rgba(139,92,246,0.15)" }}>
-                            <img src={`${import.meta.env.BASE_URL}images/qs-pool-mix.jpg`} alt="" style={{ width: "100%", height: 220, objectFit: "cover", display: "block" }} />
+                            <img src="/images/qryptum-qs-pool-mix.jpg" alt="" style={{ width: "100%", height: 220, objectFit: "cover", display: "block" }} />
                             <div style={{ padding: "28px 28px 32px" }}>
                                 <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 10 }}>{p.cards[1].title}</div>
                                 <div style={{ fontSize: 14, lineHeight: 1.65, color: "rgba(255,255,255,0.55)" }}>{p.cards[1].body}</div>
@@ -155,14 +164,14 @@ export default function QryptShieldPage() {
 
                     <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 2fr", gap: 16 }}>
                         <div style={{ borderRadius: 20, overflow: "hidden", background: "rgba(109,40,217,0.06)", border: "1px solid rgba(109,40,217,0.15)" }}>
-                            <img src={`${import.meta.env.BASE_URL}images/qs-relayer.jpg`} alt="" style={{ width: "100%", height: 200, objectFit: "cover", display: "block" }} />
+                            <img src="/images/qryptum-qs-relayer.jpg" alt="" style={{ width: "100%", height: 200, objectFit: "cover", display: "block" }} />
                             <div style={{ padding: "28px 28px 32px" }}>
                                 <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 10 }}>{p.cards[2].title}</div>
                                 <div style={{ fontSize: 14, lineHeight: 1.65, color: "rgba(255,255,255,0.55)" }}>{p.cards[2].body}</div>
                             </div>
                         </div>
                         <div style={{ borderRadius: 20, overflow: "hidden", background: "rgba(139,92,246,0.06)", border: "1px solid rgba(139,92,246,0.15)" }}>
-                            <img src={`${import.meta.env.BASE_URL}images/qs-recipient.jpg`} alt="" style={{ width: "100%", height: 200, objectFit: "cover", display: "block" }} />
+                            <img src="/images/qryptum-qs-recipient.jpg" alt="" style={{ width: "100%", height: 200, objectFit: "cover", display: "block" }} />
                             <div style={{ padding: "28px 28px 32px" }}>
                                 <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 10 }}>{p.cards[3].title}</div>
                                 <div style={{ fontSize: 14, lineHeight: 1.65, color: "rgba(255,255,255,0.55)" }}>{p.cards[3].body}</div>
@@ -242,7 +251,7 @@ export default function QryptShieldPage() {
                     <h2 style={{ fontSize: isMobile ? 28 : 36, fontWeight: 900, letterSpacing: "-0.025em", marginBottom: 12 }}>{p.cta.title}</h2>
                     <p style={{ fontSize: 16, color: "rgba(255,255,255,0.55)", marginBottom: 32 }}>{p.cta.body}</p>
                     <button
-                        onClick={() => navigate("/app")}
+                        onClick={() => window.open("https://qryptum.eth.limo/app", "_blank")}
                         style={{ padding: "14px 32px", borderRadius: 12, background: PRIMARY, color: "#d4d6e2", fontWeight: 700, fontSize: 15, border: "none", cursor: "pointer" }}
                     >
                         {p.cta.button}

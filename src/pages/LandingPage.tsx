@@ -10,7 +10,7 @@ export default function LandingPage() {
     const isConnecting = false;
 
     const handleConnect = () => {
-        navigate("/app");
+        window.open("https://qryptum.eth.limo/app", "_blank");
     };
 
     return (
@@ -20,10 +20,179 @@ export default function LandingPage() {
             <LogosStrip />
             <StatsSplit />
             <UseCases />
+            <ProductsBento />
             <HowItWorks />
             <FinalCTA onConnect={handleConnect} isConnecting={isConnecting} />
             <Footer />
         </div>
+    );
+}
+
+/* ─── ProductsBento ─────────────────────────────────────────────────── */
+
+function ProductsBento() {
+    const { t } = useLanguage();
+    const L = t.landing;
+    const [isMobile, setIsMobile] = useState(false);
+    useEffect(() => {
+        const check = () => setIsMobile(window.innerWidth < 900);
+        check();
+        window.addEventListener("resize", check);
+        return () => window.removeEventListener("resize", check);
+    }, []);
+
+    const PRODUCT_TAGS = [
+        ["Commit-Reveal", "Non-Custodial", "ERC-20"],
+        ["Railgun Pool", "Zero Sender", "MEV-Safe"],
+        ["EIP-712", "QR Code", "No Internet"],
+    ];
+    const PRODUCT_IMGS  = ["/images/qryptum-prod-qryptsafe.jpg", "/images/qryptum-prod-qryptshield.jpg", "/images/qryptum-prod-qryptair.jpg"];
+    const PRODUCT_HREFS = ["/create-personal-qrypt-safe", "/qrypt-shield", "/qrypt-air"];
+    const PRODUCT_GRID  = [
+        { col: "1 / 2", row: "1 / 3" },
+        { col: "2 / 3", row: "1 / 2" },
+        { col: "2 / 3", row: "2 / 3" },
+    ];
+    const IMG_HEIGHTS   = [isMobile ? 220 : 340, 190, 190];
+
+    const tag = (label: string, color: string) => (
+        <span key={label} style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: 11, fontWeight: 600,
+            color,
+            background: `${color}18`,
+            border: `1px solid ${color}30`,
+            borderRadius: 100,
+            padding: "3px 10px",
+        }}>{label}</span>
+    );
+
+    const card = ({
+        img, color, badge, title, desc, tags, href,
+        gridColumn, gridRow, imgH, features,
+    }: {
+        img: string; color: string; badge: string; title: string; desc: string;
+        tags: string[]; href: string; gridColumn?: string; gridRow?: string; imgH: number;
+        features?: Array<{ label: string; detail: string }>;
+    }) => (
+        <a href={href} key={href} style={{
+            gridColumn: isMobile ? "1" : (gridColumn ?? "auto"),
+            gridRow: isMobile ? "auto" : (gridRow ?? "auto"),
+            background: "#07070c",
+            border: `1px solid ${color}20`,
+            borderRadius: 20,
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+            textDecoration: "none",
+            transition: "border-color 0.2s, transform 0.2s",
+            cursor: "pointer",
+        }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = `${color}45`; (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = `${color}20`; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
+        >
+            {/* Image */}
+            <div style={{ position: "relative", flexShrink: 0 }}>
+                <img src={img} alt={badge} style={{ width: "100%", height: imgH, objectFit: "cover", display: "block" }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 70, background: "linear-gradient(to top, #07070c, transparent)" }} />
+            </div>
+            {/* Content */}
+            <div style={{ padding: isMobile ? "20px 22px 26px" : "22px 28px 30px", flex: 1, display: "flex", flexDirection: "column" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+                    <div style={{ width: 7, height: 7, borderRadius: "50%", background: color, flexShrink: 0 }} />
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color, textTransform: "uppercase" }}>{badge}</span>
+                </div>
+                <h3 style={{ fontFamily: "'Inter', sans-serif", fontSize: gridColumn === "1 / 2" ? (isMobile ? 22 : 26) : 19, fontWeight: 800, color: "#d4d6e2", lineHeight: 1.2, margin: "0 0 10px" }}>{title}</h3>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.52)", lineHeight: 1.65, margin: "0 0 20px" }}>{desc}</p>
+
+                {/* Feature bullet list ,  fills empty space on large cards */}
+                {features && features.length > 0 && (
+                    <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 0, marginBottom: 24 }}>
+                        <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", marginBottom: 16 }} />
+                        {features.map((f, i) => (
+                            <div key={f.label} style={{
+                                display: "flex",
+                                alignItems: "flex-start",
+                                gap: 12,
+                                padding: "11px 0",
+                                borderBottom: i < features.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
+                            }}>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0, marginTop: 1 }}>
+                                    <circle cx="8" cy="8" r="7" stroke={color} strokeOpacity="0.35" strokeWidth="1" />
+                                    <path d="M5 8l2 2 4-4" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <div>
+                                    <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 600, color: "#d4d6e2", marginBottom: 2 }}>{f.label}</div>
+                                    <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "rgba(255,255,255,0.4)", lineHeight: 1.5 }}>{f.detail}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 18, marginTop: features ? 0 : "auto" }}>
+                    {tags.map(t => tag(t, color))}
+                </div>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 600, color }}>
+                    {badge} <span style={{ fontSize: 15 }}>→</span>
+                </span>
+            </div>
+        </a>
+    );
+
+    return (
+        <section style={{
+            background: "#030308",
+            borderTop: "1px solid rgba(255,255,255,0.07)",
+            padding: isMobile ? "72px 20px 80px" : "100px 48px 110px",
+        }}>
+            {/* Header */}
+            <div style={{ textAlign: "center", maxWidth: 640, margin: "0 auto 56px" }}>
+                <p style={{
+                    fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.12em", color: "rgba(255,255,255,0.3)",
+                    textTransform: "uppercase", marginBottom: 16,
+                }}>{L.productsBentoLabel}</p>
+                <h2 style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: isMobile ? 30 : 44, fontWeight: 800,
+                    color: "#d4d6e2", lineHeight: 1.1, margin: "0 0 18px",
+                }}>{L.productsBentoHeading.split("\n").map((line, i, arr) => (
+                    <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+                ))}</h2>
+                <p style={{
+                    fontFamily: "'Inter', sans-serif", fontSize: 16,
+                    color: "rgba(255,255,255,0.48)", lineHeight: 1.65, margin: 0,
+                }}>{L.productsBentoSubtitle}</p>
+            </div>
+
+            {/* Bento grid */}
+            <div style={{
+                maxWidth: 1300, margin: "0 auto",
+                display: "grid",
+                gridTemplateColumns: isMobile ? "1fr" : "2fr 1fr",
+                gridTemplateRows: isMobile ? "auto" : "1fr 1fr",
+                gap: 14,
+            }}>
+                {L.products.map((prod, i) => {
+                    const color = MODE_COLORS[prod.badge] ?? "#22C55E";
+                    const grid  = PRODUCT_GRID[i];
+                    return card({
+                        img:        PRODUCT_IMGS[i],
+                        color,
+                        badge:      prod.badge,
+                        title:      prod.title,
+                        desc:       prod.desc,
+                        tags:       PRODUCT_TAGS[i],
+                        href:       PRODUCT_HREFS[i],
+                        gridColumn: isMobile ? "1" : grid.col,
+                        gridRow:    isMobile ? "auto" : grid.row,
+                        imgH:       IMG_HEIGHTS[i],
+                        features:   prod.features as unknown as { label: string; detail: string }[] | undefined,
+                    });
+                })}
+            </div>
+        </section>
     );
 }
 
@@ -120,52 +289,132 @@ function HexRainCanvas() {
 }
 
 const STEP_NUMS = ["01", "02", "03"];
-const STEP_SNIPPETS = [
+
+const MODE_COLORS: Record<string, string> = {
+    QryptSafe:   "#22C55E",
+    QryptShield: "#8B5CF6",
+    QryptAir:    "#F59E0B",
+};
+
+type SnipLine = { dim: boolean; text: string };
+
+const PRODUCT_SNIPPETS: SnipLine[][][] = [
     [
-        { dim: true,  text: "// lock USDC with vault proof" },
-        { dim: false, text: "vault.shield({" },
-        { dim: false, text: '  token:  "USDC",' },
-        { dim: false, text: "  amount: 1000," },
-        { dim: false, text: "  proof:  vaultProof(***)" },
-        { dim: false, text: "})" },
-        { dim: true,  text: "" },
-        { dim: true,  text: "vault_id: 0x7f3a2b...d91a" },
+        [
+            { dim: true,  text: "// lock USDC with vault proof" },
+            { dim: false, text: "vault.shield({" },
+            { dim: false, text: '  token:  "USDC",' },
+            { dim: false, text: "  amount: 1000," },
+            { dim: false, text: "  proof:  vaultProof(***)" },
+            { dim: false, text: "})" },
+            { dim: true,  text: "" },
+            { dim: true,  text: "vault_id: 0x7f3a2b...d91a" },
+        ],
+        [
+            { dim: true,  text: "// attacker has privkey, no proof" },
+            { dim: true,  text: "vault.transfer('0x7f3a...', to)" },
+            { dim: true,  text: "  revert: InvalidVaultProof" },
+            { dim: true,  text: "" },
+            { dim: true,  text: "// owner: key + vault proof" },
+            { dim: false, text: "vault.transfer({" },
+            { dim: false, text: "  vault_id: '0x7f3a...'," },
+            { dim: false, text: "  to:       '0xB4c2...'," },
+            { dim: false, text: "  proof:    vaultProof(***)" },
+            { dim: false, text: "})" },
+        ],
+        [
+            { dim: true,  text: "// on-chain verification" },
+            { dim: false, text: "require(" },
+            { dim: false, text: "  verifyVaultProof(proof)" },
+            { dim: false, text: "  == vault.anchor," },
+            { dim: false, text: "  'InvalidVaultProof'" },
+            { dim: false, text: ")" },
+            { dim: true,  text: "" },
+            { dim: true,  text: "tokens released to 0xB4c2... ✓" },
+        ],
     ],
     [
-        { dim: true,  text: "// attacker has privkey, no proof" },
-        { dim: true,  text: "vault.transfer('0x7f3a...', to)" },
-        { dim: true,  text: "  revert: InvalidVaultProof" },
-        { dim: true,  text: "" },
-        { dim: true,  text: "// owner: key + vault proof" },
-        { dim: false, text: "vault.transfer({" },
-        { dim: false, text: "  vault_id: '0x7f3a...'," },
-        { dim: false, text: "  to:       '0xB4c2...'," },
-        { dim: false, text: "  proof:    vaultProof(***)" },
-        { dim: false, text: "})" },
+        [
+            { dim: true,  text: "// shield into Railgun pool" },
+            { dim: false, text: "railgun.shield({" },
+            { dim: false, text: '  token:   "USDC",' },
+            { dim: false, text: "  amount:  500," },
+            { dim: false, text: "  zkProof: generateProof(***)" },
+            { dim: false, text: "})" },
+            { dim: true,  text: "" },
+            { dim: true,  text: "// shielded balance: 500 USDC" },
+        ],
+        [
+            { dim: true,  text: "// on-chain record" },
+            { dim: false, text: "txHistory: [" },
+            { dim: false, text: "  wallet -> railgunPool" },
+            { dim: false, text: "]" },
+            { dim: true,  text: "" },
+            { dim: true,  text: "// sender addr:  [PRIVATE]" },
+            { dim: true,  text: "// amount:       [PRIVATE]" },
+            { dim: true,  text: "// recipient:    [PRIVATE]" },
+        ],
+        [
+            { dim: true,  text: "// unshield to any address" },
+            { dim: false, text: "railgun.unshield({" },
+            { dim: false, text: '  token:   "USDC",' },
+            { dim: false, text: "  to:      '0xB4c2...'," },
+            { dim: false, text: "  zkProof: generateProof(***)" },
+            { dim: false, text: "})" },
+            { dim: true,  text: "" },
+            { dim: true,  text: "// no on-chain link to origin ✓" },
+        ],
     ],
     [
-        { dim: true,  text: "// onchain verification" },
-        { dim: false, text: "require(" },
-        { dim: false, text: "  verifyVaultProof(proof)" },
-        { dim: false, text: "  == vault.anchor," },
-        { dim: false, text: "  'InvalidVaultProof'" },
-        { dim: false, text: ")" },
-        { dim: true,  text: "" },
-        { dim: true,  text: "tokens released to 0xB4c2... ✓" },
+        [
+            { dim: true,  text: "// sign offline, no connection" },
+            { dim: false, text: "offToken = EIP712.sign({" },
+            { dim: false, text: "  to:       '0xB4c2...'," },
+            { dim: false, text: "  amount:   1000," },
+            { dim: false, text: '  token:    "USDC",' },
+            { dim: false, text: "  deadline: 1735689600," },
+            { dim: false, text: "})" },
+            { dim: true,  text: "// ✓ signed, no broadcast yet" },
+        ],
+        [
+            { dim: true,  text: "// encode as QR code" },
+            { dim: false, text: "qrCode = encodeOffToken({" },
+            { dim: false, text: "  sig:  offToken.sig," },
+            { dim: false, text: "  to:   offToken.to," },
+            { dim: false, text: "  data: offToken.payload" },
+            { dim: false, text: "})" },
+            { dim: true,  text: "" },
+            { dim: true,  text: "// share via photo / print" },
+        ],
+        [
+            { dim: true,  text: "// recipient broadcasts" },
+            { dim: false, text: "contract.redeemOffToken({" },
+            { dim: false, text: "  offToken:      qr.data," },
+            { dim: false, text: "  transferCode: code," },
+            { dim: false, text: "  sig:          qr.sig" },
+            { dim: false, text: "})" },
+            { dim: true,  text: "" },
+            { dim: true,  text: "// EIP-712 verified on-chain ✓" },
+        ],
     ],
 ];
 
 function HowItWorks() {
     const { t } = useLanguage();
-    const L = t.landing;
     const [isMobile, setIsMobile] = useState(() =>
         typeof window !== "undefined" ? window.innerWidth < 768 : false
     );
+    const [activeTab, setActiveTab] = useState(0);
     useEffect(() => {
         const check = () => setIsMobile(window.innerWidth < 768);
         window.addEventListener("resize", check);
         return () => window.removeEventListener("resize", check);
     }, []);
+
+    const flows   = t.landing.productFlows;
+    const flow    = flows[activeTab];
+    const color   = MODE_COLORS[flow.badge] ?? "#22C55E";
+    const snippets = PRODUCT_SNIPPETS[activeTab];
 
     return (
         <section style={{
@@ -180,7 +429,7 @@ function HowItWorks() {
             {/* content above canvas */}
             <div style={{ position: "relative", zIndex: 1 }}>
                 {/* Header */}
-                <div style={{ marginBottom: isMobile ? 40 : 56 }}>
+                <div style={{ marginBottom: isMobile ? 32 : 44 }}>
                     <p style={{
                         fontFamily: "'Inter', sans-serif",
                         fontSize: 11,
@@ -189,17 +438,46 @@ function HowItWorks() {
                         color: "rgba(255,255,255,0.28)",
                         textTransform: "uppercase",
                         marginBottom: 16,
-                    }}>{L.howItWorksLabel}</p>
+                    }}>{t.landing.howItWorksLabel}</p>
                     <h2 style={{
                         fontFamily: "'Inter', sans-serif",
                         fontSize: isMobile ? 30 : 46,
                         fontWeight: 800,
                         lineHeight: 1.1,
-                        color: "#fff",
+                        color: "#d4d6e2",
                         letterSpacing: "-0.02em",
+                        marginBottom: 28,
                     }}>
-                        {L.howItWorksHeading}
+                        {flow.heading}
                     </h2>
+
+                    {/* Product tab switcher */}
+                    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" as const }}>
+                        {flows.map((prod, i) => {
+                            const tabColor = MODE_COLORS[prod.badge] ?? "#22C55E";
+                            return (
+                                <button
+                                    key={prod.badge}
+                                    onClick={() => setActiveTab(i)}
+                                    style={{
+                                        padding: isMobile ? "7px 14px" : "8px 18px",
+                                        borderRadius: 100,
+                                        border: `1px solid ${activeTab === i ? tabColor + "80" : "rgba(255,255,255,0.12)"}`,
+                                        background: activeTab === i ? tabColor + "18" : "transparent",
+                                        color: activeTab === i ? tabColor : "rgba(255,255,255,0.45)",
+                                        fontFamily: "'Inter', sans-serif",
+                                        fontSize: 13,
+                                        fontWeight: 600,
+                                        cursor: "pointer",
+                                        transition: "all 0.18s",
+                                        letterSpacing: "-0.01em",
+                                    }}
+                                >
+                                    {prod.badge}
+                                </button>
+                            );
+                        })}
+                    </div>
                 </div>
 
                 {/* Step cards */}
@@ -223,19 +501,19 @@ function HowItWorks() {
                             <div style={{
                                 position: "absolute",
                                 inset: 0,
-                                background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%)",
+                                background: `linear-gradient(90deg, transparent 0%, ${color}55 50%, transparent 100%)`,
                                 animation: "connectorSlide 3s linear infinite",
                             }} />
                         </div>
                     )}
 
-                    {L.howItWorksSteps.map((step, i) => (
+                    {flow.steps.map((step, i) => (
                         <div
-                            key={i}
+                            key={`${activeTab}-${i}`}
                             style={{
                                 flex: 1,
                                 background: "rgba(255,255,255,0.025)",
-                                border: "1px solid rgba(255,255,255,0.08)",
+                                border: `1px solid ${color}22`,
                                 borderRadius: 16,
                                 padding: isMobile ? "28px 24px" : "32px 28px",
                                 display: "flex",
@@ -246,14 +524,14 @@ function HowItWorks() {
                                 backdropFilter: "blur(4px)",
                             }}
                         >
-                            {/* Step number + connector dot */}
+                            {/* Step number + title */}
                             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                                 <div style={{
                                     width: 36,
                                     height: 36,
                                     borderRadius: "50%",
-                                    border: "1px solid rgba(255,255,255,0.15)",
-                                    background: "rgba(255,255,255,0.04)",
+                                    border: `1px solid ${color}40`,
+                                    background: color + "10",
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: "center",
@@ -263,7 +541,7 @@ function HowItWorks() {
                                         fontFamily: "'Inter', monospace",
                                         fontSize: 11,
                                         fontWeight: 700,
-                                        color: "rgba(255,255,255,0.4)",
+                                        color,
                                         letterSpacing: "0.05em",
                                     }}>{STEP_NUMS[i]}</span>
                                 </div>
@@ -300,7 +578,7 @@ function HowItWorks() {
                                         <div key={j} style={{ width: 10, height: 10, borderRadius: "50%", background: c }} />
                                     ))}
                                 </div>
-                                {STEP_SNIPPETS[i].map((line, j) => (
+                                {snippets[i].map((line, j) => (
                                     <div key={j} style={{
                                         color: line.dim ? "rgba(255,255,255,0.28)" : "rgba(255,255,255,0.62)",
                                         whiteSpace: "pre",
@@ -313,7 +591,7 @@ function HowItWorks() {
                                         display: "inline-block",
                                         width: 7,
                                         height: 14,
-                                        background: "rgba(255,255,255,0.38)",
+                                        background: color + "90",
                                         marginLeft: 6,
                                         animation: "blink 1.1s step-end infinite",
                                     }} />
@@ -422,7 +700,7 @@ function FinalCTA({ onConnect, isConnecting }: { onConnect: () => void; isConnec
                 fontSize: isMobile ? 34 : 62,
                 fontWeight: 800,
                 lineHeight: 1.08,
-                color: "#fff",
+                color: "#d4d6e2",
                 letterSpacing: "-0.03em",
                 marginBottom: 20,
                 maxWidth: 700,
@@ -535,15 +813,14 @@ function Footer() {
         {
             heading: L.footerColProduct,
             links: [
-                { label: L.footerLinkLaunchApp, href: "/app" },
-                { label: L.footerLinkTestnet, href: "https://sepolia.etherscan.io/address/0x0c060e880A405B1231Ce1263c6a52a272cC1cE05", external: true },
+                { label: L.footerLinkTestnet, href: "https://qryptumorg.github.io/docs/developer/join-testnet", external: true },
                 { label: L.footerLinkMainnet, href: "https://etherscan.io", external: true },
             ],
         },
         {
             heading: L.footerColDevelopers,
             links: [
-                { label: L.footerLinkDocumentation, href: "/docs/introduction/overview", external: true },
+                { label: L.footerLinkDocumentation, href: "https://qryptumorg.github.io/docs", external: true },
                 { label: L.footerLinkGitHub, href: "https://github.com/Qryptumorg", external: true },
             ],
         },
@@ -593,8 +870,8 @@ function Footer() {
                 {/* Brand */}
                 <div style={{ flex: 1.4, paddingRight: isMobile ? 0 : 48 }}>
                     <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 0, marginBottom: 16 }}>
-                        <img src={`${import.meta.env.BASE_URL}qryptum-logo.png`} alt="Qryptum" style={{ height: 36, width: 36, objectFit: "contain", display: "block" }} />
-                        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 800, color: "#fff", letterSpacing: "-0.01em", marginLeft: -4 }}>QRYPTUM</span>
+                        <img src="/qryptum-logo.png" alt="Qryptum" style={{ height: 36, width: 36, objectFit: "contain", display: "block" }} />
+                        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 800, color: "#d4d6e2", letterSpacing: "-0.01em", marginLeft: -4 }}>QRYPTUM</span>
                     </a>
                     <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.35)", maxWidth: 260 }}>
                         {L.footerTagline}
@@ -698,9 +975,9 @@ function UseCases() {
     }, []);
 
     const cardMeta = [
-        { img: "/usecase-shield.png",      bg: "rgba(20,24,60,0.9)",  border: "rgba(98,126,234,0.15)"  },
-        { img: "/usecase-inheritance.png", bg: "rgba(35,18,55,0.9)",  border: "rgba(150,80,220,0.15)"  },
-        { img: "/usecase-coldwallet.png",  bg: "rgba(12,32,24,0.9)",  border: "rgba(30,180,100,0.15)"  },
+        { img: "/qryptum-usecase-shield.jpg",      bg: "rgba(20,24,60,0.9)",  border: "rgba(98,126,234,0.15)", href: "/vault-proof-security"  },
+        { img: "/qryptum-usecase-inheritance.jpg", bg: "rgba(35,18,55,0.9)",  border: "rgba(150,80,220,0.15)", href: "/making-transfers"       },
+        { img: "/qryptum-usecase-coldwallet.jpg",  bg: "rgba(12,32,24,0.9)",  border: "rgba(30,180,100,0.15)", href: "https://qryptum.eth.limo/app"                   },
     ];
     const cards = L.useCasesCards.map((c, i) => ({ ...cardMeta[i], ...c }));
 
@@ -726,7 +1003,7 @@ function UseCases() {
                     fontSize: isMobile ? 32 : 46,
                     fontWeight: 800,
                     lineHeight: 1.1,
-                    color: "#fff",
+                    color: "#d4d6e2",
                     letterSpacing: "-0.02em",
                     maxWidth: 520,
                     whiteSpace: "pre-line",
@@ -740,16 +1017,16 @@ function UseCases() {
                 <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                     {/* Quantum Design card - mobile first */}
                     <a href="/quantum-design" style={{ textDecoration: "none", display: "block", position: "relative", borderRadius: 20, overflow: "hidden", minHeight: 220, border: "1px solid rgba(79,70,229,0.25)" }}>
-                        <img src={`${import.meta.env.BASE_URL}images/quantum-design-hero.png`} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.4 }} />
+                        <img src="/images/qryptum-quantum-design-hero.jpg" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.4 }} />
                         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(79,70,229,0.55) 0%, rgba(0,0,0,0.75) 100%)" }} />
                         <div style={{ position: "relative", padding: "32px 28px" }}>
                             <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(79,70,229,0.18)", border: "1px solid rgba(79,70,229,0.35)", borderRadius: 14, padding: "3px 12px", marginBottom: 16 }}>
-                                <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#06b6d4" }} />
-                                <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 10, fontWeight: 700, color: "#06b6d4", letterSpacing: "0.1em", textTransform: "uppercase" }}>Post-Quantum</span>
+                                <div style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.22)" }} />
+                                <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.38)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Post-Quantum</span>
                             </div>
-                            <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 22, fontWeight: 800, color: "#fff", marginBottom: 10, letterSpacing: "-0.015em", lineHeight: 1.15 }}>{L.useCasesQuantumTitle}</h3>
+                            <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 22, fontWeight: 800, color: "#d4d6e2", marginBottom: 10, letterSpacing: "-0.015em", lineHeight: 1.15 }}>{L.useCasesQuantumTitle}</h3>
                             <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, lineHeight: 1.6, color: "rgba(255,255,255,0.55)", marginBottom: 20 }}>{L.useCasesQuantumDesc}</p>
-                            <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 600, color: "#06b6d4", display: "inline-flex", alignItems: "center", gap: 6 }}>
+                            <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.52)", display: "inline-flex", alignItems: "center", gap: 6 }}>
                                 {L.useCasesQuantumCta}
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                             </span>
@@ -764,9 +1041,9 @@ function UseCases() {
                         }}>
                             <img src={card.img} alt={card.title} style={{ width: "100%", height: 200, objectFit: "cover", objectPosition: "center top" }} />
                             <div style={{ padding: "24px 24px 28px" }}>
-                                <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 20, fontWeight: 800, color: "#fff", marginBottom: 10, letterSpacing: "-0.01em" }}>{card.title}</h3>
+                                <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 20, fontWeight: 800, color: "#d4d6e2", marginBottom: 10, letterSpacing: "-0.01em" }}>{card.title}</h3>
                                 <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 14, lineHeight: 1.65, color: "rgba(255,255,255,0.48)", marginBottom: 20 }}>{card.desc}</p>
-                                <a href="#" style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.6)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: 2 }}>
+                                <a href={card.href} {...(card.href.startsWith("http") ? {target:"_blank",rel:"noopener noreferrer"} : {})} style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.6)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: 2 }}>
                                     {card.cta}
                                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                                 </a>
@@ -782,17 +1059,17 @@ function UseCases() {
                         borderRadius: 20, overflow: "hidden", minHeight: 280,
                         border: "1px solid rgba(79,70,229,0.22)",
                     }}>
-                        <img src={`${import.meta.env.BASE_URL}images/quantum-design-hero.png`} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.35 }} />
+                        <img src="/images/qryptum-quantum-design-hero.jpg" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.35 }} />
                         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(79,70,229,0.5) 0%, rgba(124,58,237,0.25) 50%, rgba(0,0,0,0.7) 100%)" }} />
                         <div style={{ position: "relative", padding: "52px 56px", display: "flex", alignItems: "center", gap: 60 }}>
                             <div style={{ flex: 1 }}>
                                 <div style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "rgba(6,182,212,0.1)", border: "1px solid rgba(6,182,212,0.28)", borderRadius: 16, padding: "4px 14px", marginBottom: 20 }}>
-                                    <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#06b6d4", boxShadow: "0 0 8px #06b6d4" }} />
-                                    <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 10, fontWeight: 700, color: "#06b6d4", letterSpacing: "0.12em", textTransform: "uppercase" }}>Post-Quantum Security</span>
+                                    <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(255,255,255,0.22)",  }} />
+                                    <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.38)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Post-Quantum Security</span>
                                 </div>
-                                <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 32, fontWeight: 900, color: "#fff", marginBottom: 16, letterSpacing: "-0.025em", lineHeight: 1.1 }}>{L.useCasesQuantumTitle}</h3>
+                                <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 32, fontWeight: 900, color: "#d4d6e2", marginBottom: 16, letterSpacing: "-0.025em", lineHeight: 1.1 }}>{L.useCasesQuantumTitle}</h3>
                                 <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 16, lineHeight: 1.7, color: "rgba(255,255,255,0.52)", maxWidth: 480, marginBottom: 28 }}>{L.useCasesQuantumDesc}</p>
-                                <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 14, fontWeight: 600, color: "#06b6d4", display: "inline-flex", alignItems: "center", gap: 7 }}>
+                                <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 14, fontWeight: 600, color: "rgba(255,255,255,0.52)", display: "inline-flex", alignItems: "center", gap: 7 }}>
                                     {L.useCasesQuantumCta}
                                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                                 </span>
@@ -820,9 +1097,9 @@ function UseCases() {
                             flexDirection: "row",
                         }}>
                             <div style={{ flex: 1, padding: "42px 40px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                                <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 22, fontWeight: 800, color: "#fff", marginBottom: 14, letterSpacing: "-0.01em", lineHeight: 1.2 }}>{cards[0].title}</h3>
+                                <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 22, fontWeight: 800, color: "#d4d6e2", marginBottom: 14, letterSpacing: "-0.01em", lineHeight: 1.2 }}>{cards[0].title}</h3>
                                 <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.48)", marginBottom: 28, flex: 1 }}>{cards[0].desc}</p>
-                                <a href="#" style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.6)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: 2, alignSelf: "flex-start" }}>
+                                <a href={cards[0].href} {...(cards[0].href.startsWith("http") ? {target:"_blank",rel:"noopener noreferrer"} : {})} style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.6)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: 2, alignSelf: "flex-start" }}>
                                     {cards[0].cta}
                                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                                 </a>
@@ -845,9 +1122,9 @@ function UseCases() {
                                     flexDirection: "row",
                                 }}>
                                     <div style={{ flex: 1, padding: "28px 32px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                                        <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 19, fontWeight: 800, color: "#fff", marginBottom: 10, letterSpacing: "-0.01em", lineHeight: 1.2 }}>{card.title}</h3>
+                                        <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 19, fontWeight: 800, color: "#d4d6e2", marginBottom: 10, letterSpacing: "-0.01em", lineHeight: 1.2 }}>{card.title}</h3>
                                         <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 13.5, lineHeight: 1.65, color: "rgba(255,255,255,0.46)", marginBottom: 18, flex: 1 }}>{card.desc}</p>
-                                        <a href="#" style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.6)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: 2, alignSelf: "flex-start" }}>
+                                        <a href={card.href} {...(card.href.startsWith("http") ? {target:"_blank",rel:"noopener noreferrer"} : {})} style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.6)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: 2, alignSelf: "flex-start" }}>
                                             {card.cta}
                                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                                         </a>
@@ -915,7 +1192,7 @@ function StatsSplit() {
                         fontSize: isMobile ? 32 : 48,
                         fontWeight: 800,
                         lineHeight: 1.15,
-                        color: "#fff",
+                        color: "#d4d6e2",
                         letterSpacing: "-0.02em",
                         marginBottom: isMobile ? 16 : 24,
                     }}>
@@ -1017,7 +1294,7 @@ function StatsSplit() {
                                             fontFamily: "'Inter', sans-serif",
                                             fontSize: 13,
                                             fontWeight: 700,
-                                            color: "#fff",
+                                            color: "#d4d6e2",
                                             marginBottom: 4,
                                             lineHeight: 1,
                                             paddingTop: 7,
@@ -1165,7 +1442,7 @@ function HeroSection({ onConnect, isConnecting }: { onConnect: () => void; isCon
                 alignItems: "flex-end",
                 position: "relative",
                 overflowX: "hidden",
-                paddingTop: 64,
+                paddingTop: isMobile ? 100 : 64,
                 paddingBottom: isMobile ? 48 : 0,
             }}
         >
@@ -1242,44 +1519,51 @@ function HeroSection({ onConnect, isConnecting }: { onConnect: () => void; isCon
                         {L.heroBody}
                     </p>
 
-                    {/* CTA */}
-                    <div>
-                        <a
-                            href="https://sepolia.etherscan.io"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                                display: "inline-flex",
-                                alignItems: "center",
-                                gap: 8,
-                                border: "1px solid rgba(98,126,234,0.45)",
-                                borderRadius: 12,
-                                padding: "12px 22px",
-                                fontFamily: "'Inter', sans-serif",
-                                fontWeight: 600,
-                                fontSize: 14,
-                                color: "#fff",
-                                textDecoration: "none",
-                                background: "rgba(98,126,234,0.18)",
-                                transition: "border-color 0.15s, background 0.15s",
-                            }}
-                            onMouseEnter={(e) => {
-                                const el = e.currentTarget as HTMLAnchorElement;
-                                el.style.borderColor = "rgba(98,126,234,0.75)";
-                                el.style.background = "rgba(98,126,234,0.28)";
-                            }}
-                            onMouseLeave={(e) => {
-                                const el = e.currentTarget as HTMLAnchorElement;
-                                el.style.borderColor = "rgba(98,126,234,0.45)";
-                                el.style.background = "rgba(98,126,234,0.18)";
-                            }}
-                        >
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-                            </svg>
-                            {L.heroEtherscanBtn}
-                        </a>
+                    {/* Product CTA Pills */}
+                    <div style={{ position: "relative", display: "flex", flexDirection: isMobile ? "column" : "row", gap: 10, flexWrap: "wrap" as const, maxWidth: 680, overflow: "hidden", borderRadius: 18 }}>
+                        <div className="pill-scan-top" />
+                        <div className="pill-scan-bottom" />
+                        {[
+                            { href: "/create-personal-qrypt-safe", color: "#22C55E", name: "QryptSafe",   tag: L.heroProductPillTags[0] },
+                            { href: "/qrypt-shield",               color: "#8B5CF6", name: "QryptShield", tag: L.heroProductPillTags[1] },
+                            { href: "/qrypt-air",                  color: "#F59E0B", name: "QryptAir",    tag: L.heroProductPillTags[2] },
+                        ].map((pill) => (
+                            <a
+                                key={pill.href}
+                                href={pill.href}
+                                style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "space-between",
+                                    gap: 20,
+                                    flex: isMobile ? "1 1 100%" : "1 1 0",
+                                    maxWidth: isMobile ? "100%" : 220,
+                                    border: `2px solid ${pill.color}90`,
+                                    borderRadius: 14,
+                                    padding: "13px 16px",
+                                    fontFamily: "'Inter', sans-serif",
+                                    textDecoration: "none",
+                                    background: "#0d0d10",
+                                    transition: "border-color 0.15s, background 0.15s",
+                                }}
+                                onMouseEnter={(e) => {
+                                    const el = e.currentTarget as HTMLAnchorElement;
+                                    el.style.borderColor = `${pill.color}ee`;
+                                    el.style.background = "#161620";
+                                }}
+                                onMouseLeave={(e) => {
+                                    const el = e.currentTarget as HTMLAnchorElement;
+                                    el.style.borderColor = `${pill.color}90`;
+                                    el.style.background = "#0d0d10";
+                                }}
+                            >
+                                <div>
+                                    <div style={{ fontWeight: 800, fontSize: 15, color: "#d4d6e2", marginBottom: 2, letterSpacing: "-0.01em" }}>{pill.name}</div>
+                                    <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", lineHeight: 1.4 }}>{pill.tag}</div>
+                                </div>
+                                <span style={{ fontSize: 14, color: pill.color, fontWeight: 400, flexShrink: 0 }}>→</span>
+                            </a>
+                        ))}
                     </div>
 
                     </div>{/* end display:contents */}

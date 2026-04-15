@@ -1,65 +1,69 @@
-import FeatureBentoPage from "../FeatureBentoPage";
+import FeatureBentoPage from "@/pages/FeatureBentoPage";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function TransferEnginePage() {
+    const { t } = useLanguage();
+    const p = t.featurePages.transferEngine;
     return (
         <FeatureBentoPage
-            pageTitle="Transfer Engine"
-            badge="Transfer Engine"
-            heroTitle="Two-Phase Transfers"
-            heroHighlight="MEV Proof"
-            heroSubtitle="Qryptum's commit-reveal engine makes every transfer invisible to mempool bots until it is already mined. No front-running. No interception."
+            pageTitle={p.pageTitle}
+            badge={p.badge}
+            heroTitle={p.heroTitle}
+            heroHighlight={p.heroHighlight}
+            heroSubtitle={p.heroSubtitle}
             primaryColor="#10b981"
             secondaryColor="#7c3aed"
+            heroImg="/images/qryptum-feat-transfer-wallet.jpg"
             heroButtons={[
-                { label: "Open App", href: "/app", primary: true },
-                { label: "MEV Protection", href: "/mev-protection" },
+                { label: p.heroButtons[0].label, href: "https://qryptum.eth.limo/app", primary: true },
+                { label: p.heroButtons[1].label, href: "/mev-protection" },
             ]}
             stats={[
-                { value: "2-phase", label: "Transfer design", note: "Commit then reveal" },
-                { value: "600s", label: "Reveal window", note: "10 minutes to complete" },
-                { value: "Zero", label: "MEV exposure", note: "Commit hides all details" },
-                { value: "On-chain", label: "Verification", note: "No off-chain steps" },
+                { value: "2-phase", label: p.stats[0].label, note: p.stats[0].note },
+                { value: "600s", label: p.stats[1].label, note: p.stats[1].note },
+                { value: "Zero", label: p.stats[2].label, note: p.stats[2].note },
+                { value: "On-chain", label: p.stats[3].label, note: p.stats[3].note },
             ]}
-            sectionBadge="Protocol Design"
+            sectionBadge={p.sectionBadge}
             sectionColor="#10b981"
-            sectionHeading="How the Transfer Engine Works"
-            sectionBody="Every Qrypt-Safe transfer uses a two-step commit-reveal scheme. The commit phase submits a hash. The reveal phase unlocks it. Mempool bots see only a hash."
+            sectionHeading={p.sectionHeading}
+            sectionBody={p.sectionBody}
             cards={[
                 {
-                    img: "/images/transfer-commit.png",
+                    img: "/images/qryptum-transfer-commit.jpg",
                     color: "#10b981",
-                    title: "Phase 1: Commit",
-                    body: "You submit keccak256(vaultProof, recipient, amount, nonce) to the contract. The recipient and amount are invisible to any observer watching the mempool.",
-                    link: { text: "Commit-reveal deep dive", href: "/mev-protection" },
+                    title: p.cards[0].title,
+                    body: p.cards[0].body,
+                    link: { text: p.cards[0].linkText!, href: "/mev-protection" },
                 },
                 {
-                    img: "/images/transfer-reveal.png",
+                    img: "/images/qryptum-transfer-reveal.jpg",
                     color: "#7c3aed",
-                    title: "Phase 2: Reveal",
-                    body: "After the commit is mined, you reveal the plaintext inputs. The contract verifies the hash matches and executes the transfer. No front-run window exists.",
+                    title: p.cards[1].title,
+                    body: p.cards[1].body,
                 },
                 {
-                    img: "/images/transfer-nonce.png",
+                    img: "/images/qryptum-sec-nonce.jpg",
                     color: "#06b6d4",
-                    title: "Nonce Prevents Replay",
-                    body: "Each commit includes a unique nonce. Used commitments are stored on-chain. Replaying the same commit to a different recipient is impossible.",
+                    title: p.cards[2].title,
+                    body: p.cards[2].body,
                 },
                 {
-                    img: "/images/transfer-window.png",
+                    img: "/images/qryptum-sec-timelocked.jpg",
                     color: "#f59e0b",
-                    title: "10-Minute Reveal Window",
-                    body: "The reveal must arrive within 600 seconds of the commit block. Expired commitments are invalidated. The time limit adds a safety layer for abandoned transfers.",
-                    link: { text: "Time-lock details", href: "/mev-protection" },
+                    title: p.cards[3].title,
+                    body: p.cards[3].body,
+                    link: { text: p.cards[3].linkText!, href: "/mev-protection" },
                 },
             ]}
             steps={[
-                { n: "01", color: "#10b981", title: "Enter Transfer Details", desc: "Choose the recipient address, token, and amount inside the app. Your vault proof is hashed locally.", detail: "hash = keccak256(abi.encodePacked(vaultProof, recipient, amount, nonce))" },
-                { n: "02", color: "#7c3aed", title: "Submit Commit Transaction", desc: "Send the hash to the Qrypt-Safe contract. The transaction reveals nothing about the transfer to mempool observers.", detail: "personalVault.commitTransfer(bytes32 commitHash)" },
-                { n: "03", color: "#06b6d4", title: "Wait for Commit to Mine", desc: "The commit transaction is included in a block. Once mined, the 10-minute reveal window opens.", detail: "Block confirms. commitTimestamp stored on-chain." },
-                { n: "04", color: "#f59e0b", title: "Submit Reveal Transaction", desc: "Reveal the plaintext inputs. Contract verifies, executes the transfer, and marks the nonce as spent.", detail: "personalVault.revealTransfer(vaultProof, recipient, amount, nonce)" },
+                { n: "01", color: "#10b981", title: p.steps[0].title, desc: p.steps[0].desc, detail: "hash = keccak256(abi.encodePacked(vaultProof, recipient, amount, nonce))" },
+                { n: "02", color: "#7c3aed", title: p.steps[1].title, desc: p.steps[1].desc, detail: "personalVault.commitTransfer(bytes32 commitHash)" },
+                { n: "03", color: "#06b6d4", title: p.steps[2].title, desc: p.steps[2].desc, detail: "Block confirms. commitTimestamp stored on-chain." },
+                { n: "04", color: "#f59e0b", title: p.steps[3].title, desc: p.steps[3].desc, detail: "personalVault.revealTransfer(vaultProof, recipient, amount, nonce)" },
             ]}
             techNote={{
-                label: "Commit hash construction",
+                label: p.techNoteLabel!,
                 lines: [
                     "// Commit phase: nothing sensitive exposed",
                     "bytes32 commitHash = keccak256(abi.encodePacked(",
@@ -72,9 +76,9 @@ export default function TransferEnginePage() {
                 ],
             }}
             relatedLinks={[
-                { label: "MEV Protection", href: "/mev-protection", color: "#10b981" },
-                { label: "Making Transfers", href: "/making-transfers", color: "#7c3aed" },
-                { label: "Vault Proof Security", href: "/vault-proof-security", color: "#06b6d4" },
+                { label: p.relatedLinks[0].label, href: "/mev-protection", color: "#10b981" },
+                { label: p.relatedLinks[1].label, href: "/making-transfers", color: "#7c3aed" },
+                { label: p.relatedLinks[2].label, href: "/vault-proof-security", color: "#06b6d4" },
             ]}
         />
     );

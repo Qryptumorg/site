@@ -1,61 +1,65 @@
 import FeatureBentoPage from "@/pages/FeatureBentoPage";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function CommitRevealSchemePage() {
+    const { t } = useLanguage();
+    const p = t.featurePages.commitRevealScheme;
     return (
         <FeatureBentoPage
-            pageTitle="Commit-Reveal Scheme"
-            badge="PROTOCOL ARCHITECTURE"
-            heroTitle="Two-Phase Transfer"
-            heroHighlight="Closes the MEV Window"
-            heroSubtitle="Commit first, reveal later. The two-phase design makes transfer details invisible to mempool observers until execution is already guaranteed. Front-running becomes structurally impossible."
+            pageTitle={p.pageTitle}
+            badge={p.badge}
+            heroTitle={p.heroTitle}
+            heroHighlight={p.heroHighlight}
+            heroSubtitle={p.heroSubtitle}
             primaryColor="#EC4899"
             secondaryColor="#8B5CF6"
+            heroImg="/images/qryptum-feat-commit-reveal.jpg"
             heroButtons={[
-                { label: "Commit Phase", href: "/commit-phase", primary: false },
-                { label: "Reveal Phase", href: "/reveal-phase", primary: false },
+                { label: p.heroButtons[0].label, href: "/commit-phase", primary: false },
+                { label: p.heroButtons[1].label, href: "/reveal-phase", primary: false },
             ]}
             stats={[
-                { value: "2 phases", label: "Per transfer", note: "Commit then reveal" },
-                { value: "0", label: "MEV window", note: "Details hidden until execution" },
-                { value: "10 min", label: "Reveal deadline", note: "600 blocks on Ethereum" },
-                { value: "keccak256", label: "Commitment hash", note: "256-bit commitment" },
+                { value: "2 phases", label: p.stats[0].label, note: p.stats[0].note },
+                { value: "0", label: p.stats[1].label, note: p.stats[1].note },
+                { value: "10 min", label: p.stats[2].label, note: p.stats[2].note },
+                { value: "keccak256", label: p.stats[3].label, note: p.stats[3].note },
             ]}
-            sectionBadge="SCHEME DESIGN"
-            sectionHeading="How Commit-Reveal Eliminates Front-Running"
-            sectionBody="In a standard ERC-20 transfer, the recipient and amount are visible in the mempool before the transaction confirms. The commit-reveal scheme replaces this with a hash that reveals nothing, then confirms the execution before the details appear."
+            sectionBadge={p.sectionBadge}
             sectionColor="#EC4899"
+            sectionHeading={p.sectionHeading}
+            sectionBody={p.sectionBody}
             cards={[
                 {
                     img: "https://images.unsplash.com/photo-1516245834210-c4c142787335?w=800&auto=format",
                     color: "#EC4899",
-                    title: "Phase 1: Blind Commitment",
-                    body: "keccak256(vaultProof, recipient, amount, nonce) is submitted on-chain. A bot scanning the mempool sees 32 bytes of hash: nothing actionable.",
-                    link: { text: "Commit phase", href: "/commit-phase" },
+                    title: p.cards[0].title,
+                    body: p.cards[0].body,
+                    link: { text: p.cards[0].linkText!, href: "/commit-phase" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&auto=format",
                     color: "#8B5CF6",
-                    title: "Phase 2: Anchored Reveal",
-                    body: "The reveal submits the plaintext details, but the commit is already confirmed. A front-runner who sees the reveal calldata cannot do anything useful: the transfer is already guaranteed.",
-                    link: { text: "Reveal phase", href: "/reveal-phase" },
+                    title: p.cards[1].title,
+                    body: p.cards[1].body,
+                    link: { text: p.cards[1].linkText!, href: "/reveal-phase" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format",
                     color: "#DB2777",
-                    title: "MEV Bots See Nothing Useful",
-                    body: "Between commit and reveal, the details are invisible. After reveal, the execution is already locked in. There is no window for bot intervention.",
-                    link: { text: "MEV protection", href: "/mev-protection" },
+                    title: p.cards[2].title,
+                    body: p.cards[2].body,
+                    link: { text: p.cards[2].linkText!, href: "/mev-protection" },
                 },
                 {
                     img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&auto=format",
                     color: "#6D28D9",
-                    title: "Nonce Makes Replay Impossible",
-                    body: "Each commitment includes a unique nonce stored on-chain after use. The same commitment cannot be replayed in a later transaction.",
-                    link: { text: "Nonce protection", href: "/nonce-protection" },
+                    title: p.cards[3].title,
+                    body: p.cards[3].body,
+                    link: { text: p.cards[3].linkText!, href: "/nonce-protection" },
                 },
             ]}
             techNote={{
-                label: "Protocol: commit-reveal flow",
+                label: p.techNoteLabel!,
                 lines: [
                     "// Phase 1: submit hash, reveal nothing",
                     "commitments[msg.sender] = keccak256(abi.encode(proof, to, amt, nonce));",
@@ -66,9 +70,9 @@ export default function CommitRevealSchemePage() {
                 ],
             }}
             relatedLinks={[
-                { label: "Commit Phase", href: "/commit-phase", color: "#EC4899" },
-                { label: "Reveal Phase", href: "/reveal-phase", color: "#8B5CF6" },
-                { label: "MEV Protection", href: "/mev-protection", color: "#DB2777" },
+                { label: p.relatedLinks[0].label, href: "/commit-phase", color: "#EC4899" },
+                { label: p.relatedLinks[1].label, href: "/reveal-phase", color: "#8B5CF6" },
+                { label: p.relatedLinks[2].label, href: "/mev-protection", color: "#DB2777" },
             ]}
         />
     );
