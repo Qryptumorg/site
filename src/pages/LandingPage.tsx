@@ -5,7 +5,7 @@ import SharedNavBar from "@/components/SharedNavBar";
 import HeroCardRow from "@/components/HeroCardRow";
 import { useLanguage } from "@/lib/LanguageContext";
 
-const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+const _B = '#';
 
 export default function LandingPage() {
     const [, navigate] = useLocation();
