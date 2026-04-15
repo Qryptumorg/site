@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import SharedNavBar from "@/components/SharedNavBar";
-import SepoliaVersionNav from "@/components/SepoliaVersionNav";
 import { useLanguage } from "@/lib/LanguageContext";
 import { translations } from "@/lib/translations";
 
@@ -505,31 +504,6 @@ export default function SepoliaVerifiedV2Page() {
                     ))}
                 </div>
 
-                {/* ── Navigation ── */}
-                <div style={{ ...card({ padding: isMobile ? "22px 18px" : "26px 32px", marginBottom: 32, borderColor: "rgba(255,255,255,0.06)" }) }}>
-                    <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", marginBottom: 14, textAlign: "center" }}>
-                        Contract version history
-                    </div>
-                    <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", marginBottom: 22 }}>
-                        {[
-                            { href: "/qryptum-sepolia-verified", label: "v0", active: false },
-                            { href: "/qryptum-sepolia-verified-v1", label: "v1", active: false },
-                            { href: "/qryptum-sepolia-verified-v2", label: "v2", active: true },
-                            { href: "/qryptum-sepolia-verified-v3", label: "v3", active: false },
-                            { href: "/qryptum-sepolia-verified-v4", label: "v4", active: false },
-                            { href: "/qryptum-sepolia-verified-v5", label: "v5", active: false },
-                            { href: "/qryptum-sepolia-verified-v6", label: "v6", active: false },
-                        ].map(item => (
-                            <a key={item.href} href={item.href} style={{ fontFamily: "'Inter',sans-serif", fontSize: 12, fontWeight: item.active ? 800 : 500, color: item.active ? "#fff" : "rgba(255,255,255,0.35)", textDecoration: "none", padding: "7px 16px", borderRadius: 8, background: item.active ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.03)", border: item.active ? "1px solid rgba(255,255,255,0.2)" : "1px solid rgba(255,255,255,0.07)" }}>
-                                {item.label}
-                            </a>
-                        ))}
-                    </div>
-                    <SepoliaVersionNav
-                        prev={{ label: "V1 Record", href: "/qryptum-sepolia-verified-v1" }}
-                        next={{ label: "V3 Record", href: "/qryptum-sepolia-verified-v3" }}
-                    />
-                </div>
             </div>
         </div>
     );
