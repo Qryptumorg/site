@@ -7,7 +7,7 @@ import { useLanguage } from "@/lib/LanguageContext";
 const NAV_MENU_KEYS = ["features", "howItWorks", "security", "docs"] as const;
 type NavMenuKey = typeof NAV_MENU_KEYS[number];
 
-const _B = import.meta.env.BASE_URL.replace(/\/$/, "");
+const _B = '#';
 
 const NAV_HREFS: Record<NavMenuKey, string[][]> = {
     features: [
