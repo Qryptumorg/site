@@ -402,7 +402,7 @@ export default function SharedNavBar({ onConnect, isConnecting = false }: Shared
                                 <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 20 }}>
                                     <a
                                         href="https://qryptumorg.github.io/docs"
-                        target="_blank" rel="noopener noreferrer"
+                        
                                         style={{
                                             display: "inline-flex", alignItems: "center", gap: 8,
                                             padding: "11px 18px",
