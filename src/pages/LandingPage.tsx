@@ -12,7 +12,7 @@ export default function LandingPage() {
     const isConnecting = false;
 
     const handleConnect = () => {
-        window.open("https://qryptum.eth.limo/app", "_blank");
+        window.location.href = "https://qryptum.eth.limo/app";
     };
 
     return (
