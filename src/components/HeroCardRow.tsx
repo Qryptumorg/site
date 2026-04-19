@@ -191,7 +191,8 @@ function ChallengeCardContent() {
     const { t } = useLanguage();
     const ch = t.heroCards.challenge;
     return (
-        <div style={{ ...CARD_STYLE, position: "relative", padding: "16px 90px 16px 20px" }}>
+        <a href="https://qryptumorg.github.io/hack" target="_self" style={{ display: "block", textDecoration: "none" }}>
+        <div style={{ ...CARD_STYLE, position: "relative", padding: "16px 90px 16px 20px", cursor: "pointer" }}>
             <div style={{ position: "absolute", top: 10, right: 12, zIndex: 2, width: 68, height: 68, filter: "drop-shadow(0 6px 24px rgba(98,126,234,0.6))" }}>
                 <img src="/qryptum-hacker-challenge-small.jpg" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%" }} />
             </div>
@@ -205,10 +206,11 @@ function ChallengeCardContent() {
             <p style={{ margin: "0 0 14px", fontFamily: "'Inter',sans-serif", fontSize: 12, color: "rgba(255,255,255,0.26)", lineHeight: 1.5, flex: 1 }}>
                 {ch.body}
             </p>
-            <div style={{ display: "inline-flex", alignItems: "center", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.2)", fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: 12, padding: "8px 16px", borderRadius: 9, cursor: "not-allowed", userSelect: "none" }}>
+            <div style={{ display: "inline-flex", alignItems: "center", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.2)", fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: 12, padding: "8px 16px", borderRadius: 9, cursor: "pointer", userSelect: "none" }}>
                 {ch.mainnetOnly}
             </div>
         </div>
+        </a>
     );
 }
 
