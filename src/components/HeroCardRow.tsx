@@ -197,16 +197,16 @@ function ChallengeCardContent() {
                 <img src="/qryptum-hacker-challenge-small.jpg" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%" }} />
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 7 }}>
-                <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(255,255,255,0.22)", flexShrink: 0 }} />
-                <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color: "rgba(255,255,255,0.36)", textTransform: "uppercase" }}>{ch.comingSoon}</span>
+                <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#22C55E", flexShrink: 0, boxShadow: "0 0 6px #22C55E" }} />
+                <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color: "#22C55E", textTransform: "uppercase" }}>{ch.comingSoon}</span>
             </div>
-            <h3 style={{ margin: "0 0 7px", fontFamily: "'Inter',sans-serif", fontWeight: 800, fontSize: 19, color: "rgba(255,255,255,0.42)", letterSpacing: "-0.03em", lineHeight: 1.1 }}>
+            <h3 style={{ margin: "0 0 7px", fontFamily: "'Inter',sans-serif", fontWeight: 800, fontSize: 19, color: "rgba(255,255,255,0.88)", letterSpacing: "-0.03em", lineHeight: 1.1 }}>
                 {ch.title}
             </h3>
-            <p style={{ margin: "0 0 14px", fontFamily: "'Inter',sans-serif", fontSize: 12, color: "rgba(255,255,255,0.26)", lineHeight: 1.5, flex: 1 }}>
+            <p style={{ margin: "0 0 14px", fontFamily: "'Inter',sans-serif", fontSize: 12, color: "rgba(255,255,255,0.52)", lineHeight: 1.5, flex: 1 }}>
                 {ch.body}
             </p>
-            <div style={{ display: "inline-flex", alignItems: "center", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.2)", fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: 12, padding: "8px 16px", borderRadius: 9, cursor: "pointer", userSelect: "none" }}>
+            <div style={{ display: "inline-flex", alignItems: "center", background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.35)", color: "rgba(34,197,94,0.9)", fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: 12, padding: "8px 16px", borderRadius: 9, cursor: "pointer", userSelect: "none" }}>
                 {ch.mainnetOnly}
             </div>
         </div>

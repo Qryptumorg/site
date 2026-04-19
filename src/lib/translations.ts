@@ -1075,7 +1075,7 @@ export const translations = {
             },
         },
         heroCards: {
-            challenge: { comingSoon: "Coming Soon", title: "Crack the Qrypt-Safe.", body: "The challenge goes live on mainnet. We will publish a private key. qWETH will be shielded inside the Qrypt-Safe. Transfer out if you can.", mainnetOnly: "Mainnet only" },
+            challenge: { comingSoon: "LIVE", title: "Crack the Qrypt-Safe.", body: "The challenge is live on mainnet. A private key has been published. qWETH is shielded inside the Qrypt-Safe. Transfer out if you can.", mainnetOnly: "Enter" },
             cards: [
                 { tag: "v6 Active", title: "QryptSafe v6 Live", body: "49/49 E2E tests. OTP chain proofs, offToken isolation, pre-image resistant chain. Factory + Impl MIT-verified on Etherscan.", linkText: "View full record" },
                 { tag: "v5 Legacy", title: "Sepolia Verified v5", body: "51/51 E2E tests. bytes32 proofHash, railgun(), QryptAir EIP-712. Superseded by v6 (OTP chain + offToken upgrade).", linkText: "View full record" },
@@ -2574,7 +2574,7 @@ export const translations = {
             },
         },
         heroCards: {
-            challenge: { comingSoon: "Скоро", title: "Взломайте Qrypt-Safe.", body: "Испытание запускается в основной сети. Мы опубликуем приватный ключ. qWETH будет экранирован внутри Qrypt-Safe. Выведите, если сможете.", mainnetOnly: "Только основная сеть" },
+            challenge: { comingSoon: "LIVE", title: "Взломайте Qrypt-Safe.", body: "Испытание активно в основной сети. Приватный ключ опубликован. qWETH экранирован внутри Qrypt-Safe. Выведите, если сможете.", mainnetOnly: "Enter" },
             cards: [
                 { tag: "v6 Активен", title: "QryptSafe v6 Запущен", body: "49/49 E2E тестов. OTP-цепочка доказательств, изоляция offToken, цепочка с защитой от реверса. Factory и Impl MIT-верифицированы на Etherscan.", linkText: "Полная запись" },
                 { tag: "v5 Устарел", title: "Sepolia Verified v5", body: "32/32 E2E тестов. bytes32 proofHash, unshieldToRailgun, QryptAir EIP-712. Заменён v6 (обновление OTP-цепочки и offToken).", linkText: "Полная запись" },
@@ -4073,7 +4073,7 @@ export const translations = {
             },
         },
         heroCards: {
-            challenge: { comingSoon: "即将推出", title: "破解 Qrypt-Safe。", body: "挑战在主网上线。我们将发布私钥。qWETH 将屏蔽在 Qrypt-Safe 内。如果可以，请转出。", mainnetOnly: "仅限主网" },
+            challenge: { comingSoon: "LIVE", title: "破解 Qrypt-Safe。", body: "挑战已在主网上线。私钥已发布。qWETH 已屏蔽在 Qrypt-Safe 内。如果可以，请转出。", mainnetOnly: "Enter" },
             cards: [
                 { tag: "v6 活跃", title: "QryptSafe v6 上线", body: "49/49 E2E 测试。OTP 链证明，offToken 隔离，抗原像链。Factory 和 Impl 在 Etherscan MIT 验证。", linkText: "查看完整记录" },
                 { tag: "v5 旧版", title: "Sepolia 已验证 v5", body: "32/32 E2E 测试。bytes32 proofHash，unshieldToRailgun，QryptAir EIP-712。被 v6（OTP 链 + offToken 升级）取代。", linkText: "查看完整记录" },
